@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Programming", "Programming\Programming.csproj", "{B4227EDD-C0A8-4532-961A-8C45744AE06E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "View", "View", "{A8C6B250-D4CA-448D-94A1-BE92DF3C1F20}"
+	ProjectSection(SolutionItems) = preProject
+		Programming\MainForm.cs = Programming\MainForm.cs
+		Programming\MainForm.Designer.cs = Programming\MainForm.Designer.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{85CB5933-397E-4AEE-8416-B54FDC16799D}"
+	ProjectSection(SolutionItems) = preProject
+		Colors.cs = Colors.cs
+		Genre.cs = Genre.cs
+		Manufacturers.cs = Manufacturers.cs
+		Season.cs = Season.cs
+		StudyForm.cs = StudyForm.cs
+		Weekday.cs = Weekday.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4227EDD-C0A8-4532-961A-8C45744AE06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4227EDD-C0A8-4532-961A-8C45744AE06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4227EDD-C0A8-4532-961A-8C45744AE06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4227EDD-C0A8-4532-961A-8C45744AE06E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9005F701-56BD-4605-9847-64980FA4F6D9}
+	EndGlobalSection
+EndGlobal
