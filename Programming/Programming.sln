@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "View", "View", "{A8C6B250-D
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{85CB5933-397E-4AEE-8416-B54FDC16799D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enums", "Enums", "{A37D1FC5-FA17-429B-BB65-107657517E40}"
 	ProjectSection(SolutionItems) = preProject
 		Colors.cs = Colors.cs
 		Genre.cs = Genre.cs
@@ -34,6 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A37D1FC5-FA17-429B-BB65-107657517E40} = {85CB5933-397E-4AEE-8416-B54FDC16799D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9005F701-56BD-4605-9847-64980FA4F6D9}
