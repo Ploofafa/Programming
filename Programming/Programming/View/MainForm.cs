@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace Programming
 {
     public partial class MainForm : Form
@@ -76,51 +77,44 @@ namespace Programming
         private void EnumListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             IndexBox.Clear();
+            ValuesListBox.Items.Clear();
             switch (EnumListBox.SelectedItem)
             {
-                case "Colors":
-                    ValuesListBox.Items.Clear();
+                case "Colors":  
                     foreach (int i in Enum.GetValues(typeof(Enumss.Colors)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.Colors), i));
                     }
                     break;
                 case "Genre":
-                    ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.Genre)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.Genre), i));
                     }
                     break;
                 case "Manufacturers":
-                    ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.Manufacturers)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.Manufacturers), i));
                     }
                     break;
                 case "Season":
-                    ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.Season)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.Season), i));
                     }
                     break;
                 case "StudyForm":
-                    ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.StudyForm)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.StudyForm), i));
                     }
                     break;
                 case "Weekday":
-                    ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.Weekday)))
                     {
                         ValuesListBox.Items.Add(Enum.GetName(typeof(Enumss.Weekday), i));
                     }
-                    break;
-                case null:
                     break;
             }
         }
