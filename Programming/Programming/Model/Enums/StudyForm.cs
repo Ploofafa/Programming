@@ -1,9 +1,10 @@
-﻿using System;
-
-public enum StudyForm
+﻿namespace Programming.Model
 {
-	Очная,
-	Заочная,
-	Вечерняя,
-	Дистанционная
+    public enum StudyForm
+    {
+        Fulltime,
+        Parttime,
+        Evening,
+        Distant
+    }
 }

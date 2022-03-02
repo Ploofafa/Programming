@@ -1,9 +1,10 @@
-﻿using System;
-
-public enum Season
+﻿namespace Programming.Model
 {
-	Summer,
-	Winter,
-	Spring,
-	Autumn
+    public enum Season
+    {
+        Winter,
+        Spring,
+        Summer,
+        Autumn
+    }
 }

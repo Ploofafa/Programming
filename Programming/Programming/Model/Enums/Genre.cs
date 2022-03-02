@@ -1,10 +1,11 @@
-﻿using System;
-
-public enum Genre
+﻿namespace Programming.Model
 {
-    Комедия,
-    Триллер,
-    боевик,
-    ужас,
-    блокбастер
+    public enum Genre
+    {
+        Comedy,
+        Acton,
+        Triller,
+        Drama,
+        Blockbuster
+    }
 }

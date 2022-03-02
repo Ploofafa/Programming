@@ -1,11 +1,11 @@
-﻿using System;
-
-public enum Colors
+﻿namespace Programming.Model
 {
-	Белый,
-	Чёрный,
-	Синий,
-	Серебрянный,
-	Оранжевый,
-	Красный
+    public enum Colors
+    {
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Blue
+    }
 }

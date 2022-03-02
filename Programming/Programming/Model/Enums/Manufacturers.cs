@@ -1,12 +1,11 @@
-﻿using System;
-
-public enum Manufacturers
+﻿namespace Programming.Model
 {
-        Lg,
-        Sony,
-        Huawei,
+    public enum Manufacturers
+    {
+        Samsung,
         Apple,
-        Google,
-        Lenovo,
-        Asus
+        Honor,
+        Xiaomi,
+        Nokia
+    }
 }

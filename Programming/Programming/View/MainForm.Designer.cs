@@ -1,4 +1,4 @@
-﻿namespace Programming
+﻿namespace Programming.View
 {
     partial class MainForm
     {
@@ -31,6 +31,7 @@
             this.MainTab = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.GroupBoxSeason = new System.Windows.Forms.GroupBox();
+            this.WinterLabel = new System.Windows.Forms.Label();
             this.SeasonButton = new System.Windows.Forms.Button();
             this.SeasonComboBox = new System.Windows.Forms.ComboBox();
             this.SeasonLabel = new System.Windows.Forms.Label();
@@ -79,6 +80,7 @@
             // 
             // GroupBoxSeason
             // 
+            this.GroupBoxSeason.Controls.Add(this.WinterLabel);
             this.GroupBoxSeason.Controls.Add(this.SeasonButton);
             this.GroupBoxSeason.Controls.Add(this.SeasonComboBox);
             this.GroupBoxSeason.Controls.Add(this.SeasonLabel);
@@ -89,9 +91,19 @@
             this.GroupBoxSeason.TabStop = false;
             this.GroupBoxSeason.Text = "Season Handle";
             // 
+            // WinterLabel
+            // 
+            this.WinterLabel.AutoSize = true;
+            this.WinterLabel.Location = new System.Drawing.Point(6, 71);
+            this.WinterLabel.Name = "WinterLabel";
+            this.WinterLabel.Size = new System.Drawing.Size(176, 13);
+            this.WinterLabel.TabIndex = 11;
+            this.WinterLabel.Text = "Зима... Рука на мышке мерзнет…";
+            this.WinterLabel.Visible = false;
+            // 
             // SeasonButton
             // 
-            this.SeasonButton.Location = new System.Drawing.Point(161, 49);
+            this.SeasonButton.Location = new System.Drawing.Point(161, 47);
             this.SeasonButton.Name = "SeasonButton";
             this.SeasonButton.Size = new System.Drawing.Size(75, 19);
             this.SeasonButton.TabIndex = 10;
@@ -117,9 +129,9 @@
             this.SeasonLabel.AutoSize = true;
             this.SeasonLabel.Location = new System.Drawing.Point(6, 30);
             this.SeasonLabel.Name = "SeasonLabel";
-            this.SeasonLabel.Size = new System.Drawing.Size(80, 13);
+            this.SeasonLabel.Size = new System.Drawing.Size(83, 13);
             this.SeasonLabel.TabIndex = 0;
-            this.SeasonLabel.Text = "Choose season";
+            this.SeasonLabel.Text = "Choose season:";
             // 
             // groupBoxParse
             // 
@@ -162,7 +174,7 @@
             // ParseTextValue
             // 
             this.ParseTextValue.AutoSize = true;
-            this.ParseTextValue.Location = new System.Drawing.Point(2, 30);
+            this.ParseTextValue.Location = new System.Drawing.Point(6, 30);
             this.ParseTextValue.Name = "ParseTextValue";
             this.ParseTextValue.Size = new System.Drawing.Size(115, 13);
             this.ParseTextValue.TabIndex = 6;
@@ -214,18 +226,18 @@
             this.IntValue.AutoSize = true;
             this.IntValue.Location = new System.Drawing.Point(274, 18);
             this.IntValue.Name = "IntValue";
-            this.IntValue.Size = new System.Drawing.Size(48, 13);
+            this.IntValue.Size = new System.Drawing.Size(51, 13);
             this.IntValue.TabIndex = 5;
-            this.IntValue.Text = "Int value";
+            this.IntValue.Text = "Int value:";
             // 
             // ChooseValue
             // 
             this.ChooseValue.AutoSize = true;
             this.ChooseValue.Location = new System.Drawing.Point(142, 18);
             this.ChooseValue.Name = "ChooseValue";
-            this.ChooseValue.Size = new System.Drawing.Size(72, 13);
+            this.ChooseValue.Size = new System.Drawing.Size(75, 13);
             this.ChooseValue.TabIndex = 4;
-            this.ChooseValue.Text = "Choose value";
+            this.ChooseValue.Text = "Choose value:";
             // 
             // IndexBox
             // 
@@ -239,9 +251,9 @@
             this.ChooseEnum.AutoSize = true;
             this.ChooseEnum.Location = new System.Drawing.Point(6, 18);
             this.ChooseEnum.Name = "ChooseEnum";
-            this.ChooseEnum.Size = new System.Drawing.Size(104, 13);
+            this.ChooseEnum.Size = new System.Drawing.Size(107, 13);
             this.ChooseEnum.TabIndex = 3;
-            this.ChooseEnum.Text = "Choose enumaration";
+            this.ChooseEnum.Text = "Choose enumaration:";
             // 
             // MainForm
             // 
@@ -250,7 +262,7 @@
             this.ClientSize = new System.Drawing.Size(571, 342);
             this.Controls.Add(this.MainTab);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Programming Demo";
             this.MainTab.ResumeLayout(false);
             this.Enums.ResumeLayout(false);
             this.GroupBoxSeason.ResumeLayout(false);
@@ -283,6 +295,7 @@
         private System.Windows.Forms.Button SeasonButton;
         private System.Windows.Forms.ComboBox SeasonComboBox;
         private System.Windows.Forms.Label SeasonLabel;
+        private System.Windows.Forms.Label WinterLabel;
     }
 }
 
