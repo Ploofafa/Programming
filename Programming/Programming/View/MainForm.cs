@@ -60,6 +60,20 @@ namespace Programming.View
             IndexBox.Text = ((int)curItem).ToString();
         }
 
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            Weekday day;
+            if (Enum.TryParse(WeekdayTextBox.Text, out day))
+            {
+                ParseTextOutput.Text = $"Это день недели ({day.ToString()} = {(int)day + 1}).";
+            }
+
+            else
+            {
+                ParseTextOutput.Text = "Такого дня недели не существует :(";
+            }
+        }
+
         private void SeasonButton_Click(object sender, EventArgs e)
         {
             WinterLabel.Visible = false;
@@ -83,20 +97,6 @@ namespace Programming.View
                 case Season.Autumn:
                     SeasonComboBox.ForeColor = Color.Orange;
                     break;
-            }
-        }
-
-        private void ParseButton_Click(object sender, EventArgs e)
-        {
-            Weekday day;
-            if (Enum.TryParse(WeekdayTextBox.Text, out day))
-            {
-                ParseTextOutput.Text = $"Это день недели ({day.ToString()} = {(int)day + 1}).";
-            }
-            
-            else
-            {
-                ParseTextOutput.Text = "Такого дня недели не существует :(";
             }
         }
     }

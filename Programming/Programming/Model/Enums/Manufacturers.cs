@@ -4,8 +4,8 @@
     {
         Samsung,
         Apple,
-        Honor,
-        Xiaomi,
-        Nokia
+        Huawei,
+        Asus,
+        Lg
     }
 }
