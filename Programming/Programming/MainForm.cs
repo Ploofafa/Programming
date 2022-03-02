@@ -68,7 +68,6 @@ namespace Programming
             }
         }
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -79,7 +78,6 @@ namespace Programming
             IndexBox.Clear();
             switch (EnumListBox.SelectedItem)
             {
-
                 case "Colors":
                     ValuesListBox.Items.Clear();
                     foreach (int i in Enum.GetValues(typeof(Enumss.Colors)))
@@ -182,6 +180,7 @@ namespace Programming
                         }
                     }
                     break;
+
                 case "StudyForm":
                     foreach (int i in Enum.GetValues(typeof(Enumss.StudyForm)))
                     {
@@ -215,7 +214,6 @@ namespace Programming
 
         private void SeasonButton_Click(object sender, EventArgs e)
         {
-            
             WinterLabelBox.Visible = false;
             GroupBoxSeason.BackColor = Color.White;
             SeasonComboBox.ForeColor = Color.Black;
@@ -224,6 +222,7 @@ namespace Programming
                 case "Summer":
                     MessageBox.Show("Ура! Солнце!", "Summer");
                     break;
+
                 case "Winter":
                     WinterLabelBox.Parent = GroupBoxSeason;
                     WinterLabelBox.Location = new Point(10, 80);
@@ -231,13 +230,14 @@ namespace Programming
                     WinterLabelBox.BringToFront();
                     WinterLabelBox.Visible = true;
                     break;
+
                 case "Spring":
                     GroupBoxSeason.BackColor = Color.Chartreuse;
                     break;
+
                 case "Autumn":
                     SeasonComboBox.ForeColor = Color.Orange;
                     break;
-
             }
         }
 
