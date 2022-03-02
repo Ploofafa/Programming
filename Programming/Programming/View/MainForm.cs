@@ -22,7 +22,6 @@ namespace Programming.View
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
             EnumListBox.SelectedIndex = 0;
         }
-        Label WinterLabelBox = new Label();
         private void EnumListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             IndexBox.Clear();
