@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model;
+using Programming.Model.Enums;
 
 namespace Programming.View
 {
@@ -49,8 +50,8 @@ namespace Programming.View
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var curItem = ValuesListBox.SelectedItem;
-            IndexBox.Text = ((int)curItem).ToString();
+            var CuredIndex = ValuesListBox.SelectedItem;
+            IndexBox.Text = ((int)CuredIndex).ToString();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
