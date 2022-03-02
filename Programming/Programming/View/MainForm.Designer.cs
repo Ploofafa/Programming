@@ -178,10 +178,9 @@
             "Season",
             "StudyForm",
             "Weekday"});
-            this.EnumListBox.ScrollAlwaysVisible = true;
-            this.EnumListBox.SelectedItem = "Colors";
             this.EnumListBox.Location = new System.Drawing.Point(6, 34);
             this.EnumListBox.Name = "EnumListBox";
+            this.EnumListBox.ScrollAlwaysVisible = true;
             this.EnumListBox.Size = new System.Drawing.Size(117, 147);
             this.EnumListBox.TabIndex = 0;
             this.EnumListBox.SelectedIndexChanged += new System.EventHandler(this.EnumListBox_SelectedIndexChanged);
@@ -202,10 +201,10 @@
             // 
             // ValuesListBox
             // 
-            this.ValuesListBox.ScrollAlwaysVisible = true;
             this.ValuesListBox.FormattingEnabled = true;
             this.ValuesListBox.Location = new System.Drawing.Point(145, 34);
             this.ValuesListBox.Name = "ValuesListBox";
+            this.ValuesListBox.ScrollAlwaysVisible = true;
             this.ValuesListBox.Size = new System.Drawing.Size(111, 147);
             this.ValuesListBox.TabIndex = 1;
             this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged);
