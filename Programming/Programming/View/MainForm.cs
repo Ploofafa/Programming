@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Programming.Model;
 using Programming.Model.Enums;
 
 namespace Programming.View
