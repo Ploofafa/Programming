@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model;
 
-
-
 namespace Programming.View
 {
     public partial class MainForm : Form
@@ -31,23 +29,18 @@ namespace Programming.View
                 case Programming.View.Enums.Colors:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Weekday));
                     break;
-
                 case Programming.View.Enums.Genre:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Genre));
                     break;
-
                 case Programming.View.Enums.Weekday:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Colors));
                     break;
-
                 case Programming.View.Enums.StudyForm:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(StudyForm));
                     break;
-
                 case Programming.View.Enums.Manufacturers:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Manufacturers));
                     break;
-
                 case Programming.View.Enums.Season:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Season));
                     break;
@@ -85,15 +78,12 @@ namespace Programming.View
                 case Season.Summer:
                     MessageBox.Show("Ура! Солнце!", "Summer");
                     break;
-
                 case Season.Winter:
                     WinterLabel.Visible = true;
                     break;
-
                 case Season.Spring:
                     GroupBoxSeason.BackColor = Color.Chartreuse;
                     break;
-
                 case Season.Autumn:
                     SeasonComboBox.ForeColor = Color.Orange;
                     break;

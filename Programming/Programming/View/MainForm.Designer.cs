@@ -209,7 +209,7 @@
             this.GroupBoxEnum.Size = new System.Drawing.Size(560, 198);
             this.GroupBoxEnum.TabIndex = 6;
             this.GroupBoxEnum.TabStop = false;
-            this.GroupBoxEnum.Text = "Enumaraions";
+            this.GroupBoxEnum.Text = "Enumerations";
             // 
             // ValuesListBox
             // 
@@ -253,7 +253,7 @@
             this.ChooseEnum.Name = "ChooseEnum";
             this.ChooseEnum.Size = new System.Drawing.Size(107, 13);
             this.ChooseEnum.TabIndex = 3;
-            this.ChooseEnum.Text = "Choose enumaration:";
+            this.ChooseEnum.Text = "Choose enumeration:";
             // 
             // MainForm
             // 
