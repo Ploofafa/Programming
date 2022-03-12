@@ -95,7 +95,7 @@ namespace Programming.View
         {
             string number = Convert.ToString(NumberPhone.Text);
             Contact contact1 = new Contact();
-            contact1.MakeContact("das", "Dsa", "dsa", number);
+            contact1.MakeContact("das", "mixovith@mail.ru", "dsa", number);
             MessageBox.Show(contact1.GetNumber(contact1));
         }
     }
