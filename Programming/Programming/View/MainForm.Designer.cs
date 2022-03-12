@@ -47,16 +47,21 @@
             this.ChooseValue = new System.Windows.Forms.Label();
             this.IndexBox = new System.Windows.Forms.TextBox();
             this.ChooseEnum = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.NumberPhone = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.Enums.SuspendLayout();
             this.GroupBoxSeason.SuspendLayout();
             this.groupBoxParse.SuspendLayout();
             this.GroupBoxEnum.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTab
             // 
             this.MainTab.Controls.Add(this.Enums);
+            this.MainTab.Controls.Add(this.tabPage1);
             this.MainTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTab.Location = new System.Drawing.Point(0, 0);
             this.MainTab.Name = "MainTab";
@@ -255,6 +260,34 @@
             this.ChooseEnum.TabIndex = 3;
             this.ChooseEnum.Text = "Choose enumeration:";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.NumberPhone);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(563, 316);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Rectangle";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // NumberPhone
+            // 
+            this.NumberPhone.Location = new System.Drawing.Point(39, 96);
+            this.NumberPhone.Name = "NumberPhone";
+            this.NumberPhone.Size = new System.Drawing.Size(100, 20);
+            this.NumberPhone.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(145, 96);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 19);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Go!";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +304,8 @@
             this.groupBoxParse.PerformLayout();
             this.GroupBoxEnum.ResumeLayout(false);
             this.GroupBoxEnum.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -296,6 +331,9 @@
         private System.Windows.Forms.ComboBox SeasonComboBox;
         private System.Windows.Forms.Label SeasonLabel;
         private System.Windows.Forms.Label WinterLabel;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox NumberPhone;
     }
 }
 

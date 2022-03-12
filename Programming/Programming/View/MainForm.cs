@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model.Enums;
+using Programming.Model.Classes;
 
 namespace Programming.View
 {
@@ -88,6 +89,14 @@ namespace Programming.View
                     SeasonComboBox.ForeColor = Color.Orange;
                     break;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string number = Convert.ToString(NumberPhone.Text);
+            Contact contact1 = new Contact();
+            contact1.MakeContact("das", "Dsa", "dsa", number);
+            MessageBox.Show(contact1.GetNumber(contact1));
         }
     }
 }
