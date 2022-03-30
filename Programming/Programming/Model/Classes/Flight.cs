@@ -8,43 +8,40 @@ namespace Programming.Model.Classes
 {
     public class Flight
     {
-        private string DeparturePoint;
-        private string ArrivalPoint;
-        private int FlightDuration;
+        private int _flightDuration;
+        private string _departurePoint;
+        private string _arrivalPoint;
 
+        public Flight()
+        {
+        }
         public Flight MakeFlight(string departurePoint,
                                 string arrivalPoint,
                                 int flightDuration)
         {
             Flight flight = new Flight();
-            SetDeparturePoint(flight, departurePoint);
-            SetArrivalPoint(flight, arrivalPoint);
-            SetFlightDuration(flight, flightDuration);
+            _flightDuration = flightDuration;
+            _departurePoint = departurePoint;
+            _arrivalPoint = arrivalPoint;
             return flight;
         }
-        public void SetDeparturePoint(Flight flight, string departurePoint)
+        public int FlightDuration 
         {
-            flight.DeparturePoint = departurePoint;
+            set
+            {
+                if (value < 3 | value > 1140)
+                {
+                    throw new ArgumentOutOfRangeException("Flight Duration may be only > 0 and < 1140");
+                }
+                
+                _flightDuration = value;
+            }
+            get
+            {
+                return _flightDuration;
+            }
         }
-        public void SetArrivalPoint(Flight flight, string arrivalPoint)
-        {
-            flight.ArrivalPoint = arrivalPoint;
-        }
-        public void SetFlightDuration(Flight flight, int flightDuration)
-        {
-            flight.FlightDuration = flightDuration;
-        }
-        public string GetDeparturePoint(Flight flight)
-        {
-            return flight.DeparturePoint;
-        }
-        public string GetArrivalPoint(Flight flight)
-        {
-            return flight.ArrivalPoint;
-        }
-        public int GetFlightDuration(Flight flight)
-        {
-            return flight.FlightDuration;
-        }
+        public string DeparturePoint { get; set; }
+        public string ArrivalPoint { get; set; }
     }
 }

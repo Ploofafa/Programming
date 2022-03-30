@@ -8,70 +8,52 @@ namespace Programming.Model.Classes
 {
     public class Contact
     {
-        private string Name;
-        private string Adress;
-        private string City;
-        private string Number;
+        private string _number;
+        private string _name;
+        private string _address;
+        private string _city;
 
-        public Contact MakeClearContact()
+        public Contact()
         {
-            return new Contact();
         }
         public Contact MakeContact(string name,
-                            string adress,
+                            string address,
                             string city,
                             string number)
         {
             Contact contact = new Contact();
-            SetName(contact, name);
-            SetAdress(contact, adress);
-            SetCity(contact, city);
-            SetNumber(contact, number);
+            _name = name;
+            _address = address;
+            _city = city;
+            _number = number;
             return contact;
         }
 
-        public void SetNumber(Contact contact, string number)
+        public string Number
         {
-            if (number.Length != 11)
+            set
             {
-                throw new ArgumentException(
-                "Number must contain exactly 11 digits");
+                if (value.Length != 11)
+                {
+                    throw new ArgumentException(
+                    "Number must contain exactly 11 digits");
+                }
+                if (int.TryParse(value, out int num) == false)
+                {
+                    throw new ArgumentException(
+                        "Number can only be digits");
+                }
+                _number = value;
             }
-            else if (int.TryParse(number, out int num) == false)
+            get
             {
-                throw new ArgumentException(
-                    "Number can only be digits");
+                return _number;
             }
-            contact.Number = number;
         }
-        public void SetName(Contact contact, string name)
-        {
-            contact.Name = name;
-        }
-        public void SetAdress(Contact contact, string adress)
-        {
-            contact.Adress = adress;
-        }
-        public void SetCity(Contact contact, string city)
-        {
-            contact.City = city;
-        }
-        public string GetNumber(Contact contact)
-        {
-            return contact.Number;
-        }
-        public string GetName(Contact contact)
-        {
-            return contact.Name;
-        }
-        public string GetAdress(Contact contact)
-        {
-            return contact.Adress;
-        }
-        public string GetCity(Contact contact)
-        {
-            return contact.City;
-        }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public string City { get; set; }
     }
-   
+
+
 }
