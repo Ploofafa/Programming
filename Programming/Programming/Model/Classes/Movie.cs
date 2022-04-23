@@ -6,58 +6,66 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
-    public class Movies
+    public class Movie
     {
         private int _duration;
+
         private int _year;
+
         private double _rating;
-        private string _title;
-        private string _genre;
         
-        public Movies()
+        public Movie()
         {
         }
-        Movies MakeMovie(string title,
-                        string genre,
-                        int year,
-                        int duration,
-                        double rating)
+
+        private Movie(string title,
+                      string genre,
+                      int year,
+                      int duration,
+                      double rating)
         {
-            Movies movie = new Movies();
-            _title = title;
-            _year = year;
-            _genre = genre;
-            _rating = rating;
-            _duration = duration;
-            return movie;
+            Title = title;
+            Year = year;
+            Genre = genre;
+            Rating = rating;
+            Duration = duration;
         }
+
         public int Duration
         {
-            get { return _duration; }
+            get 
+            { 
+                return _duration; 
+            }
+
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Duration can't ");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }
+
         public int Year
         {
+            get
+            {
+                return _year;
+            }
+
             set 
             {
-                if (value < 1900 | value > 2023)
-                {
-                    throw new ArgumentException("Year can be only > 1900");
-                }
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, nameof(Year));
                 _year = value;
             }
-            get { return _year; }
         }
+
         public double Rating
         {
-            get { return _rating; }
+            get 
+            { 
+                return _rating; 
+            }
+
             set 
             {
                 if (value < 0 | value > 10)
@@ -67,7 +75,9 @@ namespace Programming.Model.Classes
                 _rating = value;
             }
         }
+
         public string Title { get; set; }
+
         public string Genre { get; set; }
         
     }

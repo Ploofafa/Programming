@@ -8,40 +8,36 @@ namespace Programming.Model.Classes
 {
     public class Flight
     {
-        private int _flightDuration;
-        private string _departurePoint;
-        private string _arrivalPoint;
+        private int _duration;
 
         public Flight()
         {
         }
-        public Flight MakeFlight(string departurePoint,
-                                string arrivalPoint,
-                                int flightDuration)
+        
+        public Flight(string departurePoint,
+                      string arrivalPoint,
+                      int flightDuration)
         {
-            Flight flight = new Flight();
-            _flightDuration = flightDuration;
-            _departurePoint = departurePoint;
-            _arrivalPoint = arrivalPoint;
-            return flight;
+            FlightDuration = flightDuration;
+            DeparturePoint = departurePoint;
+            ArrivalPoint = arrivalPoint;
         }
         public int FlightDuration 
         {
-            set
-            {
-                if (value < 3 | value > 1140)
-                {
-                    throw new ArgumentOutOfRangeException("Flight Duration may be only > 0 and < 1140");
-                }
-                
-                _flightDuration = value;
-            }
             get
             {
-                return _flightDuration;
+                return _duration;
             }
+
+            set
+            {
+                Validator.AssertValueInRange(value, 3, 1140, nameof(FlightDuration));
+                _duration = value;
+            }   
         }
+
         public string DeparturePoint { get; set; }
+
         public string ArrivalPoint { get; set; }
     }
 }

@@ -9,50 +9,54 @@ namespace Programming.Model.Classes
     public class Song
     {
         private int _id;
+
         private int _duration;
-        private string _album;
-        private string _name;
 
         public Song()
         {
         }
-        public Song MakeSong(int id,
-                            int duration,
-                            string album,
-                            string name)
+
+        public Song(int id,
+                    int duration,
+                    string album,
+                    string name)
         {
-            Song song = new Song();
-            _duration = duration;
-            _id = id;
-            _album = album;
-            _name = name;
-            return song;
+            Duration = duration;
+            Id = id;
+            Album = album;
+            Name = name;
         }
+
         public int Id
         {
-            get { return _id; }
+            get 
+            { 
+                return _id; 
+            }
+
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Id can be only > 0");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Id));
                 _id = value;
             }
         }
+
         public int Duration
         {
-            get { return _duration; }
+            get 
+            { 
+                return _duration; 
+            }
+
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Duration can't be < 0");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }
+
         public string Album { get; set; }
+
         public string Name { get; set; }
     }
 }

@@ -14,14 +14,95 @@ namespace Programming.View
 {
     public partial class MainForm : Form
     {
-        private Rectangles[] _rectangles;
-        private Rectangles _currentRectangle;
-        private Color _normalColor = Color.White;
-        private Color _errorlColor = Color.LightPink;
+        private readonly Color _normalColor = Color.White;
+
+        private readonly Color _errorColor = Color.LightPink;
+
+        private Model.Classes.Rectangle[] _rectangles;
+
+        private Model.Classes.Rectangle _currentRectangle;
+
         private ToolTip _toolTip = new ToolTip();
+
+        private Movie[] _movies;
         
-        private Movies[] _movies;
-        private Movies _currentMovie;
+        private Movie _currentMovie;
+
+        private Double DoubleRandom(int randomBottomBorder,
+                                    int randomTopBorder,
+                                    int precision,
+                                    Random random)
+        {
+            var number = random.Next(randomBottomBorder, randomTopBorder) + Math.Round(random.NextDouble(), precision);
+            return number;
+        }
+
+        private void InitRectangles()
+        {
+            int rectanglesCount = 5;
+            _rectangles = new Model.Classes.Rectangle[rectanglesCount];
+            Random random = new Random();
+            string[] rectangleColor = new string[] { "Black", "Yellow", "Green", "Blue", "Red", "White" };
+
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                _rectangles[i] = new Model.Classes.Rectangle();
+                _rectangles[i].Width = DoubleRandom(1, 100, 1, random);
+                _rectangles[i].Length = DoubleRandom(1, 100, 1, random);
+                _rectangles[i].Color = rectangleColor[random.Next(0, rectangleColor.Length)];
+                _rectangles[i].Centre = new Point2D(random.Next(1, 1000), random.Next(1, 1000));
+            }
+            RectanglesListBox.SelectedIndex = 0;
+        }
+
+        private void InitMovies()
+        {
+            Random random = new Random();
+            int moviesCount = 10;
+            _movies = new Movie[moviesCount];
+            string[] moviesTitle = new string[] { "The Power of the Dog", "Undine", "King Richard", "Mass",
+            "Identifying Features", "Nightmare Alley", "Drive My Car", "Licorice Pizza", "The French Dispatch",
+            "Petite Maman", "C’mon C’mon", "The Green Knight", "Dune", "Summer of Soul", "The Lost Daughter"};
+
+            for (int i = 0; i < _movies.Length; i++)
+            {
+                _movies[i] = new Movie();
+                _movies[i].Year = random.Next(1900, 2022);
+                _movies[i].Rating = DoubleRandom(1, 10, 2, random);
+                _movies[i].Title = moviesTitle[random.Next(0, moviesTitle.Length)];
+            }
+            MoviesListBox.SelectedIndex = 0;
+        }
+
+        private int FindMovieWithMaxRating(Movie[] movies)
+        {
+            double maxRating = -1;
+            int currentIndex = 0;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > maxRating)
+                {
+                    maxRating = movies[i].Rating;
+                    currentIndex = i;
+                }
+            }
+            return currentIndex;
+        }
+
+        private int FindRectangleWithMaxWidth(Model.Classes.Rectangle[] rectangles)
+        {
+            double maxWidth = -1;
+            int currentIndex = 0;
+            for (int i = 0; i < rectangles.Length; i++)
+            {
+                if (rectangles[i].Width > maxWidth)
+                {
+                    maxWidth = rectangles[i].Width;
+                    currentIndex = i;
+                }
+            }
+            return currentIndex;
+        }
 
         public MainForm()
         {
@@ -29,36 +110,10 @@ namespace Programming.View
             EnumListBox.DataSource = Enum.GetValues(typeof(Enums));
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
             EnumListBox.SelectedIndex = 0;
-            
-            int RectanglesAmount = 5;
-            _rectangles = new Rectangles[RectanglesAmount];
-            Random rnd = new Random();
-            String[] RectangleColor = new string[] {"Black", "Yellow", "Green", "Blue", "Red", "White"};
-                
-            for (int i = 0; i < _rectangles.Length; i++)
-            {
-                _rectangles[i] = new Rectangles();
-                _rectangles[i].Width = rnd.Next (1, 100);
-                _rectangles[i].Length = rnd.Next(1, 100);
-                _rectangles[i].Color = RectangleColor[rnd.Next(0, RectangleColor.Length)];
 
-            }
-            RectanglesListBox.SelectedIndex = 0;
+            InitRectangles();
 
-            int MoviesAmount = 10;
-            _movies = new Movies[MoviesAmount];
-            string[] MoviesTitle = new string[] { "The Power of the Dog", "Undine", "King Richard", "Mass",
-            "Identifying Features", "Nightmare Alley", "Drive My Car", "Licorice Pizza", "The French Dispatch",
-            "Petite Maman", "C’mon C’mon", "The Green Knight", "Dune", "Summer of Soul", "The Lost Daughter"};
-
-            for (int i = 0; i < _movies.Length; i++)
-            {
-                _movies[i] = new Movies();
-                _movies[i].Year = rnd.Next(1900, 2022);
-                _movies[i].Rating = Math.Round(rnd.NextDouble() * 10, 1);
-                _movies[i].Title = MoviesTitle[rnd.Next(0, MoviesTitle.Length)];
-            }
-            MoviesListBox.SelectedIndex = 0;
+            InitMovies();
         }
         
         private void EnumListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,13 +122,13 @@ namespace Programming.View
             switch (EnumListBox.SelectedItem)
             {
                 case Programming.View.Enums.Colors:
-                    ValuesListBox.DataSource = Enum.GetValues(typeof(Weekday));
+                    ValuesListBox.DataSource = Enum.GetValues(typeof(Colors));
                     break;
                 case Programming.View.Enums.Genre:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Genre));
                     break;
                 case Programming.View.Enums.Weekday:
-                    ValuesListBox.DataSource = Enum.GetValues(typeof(Colors));
+                    ValuesListBox.DataSource = Enum.GetValues(typeof(Weekday));
                     break;
                 case Programming.View.Enums.StudyForm:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(StudyForm));
@@ -89,14 +144,15 @@ namespace Programming.View
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var CuredIndex = ValuesListBox.SelectedItem;
-            IndexBox.Text = ((int)CuredIndex).ToString();
+            var currentIndex = ValuesListBox.SelectedItem;
+            IndexBox.Text = ((int)currentIndex).ToString();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            Weekday day;
-            if (Enum.TryParse(WeekdayTextBox.Text, out day))
+            Weekday day = new Weekday();
+            Enum.TryParse(WeekdayTextBox.Text, out day);
+            if (Enum.TryParse(WeekdayTextBox.Text, out day) & (int)day < 7)   
             {
                 ParseTextOutput.Text = $"Это день недели ({day.ToString()} = {(int)day + 1}).";
             }
@@ -137,7 +193,9 @@ namespace Programming.View
             RectangleLengthTextBox.Text = _currentRectangle.Length.ToString();
             RectangleWidthTextBox.Text = _currentRectangle.Width.ToString();
             RectangleColorTextBox.Text = _currentRectangle.Color.ToString();
-            
+            XCentreTextBox.Text = _currentRectangle.Centre.X.ToString();
+            YCentreTextBox.Text = _currentRectangle.Centre.Y.ToString();
+            RectangleIdTextBox.Text = _currentRectangle.RectangleId.ToString();
         }
 
         private void RectangleLengthTextBox_TextChanged(object sender, EventArgs e)
@@ -147,12 +205,11 @@ namespace Programming.View
             {
                 _currentRectangle.Length = Convert.ToDouble(RectangleLengthTextBox.Text);
                 _toolTip.SetToolTip(RectangleLengthTextBox, "");
-
             }
-            catch
+            catch (Exception exception)
             {
-                RectangleLengthTextBox.BackColor = _errorlColor ;
-                _toolTip.SetToolTip(RectangleLengthTextBox, "ERROR");
+                RectangleLengthTextBox.BackColor = _errorColor ;
+                _toolTip.SetToolTip(RectangleLengthTextBox, exception.Message);
             }
         }
 
@@ -163,28 +220,12 @@ namespace Programming.View
             {
                 _currentRectangle.Width = Convert.ToDouble(RectangleWidthTextBox.Text);
                 _toolTip.SetToolTip(RectangleWidthTextBox, "");
-
             }
-            catch
+            catch (Exception exception)
             {
-                RectangleWidthTextBox.BackColor = _errorlColor;
-                _toolTip.SetToolTip(RectangleWidthTextBox, "ERROR");
+                RectangleWidthTextBox.BackColor = _errorColor;
+                _toolTip.SetToolTip(RectangleWidthTextBox, exception.Message);
             }
-        }
-
-        private int FindRectangleWithMaxWidth(Rectangles[] rectangles)
-        {
-            Double max = -1;
-            int currentIndex = 0;
-            for (int i = 0; i < rectangles.Length; i++)
-            {
-                if(rectangles[i].Width > max)
-                {
-                    max = rectangles[i].Width;
-                    currentIndex = i;
-                }
-            }
-            return currentIndex;
         }
 
         private void RectangleFindButton_Click(object sender, EventArgs e)
@@ -201,21 +242,6 @@ namespace Programming.View
             MoviesRatingTextBox.Text = _currentMovie.Rating.ToString();
         }
 
-        private int FindMovieWithMaxRating(Movies[] movies)
-        {
-            Double max = -1;
-            int currentIndex = 0;
-            for (int i = 0; i < movies.Length; i++)
-            {
-                if (movies[i].Rating > max)
-                {
-                    max = movies[i].Rating;
-                    currentIndex = i;
-                }
-            }
-            return currentIndex;
-        }
-
         private void MoviesFindButton_Click(object sender, EventArgs e)
         {
             MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
@@ -228,12 +254,11 @@ namespace Programming.View
             {
                 _currentMovie.Year = Convert.ToInt32(MoviesYearTextBox.Text);
                 _toolTip.SetToolTip(MoviesYearTextBox, "");
-
             }
-            catch
+            catch (Exception exception)
             {
-                MoviesYearTextBox.BackColor = _errorlColor;
-                _toolTip.SetToolTip(MoviesYearTextBox, "ERROR");
+                MoviesYearTextBox.BackColor = _errorColor;
+                _toolTip.SetToolTip(MoviesYearTextBox, exception.Message);
             }
         }
 
@@ -244,13 +269,27 @@ namespace Programming.View
             {
                 _currentMovie.Rating = Convert.ToDouble(MoviesRatingTextBox.Text);
                 _toolTip.SetToolTip(MoviesRatingTextBox, "");
-
             }
-            catch
+            catch (Exception exception)
             {
-                MoviesRatingTextBox.BackColor = _errorlColor;
-                _toolTip.SetToolTip(MoviesRatingTextBox, "ERROR");
+                MoviesRatingTextBox.BackColor = _errorColor;
+                _toolTip.SetToolTip(MoviesRatingTextBox, exception.Message);
             }
+        }
+
+        private void YCentreTextBox_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void CentreTextBox_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RectangleIdTextBox_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

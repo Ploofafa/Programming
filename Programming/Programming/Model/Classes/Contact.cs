@@ -9,28 +9,35 @@ namespace Programming.Model.Classes
     public class Contact
     {
         private string _number;
+
+        private string _surname;
+
         private string _name;
-        private string _address;
-        private string _city;
 
         public Contact()
         {
         }
-        public Contact MakeContact(string name,
-                            string address,
-                            string city,
-                            string number)
+
+        public Contact(string name,
+                       string address,
+                       string city,
+                       string number,
+                       string surname)
         {
-            Contact contact = new Contact();
-            _name = name;
-            _address = address;
-            _city = city;
-            _number = number;
-            return contact;
+            Name = name;
+            Address = address;
+            City = city;
+            Number = number;
+            Surname = surname;
         }
 
         public string Number
         {
+            get
+            {
+                return _number;
+            }
+
             set
             {
                 if (value.Length != 11)
@@ -45,15 +52,50 @@ namespace Programming.Model.Classes
                 }
                 _number = value;
             }
+        }
+
+        public string Name
+        {
             get
             {
-                return _number;
+                return _name;
+            }
+
+            set
+            {
+                AssertStringContainsOnlyLetters(value);
+                _name = value;
             }
         }
-        public string Name { get; set; }
-        public string Adress { get; set; }
+
+        public string Surname
+        {
+            get
+            {
+                return _surname;
+            }
+
+            set
+            {
+                AssertStringContainsOnlyLetters(value);
+                _surname = value;
+            }
+        }
+
+        private string AssertStringContainsOnlyLetters(string value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsLetter(value[i]))
+                {
+                    throw new ArgumentException($"{nameof(value)} must be alphabetic characters only");
+                }
+            }
+            return value;
+        }
+
+        public string Address { get; set; }
+
         public string City { get; set; }
     }
-
-
 }

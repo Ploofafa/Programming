@@ -6,51 +6,82 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
-    public class Rectangles
+    public class Rectangle
     {
         private double _length;
+
         private double _width;
-        private string _color;
-        public Rectangles()
+
+        private static int _allRectanglesCount;
+
+        private int _rectangleId;
+
+        public Rectangle()
         {
+            _allRectanglesCount++;
+            _rectangleId = _allRectanglesCount;
         }
-        public Rectangles MakeRectangle(double length,
-                                    double width,
-                                    string color)
+
+        public Rectangle(double length,
+                         double width,
+                         string color,
+                         Point2D point)
         {
-            Rectangles rectangle = new Rectangles();
-            _length = length;
-            _width = width;
-            _color = color;
-            return rectangle;
+            Length = length;
+            Width = width;
+            Color = color;
+            Centre = point;
+            _allRectanglesCount++;
+            _rectangleId = _allRectanglesCount;
         }
+
         public double Length
         {
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Rectangle length must be > 0");
-                }
-                _length = value;
-            }
             get
             {
                 return _length;
             }
-        }
-        public double Width
-        {
+
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Rectangle width must be > 0");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Length));
+                _length = value;
+            }
+        }
+
+        public double Width
+        {
+            get
+            {
+                return _width;
+            }
+
+            set
+            {
+                Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
-            get { return _width; }
         }
+
+        public static int AllRectanglesCount
+        {
+            get
+            {
+                return AllRectanglesCount;
+            }
+        }
+
+        public int RectangleId
+        {
+            get
+            {
+                return _rectangleId;
+            }
+        }
+
         public string Color { get; set; }
+
+        public Point2D Centre { get; set; }
+        
     }
 }
