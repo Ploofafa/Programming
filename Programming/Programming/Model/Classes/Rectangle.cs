@@ -8,9 +8,9 @@ namespace Programming.Model.Classes
 {
     public class Rectangle
     {
-        private double _length;
+        private int _height;
 
-        private double _width;
+        private int _width;
 
         private static int _allRectanglesCount;
 
@@ -22,12 +22,12 @@ namespace Programming.Model.Classes
             _rectangleId = _allRectanglesCount;
         }
 
-        public Rectangle(double length,
-                         double width,
+        public Rectangle(int height,
+                         int width,
                          string color,
                          Point2D point)
         {
-            Length = length;
+            Height = height;
             Width = width;
             Color = color;
             Centre = point;
@@ -35,21 +35,21 @@ namespace Programming.Model.Classes
             _rectangleId = _allRectanglesCount;
         }
 
-        public double Length
+        public int Height
         {
             get
             {
-                return _length;
+                return _height;
             }
 
             set
             {
-                Validator.AssertOnPositiveValue(value, nameof(Length));
-                _length = value;
+                Validator.AssertOnPositiveValue(value, nameof(Height));
+                _height = value;
             }
         }
 
-        public double Width
+        public int Width
         {
             get
             {
