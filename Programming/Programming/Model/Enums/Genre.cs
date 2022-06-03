@@ -1,5 +1,9 @@
 ﻿namespace Programming.Model.Enums
 {
+
+    /// <summary>
+    /// Содержит перечисление жанров.
+    /// </summary>
     public enum Genre
     {
         Comedy,

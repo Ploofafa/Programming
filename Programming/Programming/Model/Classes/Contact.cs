@@ -6,18 +6,43 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+
+    /// <summary>
+    /// Содержит информацию о контакте: номер, фамилию, имя.
+    /// </summary>
     public class Contact
     {
+
+        /// <summary>
+        /// Номер. Должен состоять строго из 11 цифр.
+        /// </summary>
         private string _number;
 
+        /// <summary>
+        /// Фамилия. Должна состоять только из букв.
+        /// </summary>
         private string _surname;
 
+        /// <summary>
+        /// Имя. Должно состоять только из букв.
+        /// </summary>
         private string _name;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
         public Contact()
         {
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="name">Имя. Должно состоять только из букв.</param>
+        /// <param name="address">Адрес.</param>
+        /// <param name="city">Город. Должен состоять только из букв.</param>
+        /// <param name="number">Номер. Должен состоять строго из 11 цифр.</param>
+        /// <param name="surname">Фамилия. Должна состоять только из букв.</param>
         public Contact(string name,
                        string address,
                        string city,
@@ -31,6 +56,10 @@ namespace Programming.Model.Classes
             Surname = surname;
         }
 
+        /// <summary>
+        /// Возвращает и задаёт Номер человека. 
+        /// Должен состоять только из 11 цифр.
+        /// </summary>
         public string Number
         {
             get
@@ -54,6 +83,10 @@ namespace Programming.Model.Classes
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт имя человека.
+        /// Должно состоять только из букв.
+        /// </summary>
         public string Name
         {
             get
@@ -63,11 +96,15 @@ namespace Programming.Model.Classes
 
             set
             {
-                AssertStringContainsOnlyLetters(value);
+                Validator.AssertStringContainsOnlyLetters(value);
                 _name = value;
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт фамилию человека.
+        /// Должна состоять только из букв.
+        /// </summary>
         public string Surname
         {
             get
@@ -77,25 +114,19 @@ namespace Programming.Model.Classes
 
             set
             {
-                AssertStringContainsOnlyLetters(value);
+                Validator.AssertStringContainsOnlyLetters(value);
                 _surname = value;
             }
         }
 
-        private string AssertStringContainsOnlyLetters(string value)
-        {
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (!char.IsLetter(value[i]))
-                {
-                    throw new ArgumentException($"{nameof(value)} must be alphabetic characters only");
-                }
-            }
-            return value;
-        }
-
+        /// <summary>
+        /// Возвращает и задаёт адрсе.
+        /// </summary>
         public string Address { get; set; }
 
+        /// <summary>
+        /// Возвращает и задаёт город.
+        /// </summary>
         public string City { get; set; }
     }
 }

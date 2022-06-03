@@ -1,5 +1,9 @@
 ﻿namespace Programming.Model.Enums
 {
+
+    /// <summary>
+    /// Содержит перечисление дней недели.
+    /// </summary>
     public enum Weekday
     {
         Monday,

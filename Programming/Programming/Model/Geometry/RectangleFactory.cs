@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+
+    /// <summary>
+    /// Содержит метод для создания прямоугольнкиов.
+    /// </summary>
     static class RectangleFactory
     {
-        static Random random = new Random();
+        /// <summary>
+        /// Задаёт переменную класса <see cref="Random"/>.
+        /// </summary>
+        static private Random random = new Random();
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Rectangle"/> с рандомными значениями
+        /// ширины, высоты, центра. Id задаётся в классе.
+        /// </summary>
+        /// <returns></returns>
         public static Rectangle Randomize()
         {
             Rectangle rectangle = new Rectangle();
-            rectangle.Width = random.Next(1, 150);
-            rectangle.Height = random.Next(1, 150);
-            rectangle.Centre = new Point2D(random.Next(0, 990), random.Next(0, 530));          
+            rectangle.Width = random.Next(1, 100);
+            rectangle.Height = random.Next(1, 100);
+            rectangle.Centre = new Point2D(random.Next(0, 237), random.Next(0, 264));          
             return rectangle;
         }
     }

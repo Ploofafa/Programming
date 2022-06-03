@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Classes
 {
+
+    /// <summary>
+    /// Содержит методы для проверки на столкновение геометрических фигур.
+    /// </summary>
     public static class CollisionManager
     {
         
+        /// <summary>
+        /// Проверка на пересечение прямоугольников.
+        /// </summary>
+        /// <param name="rectangle1">Панель 1.</param>
+        /// <param name="rectangle2">Панель 2.</param>
+        /// <returns>Возвращает результат проверки.</returns>
         public static bool IsCollision(Rectangle rectangle1,
                                        Rectangle rectangle2)
         {
@@ -18,8 +28,14 @@ namespace Programming.Model.Classes
             rectangle1.Height + rectangle1.Centre.Y > rectangle2.Centre.Y;
         }   
 
+        /// <summary>
+        /// Проверка на пересечение окружностей.
+        /// </summary>
+        /// <param name="ring1">Окружность 1.</param>
+        /// <param name="ring2">Окружность 2.</param>
+        /// <returns>Возвращает  результат проверки.</returns>
         public static bool IsCollision(Ring ring1,
-                                Ring ring2)
+                                       Ring ring2)
         {
             double dx = Math.Abs(ring1.Centre.X - ring2.Centre.X);
             double dy = Math.Abs(ring1.Centre.Y - ring2.Centre.Y);
