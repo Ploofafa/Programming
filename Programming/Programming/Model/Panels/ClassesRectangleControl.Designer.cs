@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class ClassesRectangle
+    partial class ClassesRectangleControl
     {
         /// <summary> 
         /// Required designer variable.

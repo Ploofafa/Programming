@@ -12,9 +12,12 @@ using Programming.Model.Classes;
 
 namespace Programming.Model.Panels
 {
-    public partial class Enumerations : UserControl
+    /// <summary>
+    /// Содержит логику полльзовательского элемента <see cref="EnumerationsControl"/>.
+    /// </summary>
+    public partial class EnumerationsControl : UserControl
     {
-        public Enumerations()
+        public EnumerationsControl()
         {
             InitializeComponent();
             EnumListBox.DataSource = Enum.GetValues(typeof(Programming.View.Enums));

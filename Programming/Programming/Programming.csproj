@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Classes\AppColors.cs" />
     <Compile Include="Model\Geometry\CollisionManager.cs" />
     <Compile Include="Model\Classes\Contact.cs" />
     <Compile Include="Model\Classes\Flight.cs" />
@@ -59,23 +60,23 @@
     <Compile Include="Model\Classes\Subject.cs" />
     <Compile Include="Model\Classes\Time.cs" />
     <Compile Include="Model\Classes\Validator.cs" />
-    <Compile Include="Model\Panels\ClassesRectangle.cs">
+    <Compile Include="Model\Panels\ClassesRectangleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Model\Panels\ClassesRectangle.Designer.cs">
-      <DependentUpon>ClassesRectangle.cs</DependentUpon>
+    <Compile Include="Model\Panels\ClassesRectangleControl.Designer.cs">
+      <DependentUpon>ClassesRectangleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Panels\Enumerations.cs">
+    <Compile Include="Model\Panels\EnumerationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Model\Panels\Enumerations.Designer.cs">
-      <DependentUpon>Enumerations.cs</DependentUpon>
+    <Compile Include="Model\Panels\EnumerationsControl.Designer.cs">
+      <DependentUpon>EnumerationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Panels\Movies.cs">
+    <Compile Include="Model\Panels\MoviesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Model\Panels\Movies.Designer.cs">
-      <DependentUpon>Movies.cs</DependentUpon>
+    <Compile Include="Model\Panels\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Panels\RectanglesCollisionControl.cs">
       <SubType>UserControl</SubType>
@@ -83,17 +84,17 @@
     <Compile Include="Model\Panels\RectanglesCollisionControl.Designer.cs">
       <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Panels\SeasondHandler.cs">
+    <Compile Include="Model\Panels\SeasondHandlerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Model\Panels\SeasondHandler.Designer.cs">
-      <DependentUpon>SeasondHandler.cs</DependentUpon>
+    <Compile Include="Model\Panels\SeasondHandlerControl.Designer.cs">
+      <DependentUpon>SeasondHandlerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Panels\WeekdayParsing.cs">
+    <Compile Include="Model\Panels\WeekdayParsingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Model\Panels\WeekdayParsing.Designer.cs">
-      <DependentUpon>WeekdayParsing.cs</DependentUpon>
+    <Compile Include="Model\Panels\WeekdayParsingControl.Designer.cs">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Enums.cs" />
     <Compile Include="View\MainForm.cs">
@@ -110,23 +111,23 @@
     <Compile Include="Model\Enums\Weekday.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Model\Panels\ClassesRectangle.resx">
-      <DependentUpon>ClassesRectangle.cs</DependentUpon>
+    <EmbeddedResource Include="Model\Panels\ClassesRectangleControl.resx">
+      <DependentUpon>ClassesRectangleControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Model\Panels\Enumerations.resx">
-      <DependentUpon>Enumerations.cs</DependentUpon>
+    <EmbeddedResource Include="Model\Panels\EnumerationsControl.resx">
+      <DependentUpon>EnumerationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Model\Panels\Movies.resx">
-      <DependentUpon>Movies.cs</DependentUpon>
+    <EmbeddedResource Include="Model\Panels\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Panels\RectanglesCollisionControl.resx">
       <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Model\Panels\SeasondHandler.resx">
-      <DependentUpon>SeasondHandler.cs</DependentUpon>
+    <EmbeddedResource Include="Model\Panels\SeasondHandlerControl.resx">
+      <DependentUpon>SeasondHandlerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Model\Panels\WeekdayParsing.resx">
-      <DependentUpon>WeekdayParsing.cs</DependentUpon>
+    <EmbeddedResource Include="Model\Panels\WeekdayParsingControl.resx">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

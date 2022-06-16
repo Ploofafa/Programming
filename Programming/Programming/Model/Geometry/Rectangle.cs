@@ -46,8 +46,8 @@ namespace Programming.Model.Classes
             Width = width;
             Color = color;
             Centre = point;
-            _allRectanglesCount++;
             _Id = _allRectanglesCount;
+            _allRectanglesCount++;
         }
 
         /// <summary>
@@ -86,7 +86,6 @@ namespace Programming.Model.Classes
 
         /// <summary>
         /// Возвращает количество всех прямоугольников.
-        /// Класс не контролирует значение количества.
         /// </summary>
         public static int AllRectanglesCount
         {

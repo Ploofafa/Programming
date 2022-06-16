@@ -30,16 +30,16 @@
         {
             this.Classes = new System.Windows.Forms.TabPage();
             this.MoviesGroupBox = new System.Windows.Forms.GroupBox();
-            this.movies1 = new Programming.Model.Panels.Movies();
+            this.movies1 = new Programming.Model.Panels.MoviesControl();
             this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
-            this.classesRectangle1 = new Programming.Model.Panels.ClassesRectangle();
+            this.classesRectangle1 = new Programming.Model.Panels.ClassesRectangleControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.GroupBoxSeason = new System.Windows.Forms.GroupBox();
-            this.seasondHandler1 = new Programming.Model.Panels.SeasondHandler();
+            this.seasondHandler1 = new Programming.Model.Panels.SeasondHandlerControl();
             this.groupBoxParse = new System.Windows.Forms.GroupBox();
-            this.weekdayParsing1 = new Programming.Model.Panels.WeekdayParsing();
+            this.weekdayParsing1 = new Programming.Model.Panels.WeekdayParsingControl();
             this.GroupBoxEnum = new System.Windows.Forms.GroupBox();
-            this.enumerations1 = new Programming.Model.Panels.Enumerations();
+            this.enumerations1 = new Programming.Model.Panels.EnumerationsControl();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
             this.rectanglesCollisionControl1 = new Programming.Model.Panels.RectanglesCollisionControl();
@@ -157,7 +157,7 @@
             this.GroupBoxEnum.Location = new System.Drawing.Point(0, 0);
             this.GroupBoxEnum.Margin = new System.Windows.Forms.Padding(5);
             this.GroupBoxEnum.Name = "GroupBoxEnum";
-            this.GroupBoxEnum.Size = new System.Drawing.Size(560, 198);
+            this.GroupBoxEnum.Size = new System.Drawing.Size(563, 198);
             this.GroupBoxEnum.TabIndex = 6;
             this.GroupBoxEnum.TabStop = false;
             this.GroupBoxEnum.Text = "Enumerations";
@@ -235,11 +235,11 @@
         private System.Windows.Forms.TabControl MainTab;
         private System.Windows.Forms.TabPage RectanglesTabPage;
         private Model.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
-        private Model.Panels.Enumerations enumerations1;
-        private Model.Panels.WeekdayParsing weekdayParsing1;
-        private Model.Panels.SeasondHandler seasondHandler1;
-        private Model.Panels.ClassesRectangle classesRectangle1;
-        private Model.Panels.Movies movies1;
+        private Model.Panels.EnumerationsControl enumerations1;
+        private Model.Panels.WeekdayParsingControl weekdayParsing1;
+        private Model.Panels.SeasondHandlerControl seasondHandler1;
+        private Model.Panels.ClassesRectangleControl classesRectangle1;
+        private Model.Panels.MoviesControl movies1;
     }
 }
 

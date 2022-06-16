@@ -14,18 +14,36 @@ using Rectangle = Programming.Model.Classes.Rectangle;
 
 namespace Programming.Model.Panels
 {
-    public partial class Movies : UserControl
+
+    /// <summary>
+    ///Содержит логику пользовательского элемента <see cref="MoviesControl"/>.
+    /// </summary>
+    public partial class MoviesControl : UserControl
     {
-        private readonly Color _normalColor = Color.White;
 
-        private readonly Color _errorColor = Color.LightPink;
-
+        /// <summary>
+        /// Хранит переменную для подсказок пользователю в элементах.
+        /// </summary>
         private ToolTip _toolTip = new ToolTip();
 
+        /// <summary>
+        /// Хранит массив со всеми фильмами.
+        /// </summary>
         private Movie[] _movies;
 
+        /// <summary>
+        /// Хранит текущий выбранный фильм.
+        /// </summary>
         private Movie _currentMovie;
 
+        /// <summary>
+        /// Генерирует рандомное вещественное число.
+        /// </summary>
+        /// <param name="randomBottomBorder">Нижняя граница рандомного числа.</param>
+        /// <param name="randomTopBorder">Верхняя граница рандомного числа.</param>
+        /// <param name="precision">Количество знаков после запятой.</param>
+        /// <param name="random">Переменная для случайного генерирования.</param>
+        /// <returns>Возвращает полученное рандомное число.</returns>
         private Double DoubleRandom(int randomBottomBorder,
                                     int randomTopBorder,
                                     int precision,
@@ -36,6 +54,9 @@ namespace Programming.Model.Panels
             return number;
         }
 
+        /// <summary>
+        /// Генерирует нужное количества фильмов.
+        /// </summary>
         private void InitMovies()
         {
             Random random = new Random();
@@ -55,6 +76,11 @@ namespace Programming.Model.Panels
             MoviesListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Ищет фильм с максимальным рейтингом.
+        /// </summary>
+        /// <param name="movies">Массив фильмов, в котором происходит поиск.</param>
+        /// <returns>Возвращает первый фильм с максимальным рейтингом.</returns>
         private int FindMovieWithMaxRating(Movie[] movies)
         {
             double maxRating = -1;
@@ -70,7 +96,7 @@ namespace Programming.Model.Panels
             return currentIndex;
         }
 
-        public Movies()
+        public MoviesControl()
         {
             InitializeComponent();
 
@@ -92,7 +118,7 @@ namespace Programming.Model.Panels
 
         private void MoviesYearTextBox_TextChanged(object sender, EventArgs e)
         {
-            MoviesYearTextBox.BackColor = _normalColor;
+            MoviesYearTextBox.BackColor = AppColors.NormalColor;
             try
             {
                 _currentMovie.Year = Convert.ToInt32(MoviesYearTextBox.Text);
@@ -100,14 +126,14 @@ namespace Programming.Model.Panels
             }
             catch (Exception exception)
             {
-                MoviesYearTextBox.BackColor = _errorColor;
+                MoviesYearTextBox.BackColor = AppColors.ErrorColor;
                 _toolTip.SetToolTip(MoviesYearTextBox, exception.Message);
             }
         }
 
         private void MoviesRatingTextBox_TextChanged(object sender, EventArgs e)
         {
-            MoviesRatingTextBox.BackColor = _normalColor;
+            MoviesRatingTextBox.BackColor = AppColors.NormalColor;
             try
             {
                 _currentMovie.Rating = Convert.ToDouble(MoviesRatingTextBox.Text);
@@ -115,7 +141,7 @@ namespace Programming.Model.Panels
             }
             catch (Exception exception)
             {
-                MoviesRatingTextBox.BackColor = _errorColor;
+                MoviesRatingTextBox.BackColor = AppColors.ErrorColor;
                 _toolTip.SetToolTip(MoviesRatingTextBox, exception.Message);
             }
         }

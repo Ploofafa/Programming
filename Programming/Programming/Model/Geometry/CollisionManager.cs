@@ -29,10 +29,10 @@ namespace Programming.Model.Classes
         }   
 
         /// <summary>
-        /// Проверка на пересечение окружностей.
+        /// Проверка на пересечение Колец.
         /// </summary>
-        /// <param name="ring1">Окружность 1.</param>
-        /// <param name="ring2">Окружность 2.</param>
+        /// <param name="ring1">Кольцо 1.</param>
+        /// <param name="ring2">Кольцо 2.</param>
         /// <returns>Возвращает  результат проверки.</returns>
         public static bool IsCollision(Ring ring1,
                                        Ring ring2)
@@ -40,12 +40,7 @@ namespace Programming.Model.Classes
             double dx = Math.Abs(ring1.Centre.X - ring2.Centre.X);
             double dy = Math.Abs(ring1.Centre.Y - ring2.Centre.Y);
             double C = dx * dx + dy * dy;
-
-            if (C < (ring1.OuterRadius + ring2.OuterRadius))
-            {
-                return true;
-            }            
-            return false;
+            return (C < (ring1.OuterRadius + ring2.OuterRadius));
         }
     }
 }

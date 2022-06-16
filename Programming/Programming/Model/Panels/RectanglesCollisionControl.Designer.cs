@@ -88,46 +88,42 @@
             this.RectanglesAddButton.MouseLeave += new System.EventHandler(this.RectanglesAddButton_MouseLeave);
             this.RectanglesAddButton.MouseHover += new System.EventHandler(this.RectanglesAddButton_MouseHover);
             // 
-            // RectanglesHeightTextBox
+            // RectangleHeightTextBox
             // 
             this.RectangleHeightTextBox.Location = new System.Drawing.Point(68, 362);
-            this.RectangleHeightTextBox.Name = "RectanglesHeightTextBox";
+            this.RectangleHeightTextBox.Name = "RectangleHeightTextBox";
             this.RectangleHeightTextBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleHeightTextBox.TabIndex = 16;
-            this.RectangleHeightTextBox.Click += new System.EventHandler(this.RectanglesHeightTextBox_TextChanged);
             this.RectangleHeightTextBox.TextChanged += new System.EventHandler(this.RectanglesHeightTextBox_TextChanged);
             // 
-            // RectanglesWidthTextBox
+            // RectangleWidthTextBox
             // 
             this.RectangleWidthTextBox.Location = new System.Drawing.Point(68, 336);
-            this.RectangleWidthTextBox.Name = "RectanglesWidthTextBox";
+            this.RectangleWidthTextBox.Name = "RectangleWidthTextBox";
             this.RectangleWidthTextBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleWidthTextBox.TabIndex = 17;
-            this.RectangleWidthTextBox.Click += new System.EventHandler(this.RectanglesWidthTextBox_TextChanged);
             this.RectangleWidthTextBox.TextChanged += new System.EventHandler(this.RectanglesWidthTextBox_TextChanged);
             // 
-            // RectanglesYTextBox
+            // RectangleYTextBox
             // 
             this.RectangleYTextBox.Location = new System.Drawing.Point(68, 310);
-            this.RectangleYTextBox.Name = "RectanglesYTextBox";
+            this.RectangleYTextBox.Name = "RectangleYTextBox";
             this.RectangleYTextBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleYTextBox.TabIndex = 18;
-            this.RectangleYTextBox.Click += new System.EventHandler(this.RectanglesYTextBox_TextChanged);
             this.RectangleYTextBox.TextChanged += new System.EventHandler(this.RectanglesYTextBox_TextChanged);
             // 
-            // RectanglesXTextBox
+            // RectangleXTextBox
             // 
             this.RectangleXTextBox.Location = new System.Drawing.Point(68, 284);
-            this.RectangleXTextBox.Name = "RectanglesXTextBox";
+            this.RectangleXTextBox.Name = "RectangleXTextBox";
             this.RectangleXTextBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleXTextBox.TabIndex = 19;
-            this.RectangleXTextBox.Click += new System.EventHandler(this.RectanglesXTextBox_TextChanged);
             this.RectangleXTextBox.TextChanged += new System.EventHandler(this.RectanglesXTextBox_TextChanged);
             // 
-            // RectanglesIdTextBox
+            // RectangleIdTextBox
             // 
             this.RectangleIdTextBox.Location = new System.Drawing.Point(68, 258);
-            this.RectangleIdTextBox.Name = "RectanglesIdTextBox";
+            this.RectangleIdTextBox.Name = "RectangleIdTextBox";
             this.RectangleIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleIdTextBox.TabIndex = 20;
             // 
@@ -190,8 +186,8 @@
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CanvasPanel.BackColor = System.Drawing.Color.Transparent;
             this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

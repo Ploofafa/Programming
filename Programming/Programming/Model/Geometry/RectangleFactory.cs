@@ -10,12 +10,12 @@ namespace Programming.Model.Classes
     /// <summary>
     /// Содержит метод для создания прямоугольнкиов.
     /// </summary>
-    static class RectangleFactory
+    public static class RectangleFactory
     {
         /// <summary>
         /// Задаёт переменную класса <see cref="Random"/>.
         /// </summary>
-        static private Random random = new Random();
+        private static Random random = new Random();
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Rectangle"/> с рандомными значениями

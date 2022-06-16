@@ -11,9 +11,17 @@ using Programming.Model.Enums;
 
 namespace Programming.Model.Panels
 {
-    public partial class SeasondHandler : UserControl
+
+    /// <summary>
+    /// Хранит логику пользовательского элемента управления <see cref="SeasondHandlerControl"/>
+    /// </summary>
+    public partial class SeasondHandlerControl : UserControl
     {
-        public SeasondHandler()
+
+        /// <summary>
+        /// Хранит логику пользовательского элемента управления <see cref="SeasondHandlerControl"/>
+        /// </summary>
+        public SeasondHandlerControl()
         {
             InitializeComponent();
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));

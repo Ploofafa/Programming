@@ -14,24 +14,45 @@ namespace Programming.Model.Panels
 {
 
     /// <summary>
-    /// Содержит логику пользовательского элемента <see cref="ClassesRectangle"/>.
+    /// Содержит логику пользовательского элемента <see cref="ClassesRectangleControl"/>.
     /// Создаёт заданное количество прямоугольников, реализует поиск по большей ширине.
     /// </summary>
-    public partial class ClassesRectangle : UserControl
+    public partial class ClassesRectangleControl : UserControl
     {
 
+        /// <summary>
+        /// Хранит массив прямоугольников.
+        /// </summary>
         public Rectangle[] _rectangles;
 
+        /// <summary>
+        /// Хранит текущий выбранный прямоугольник.
+        /// </summary>
         private Rectangle _currentRectangle;
 
+        /// <summary>
+        /// Хранит нормальный цвет текст бокса.
+        /// </summary>
         private readonly Color _normalColor = Color.White;
 
+        /// <summary>
+        /// Хранит цвет текст бокса с ошибкой.
+        /// </summary>
         private readonly Color _errorColor = Color.LightPink;
 
+        /// <summary>
+        /// Хранит переменную для подсказок пользователю в элементах.
+        /// </summary>
         private ToolTip _toolTip = new ToolTip();
 
+        /// <summary>
+        /// Хранит количество прямоугольников, которые должны быть созданы.
+        /// </summary>
         private int _rectanglesCount = 5;
 
+        /// <summary>
+        /// Создаёт заданное количество прямоугольников.
+        /// </summary>
         private void InitRectangles()
         {
             _rectangles = new Rectangle[_rectanglesCount];
@@ -47,6 +68,11 @@ namespace Programming.Model.Panels
             RectangleListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Ищет самый большой по ширене прямоугольнк.
+        /// </summary>
+        /// <param name="rectangles">Массив прямоугольников, в котором будет идти поиск.</param>
+        /// <returns>Возвращает индекс прямоугольника с самой большой шириной.</returns>
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             double maxWidth = -1;
@@ -62,7 +88,7 @@ namespace Programming.Model.Panels
             return currentIndex;
         }
 
-        public ClassesRectangle()
+        public ClassesRectangleControl()
 
         {
             InitializeComponent();

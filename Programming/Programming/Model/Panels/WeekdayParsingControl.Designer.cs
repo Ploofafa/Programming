@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class WeekdayParsing
+    partial class WeekdayParsingControl
     {
         /// <summary> 
         /// Required designer variable.

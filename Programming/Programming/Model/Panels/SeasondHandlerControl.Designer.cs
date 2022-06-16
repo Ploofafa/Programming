@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class SeasondHandler
+    partial class SeasondHandlerControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -36,7 +36,7 @@
             // 
             // SeasonButton
             // 
-            this.SeasonButton.Location = new System.Drawing.Point(171, 30);
+            this.SeasonButton.Location = new System.Drawing.Point(165, 34);
             this.SeasonButton.Name = "SeasonButton";
             this.SeasonButton.Size = new System.Drawing.Size(75, 21);
             this.SeasonButton.TabIndex = 14;
@@ -52,7 +52,7 @@
             "Autumn",
             "Winter",
             "Spring"});
-            this.SeasonComboBox.Location = new System.Drawing.Point(19, 30);
+            this.SeasonComboBox.Location = new System.Drawing.Point(14, 34);
             this.SeasonComboBox.Name = "SeasonComboBox";
             this.SeasonComboBox.Size = new System.Drawing.Size(146, 21);
             this.SeasonComboBox.TabIndex = 13;
@@ -60,7 +60,7 @@
             // SeasonLabel
             // 
             this.SeasonLabel.AutoSize = true;
-            this.SeasonLabel.Location = new System.Drawing.Point(16, 13);
+            this.SeasonLabel.Location = new System.Drawing.Point(14, 16);
             this.SeasonLabel.Name = "SeasonLabel";
             this.SeasonLabel.Size = new System.Drawing.Size(83, 13);
             this.SeasonLabel.TabIndex = 12;
@@ -69,14 +69,14 @@
             // AutumnLabel
             // 
             this.AutumnLabel.AutoSize = true;
-            this.AutumnLabel.Location = new System.Drawing.Point(16, 64);
+            this.AutumnLabel.Location = new System.Drawing.Point(14, 58);
             this.AutumnLabel.Name = "AutumnLabel";
             this.AutumnLabel.Size = new System.Drawing.Size(123, 13);
             this.AutumnLabel.TabIndex = 15;
             this.AutumnLabel.Text = "Orange hit of the season";
             this.AutumnLabel.Visible = false;
             // 
-            // SeasondHandler
+            // SeasondHandlerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,7 +84,7 @@
             this.Controls.Add(this.SeasonButton);
             this.Controls.Add(this.SeasonComboBox);
             this.Controls.Add(this.SeasonLabel);
-            this.Name = "SeasondHandler";
+            this.Name = "SeasondHandlerControl";
             this.Size = new System.Drawing.Size(280, 112);
             this.Load += new System.EventHandler(this.SeasondHandler_Load);
             this.ResumeLayout(false);

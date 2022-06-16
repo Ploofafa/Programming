@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class Movies
+    partial class MoviesControl
     {
         /// <summary> 
         /// Required designer variable.

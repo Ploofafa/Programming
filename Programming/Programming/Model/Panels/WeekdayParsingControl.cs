@@ -11,9 +11,13 @@ using Programming.Model.Enums;
 
 namespace Programming.Model.Panels
 {
-    public partial class WeekdayParsing : UserControl
+
+    /// <summary>
+    /// Хранит логику пользовательского элемента управления <see cref="WeekdayParsingControl"/>.
+    /// </summary>
+    public partial class WeekdayParsingControl : UserControl
     {
-        public WeekdayParsing()
+        public WeekdayParsingControl()
         {
             InitializeComponent();
         }

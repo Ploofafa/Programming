@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class Enumerations
+    partial class EnumerationsControl
     {
         /// <summary> 
         /// Required designer variable.
