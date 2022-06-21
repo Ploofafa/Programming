@@ -61,10 +61,6 @@
             this.RectangleDeleteButton.Size = new System.Drawing.Size(38, 31);
             this.RectangleDeleteButton.TabIndex = 22;
             this.RectangleDeleteButton.UseVisualStyleBackColor = false;
-            this.RectangleDeleteButton.Click += new System.EventHandler(this.RectanglesDeleteButton);
-            this.RectangleDeleteButton.MouseEnter += new System.EventHandler(this.RectanglesDeleteButton_MouseEnter);
-            this.RectangleDeleteButton.MouseLeave += new System.EventHandler(this.RectanglesDeleteButton_MouseLeave);
-            this.RectangleDeleteButton.MouseHover += new System.EventHandler(this.RectanglesDeleteButton_MouseHover);
             // 
             // RectanglesAddButton
             // 
@@ -84,9 +80,6 @@
             this.RectanglesAddButton.Text = "\r\n";
             this.RectanglesAddButton.UseVisualStyleBackColor = false;
             this.RectanglesAddButton.Click += new System.EventHandler(this.RectanglesAddButton_Click);
-            this.RectanglesAddButton.MouseEnter += new System.EventHandler(this.RectanglesAddButton_MouseEnter);
-            this.RectanglesAddButton.MouseLeave += new System.EventHandler(this.RectanglesAddButton_MouseLeave);
-            this.RectanglesAddButton.MouseHover += new System.EventHandler(this.RectanglesAddButton_MouseHover);
             // 
             // RectangleHeightTextBox
             // 
@@ -186,8 +179,8 @@
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CanvasPanel.BackColor = System.Drawing.Color.Transparent;
             this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -205,7 +198,6 @@
             this.RectanglesListBox.Name = "RectanglesListBox";
             this.RectanglesListBox.Size = new System.Drawing.Size(209, 132);
             this.RectanglesListBox.TabIndex = 8;
-            this.RectanglesListBox.Click += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
             // label2
