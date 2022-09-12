@@ -61,6 +61,10 @@
             this.RectangleDeleteButton.Size = new System.Drawing.Size(38, 31);
             this.RectangleDeleteButton.TabIndex = 22;
             this.RectangleDeleteButton.UseVisualStyleBackColor = false;
+            this.RectangleDeleteButton.Click += new System.EventHandler(this.RectangleDeleteButton_Click);
+            this.RectangleDeleteButton.MouseEnter += new System.EventHandler(this.RectanglesDeleteButton_MouseEnter);
+            this.RectangleDeleteButton.MouseLeave += new System.EventHandler(this.RectanglesDeleteButton_MouseLeave);
+            this.RectangleDeleteButton.MouseHover += new System.EventHandler(this.RectanglesDeleteButton_MouseHover);
             // 
             // RectanglesAddButton
             // 
@@ -80,6 +84,9 @@
             this.RectanglesAddButton.Text = "\r\n";
             this.RectanglesAddButton.UseVisualStyleBackColor = false;
             this.RectanglesAddButton.Click += new System.EventHandler(this.RectanglesAddButton_Click);
+            this.RectanglesAddButton.MouseEnter += new System.EventHandler(this.RectanglesAddButton_MouseEnter);
+            this.RectanglesAddButton.MouseLeave += new System.EventHandler(this.RectanglesAddButton_MouseLeave);
+            this.RectanglesAddButton.MouseHover += new System.EventHandler(this.RectanglesAddButton_MouseHover);
             // 
             // RectangleHeightTextBox
             // 

@@ -14,14 +14,6 @@ namespace Programming.Model.Panels
 {
     public partial class RectanglesCollisionControl : UserControl
     {
-        private readonly Color _normalRectangleColor = Color.FromArgb(127, 127, 255, 127);
-
-        private readonly Color _collisionRectangleColor = Color.FromArgb(127, 255, 127, 127);
-
-        private readonly Color _normalColor = Color.White;
-
-        private readonly Color _errorColor = Color.LightPink;
-
         private ToolTip _toolTip = new ToolTip();
 
         private List<Rectangle> _rectangles = new List<Rectangle>(200);
@@ -52,7 +44,7 @@ namespace Programming.Model.Panels
             Panel panel = new Panel();
             panel.Location = new Point(rectangle.Centre.X, rectangle.Centre.Y);
             panel.Size = new Size(rectangle.Width, rectangle.Height);
-            panel.BackColor = _normalRectangleColor;
+            panel.BackColor = AppColors.NormalRectangleColor;
             _rectanglePanels.Add(panel);
             CanvasPanel.Controls.Add(panel);
         }
@@ -91,7 +83,7 @@ namespace Programming.Model.Panels
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
             {
-                _rectanglePanels[i].BackColor = _normalRectangleColor;
+                _rectanglePanels[i].BackColor = AppColors.NormalRectangleColor;
             }
             for (int i = 0; i < _rectanglePanels.Count; i++)
             {
@@ -99,8 +91,8 @@ namespace Programming.Model.Panels
                 {
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[g]))
                     {
-                        _rectanglePanels[i].BackColor = _collisionRectangleColor;
-                        _rectanglePanels[g].BackColor = _collisionRectangleColor;
+                        _rectanglePanels[i].BackColor = AppColors.CollisionColor;
+                        _rectanglePanels[g].BackColor = AppColors.CollisionColor;
                     }
                 }
             }
@@ -129,11 +121,19 @@ namespace Programming.Model.Panels
 
         private void RectanglesAddButton_Click(object sender, EventArgs e)
         {
-            Rectangle rectangle = RectangleFactory.Randomize();
+            Rectangle rectangle = RectangleFactory.Randomize(CanvasPanel.Size.Width, CanvasPanel.Size.Height);
             rectangle.Id = rectangle.Id - _rectanglesCount;
+            rectangle.Centre.X = Math.Abs(rectangle.Centre.X - rectangle.Width);
+            rectangle.Centre.Y = Math.Abs(rectangle.Centre.Y - rectangle.Height);
             ItemAddListBox(rectangle);
             PanelAddListBox(rectangle);
             RectanglesListBox.SelectedIndex = RectanglesListBox.Items.Count - 1;
+            FindCollisions();
+        }
+
+        private void RectangleDeleteButton_Click(object sender, EventArgs e)
+        {
+            RectanglesDelete();
             FindCollisions();
         }
 
@@ -150,12 +150,6 @@ namespace Programming.Model.Panels
         private void RectanglesDeleteButton_MouseEnter(Object sender, EventArgs e)
         {
             RectangleDeleteButton.Image = Properties.Resources.rectangle_remove_24x24;
-        }
-
-        private void RectanglesDeleteButton(object sender, EventArgs e)
-        {
-            RectanglesDelete();
-            FindCollisions();
         }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,7 +171,7 @@ namespace Programming.Model.Panels
 
         private void RectanglesWidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleWidthTextBox.BackColor = _normalColor;
+            RectangleWidthTextBox.BackColor = AppColors.NormalColor;
             if (string.IsNullOrEmpty(RectangleWidthTextBox.Text) == false)
             {
                 try
@@ -190,7 +184,7 @@ namespace Programming.Model.Panels
                 }
                 catch (Exception exception)
                 {
-                    RectangleWidthTextBox.BackColor = _errorColor;
+                    RectangleWidthTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(RectangleWidthTextBox, exception.Message);
                 }
             }
@@ -198,12 +192,12 @@ namespace Programming.Model.Panels
 
         private void RectanglesHeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleHeightTextBox.BackColor = _normalColor;
+            RectangleHeightTextBox.BackColor = AppColors.NormalColor;
             if (string.IsNullOrEmpty(RectangleHeightTextBox.Text) == false)
             {
                 try
                 {
-                    RectangleHeightTextBox.BackColor = _normalColor;
+                    RectangleHeightTextBox.BackColor = AppColors.NormalColor;
                     _currentRectangle.Height = Int32.Parse(RectangleHeightTextBox.Text);
                     _toolTip.SetToolTip(RectangleHeightTextBox, "");
                     UpdateRectanglesInfo(_currentRectangle);
@@ -213,7 +207,7 @@ namespace Programming.Model.Panels
 
                 catch (Exception exception)
                 {
-                    RectangleHeightTextBox.BackColor = _errorColor;
+                    RectangleHeightTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(RectangleHeightTextBox, exception.Message);
                 }
             }
@@ -221,7 +215,7 @@ namespace Programming.Model.Panels
 
         private void RectanglesXTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleXTextBox.BackColor = _normalColor;
+            RectangleXTextBox.BackColor = AppColors.NormalColor;
             if (string.IsNullOrEmpty(RectangleXTextBox.Text) == false)
             {
                 try
@@ -235,7 +229,7 @@ namespace Programming.Model.Panels
 
                 catch (Exception exception)
                 {
-                    RectangleXTextBox.BackColor = _errorColor;
+                    RectangleXTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(RectangleXTextBox, exception.Message);
                 }
             }
@@ -243,22 +237,25 @@ namespace Programming.Model.Panels
 
         private void RectanglesYTextBox_TextChanged(object sender, EventArgs e)
         {
-            RectangleYTextBox.BackColor = _normalColor;
+            RectangleYTextBox.BackColor = AppColors.NormalColor;
             if (string.IsNullOrEmpty(RectangleYTextBox.Text) == false)
             {
                 try
                 {
                     _currentRectangle.Centre.Y = Int32.Parse(RectangleYTextBox.Text);
                     _toolTip.SetToolTip(RectangleYTextBox, "");
-                    UpdateRectanglesInfo(_currentRectangle);
                     ChangedRectanglesPanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
                     FindCollisions();
+                    if (_currentRectangle.Centre.Y == Int32.Parse(RectangleYTextBox.Text))
+                    {
+                        UpdateRectanglesInfo(_currentRectangle);
+                    }  
                 }
 
                 catch (Exception exception)
                 {
                     _toolTip.SetToolTip(RectangleYTextBox, exception.Message);
-                    RectangleYTextBox.BackColor = _errorColor;
+                    RectangleYTextBox.BackColor = AppColors.ErrorColor;
                 }
             }
         }

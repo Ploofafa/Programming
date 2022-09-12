@@ -22,12 +22,12 @@ namespace Programming.Model.Classes
         /// ширины, высоты, центра. Id задаётся в классе.
         /// </summary>
         /// <returns></returns>
-        public static Rectangle Randomize()
+        public static Rectangle Randomize(int MaxX, int MaxY)
         {
             Rectangle rectangle = new Rectangle();
             rectangle.Width = random.Next(1, 100);
             rectangle.Height = random.Next(1, 100);
-            rectangle.Centre = new Point2D(random.Next(0, 237), random.Next(0, 264));          
+            rectangle.Centre = new Point2D(random.Next(0, MaxX), random.Next(0, MaxY));          
             return rectangle;
         }
     }

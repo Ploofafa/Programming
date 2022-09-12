@@ -62,7 +62,7 @@ namespace Programming.Model.Panels
 
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                _rectangles[i] = RectangleFactory.Randomize();
+                _rectangles[i] = RectangleFactory.Randomize(250, 250);
                 _rectangles[i].Color = rectangleColor[random.Next(0, rectangleColor.Length)];
             }
             RectangleListBox.SelectedIndex = 0;
