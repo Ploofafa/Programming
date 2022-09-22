@@ -1,4 +1,4 @@
-namespace EmployeeDatabase
+namespace ObjectOrientedPractics
 {
     internal static class Program
     {
