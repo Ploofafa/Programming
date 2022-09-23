@@ -16,6 +16,11 @@ namespace ObjectOrientedPractics.Model
 		private static int _id;
 
         /// <summary>
+        /// Хранит количество всех товаров.
+        /// </summary>
+        private int _allItemsCount;
+
+        /// <summary>
         /// Хранит название товара. Должно содержать не больше 200 символов.
         /// </summary>
         private string _name;
@@ -28,14 +33,15 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит стоимость товара. Лежит в пределах от 0 до 100 000.
         /// </summary>
-        private double _coast;
+        private double _cost;
 
         /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Item"/>.
         /// </summary>
         public Item()
         {
-            _id++;
+            _id = _allItemsCount;
+            _allItemsCount++;
         }
 
         /// <summary>
@@ -43,13 +49,14 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="name">Название товара. Должно содержать не больше 200 символов.</param>
         /// <param name="info">Описание товара. Должно содержать не больше 1000 символов.</param>
-        /// <param name="coast">Стоимость товара. Лежит в пределах от 0 до 100 000.</param>
+        /// <param name="cost">Стоимость товара. Лежит в пределах от 0 до 100 000.</param>
         public Item(string name, string info, double coast)
         {
             Name = name;
             Info = info;
-            Coast = coast;
-            _id++;
+            Cost = coast;
+            _id = _allItemsCount;
+            _allItemsCount++;
         }
 
         /// <summary>
@@ -90,17 +97,17 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Задаёт и возвращает стоимость товара. Лежит в пределах от 0 до 100 000.
         /// </summary>
-        public double Coast
+        public double Cost
         {
             get
             {
-                return _coast;
+                return _cost;
             }
 
             set
             {
                 Validator.AssertValueInRange(value, 0, 100000);
-                _coast = value;
+                _cost = value;
             }
 
         }
