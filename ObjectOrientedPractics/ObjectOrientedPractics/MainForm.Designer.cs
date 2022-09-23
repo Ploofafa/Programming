@@ -33,7 +33,7 @@
             this.ItemsTab = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             this.itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             this.CustomersTabPage = new System.Windows.Forms.TabPage();
-            this.customersTab1 = new ObjectOrientedPractics.View.Tabs.CustomersTab();
+            this.customerTab1 = new ObjectOrientedPractics.View.Tabs.CustomerTab();
             this.TabControl.SuspendLayout();
             this.Items.SuspendLayout();
             this.CustomersTabPage.SuspendLayout();
@@ -80,7 +80,7 @@
             // 
             // CustomersTabPage
             // 
-            this.CustomersTabPage.Controls.Add(this.customersTab1);
+            this.CustomersTabPage.Controls.Add(this.customerTab1);
             this.CustomersTabPage.Location = new System.Drawing.Point(4, 24);
             this.CustomersTabPage.Name = "CustomersTabPage";
             this.CustomersTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -89,13 +89,13 @@
             this.CustomersTabPage.Text = "Customers";
             this.CustomersTabPage.UseVisualStyleBackColor = true;
             // 
-            // customersTab1
+            // customerTab1
             // 
-            this.customersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customersTab1.Location = new System.Drawing.Point(3, 3);
-            this.customersTab1.Name = "customersTab1";
-            this.customersTab1.Size = new System.Drawing.Size(677, 436);
-            this.customersTab1.TabIndex = 0;
+            this.customerTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customerTab1.Location = new System.Drawing.Point(3, 3);
+            this.customerTab1.Name = "customerTab1";
+            this.customerTab1.Size = new System.Drawing.Size(677, 436);
+            this.customerTab1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -119,6 +119,6 @@
         private View.Tabs.ItemsTab itemsTab1;
         private TabPage CustomersTabPage;
         private View.Tabs.ItemsTab ItemsTab;
-        private View.Tabs.CustomersTab customersTab1;
+        private View.Tabs.CustomerTab customerTab1;
     }
 }
