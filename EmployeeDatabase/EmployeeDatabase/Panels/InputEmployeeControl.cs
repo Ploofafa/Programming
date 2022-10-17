@@ -94,7 +94,7 @@ namespace EmployeeDatabase.Panels
         /// </summary>
         private void EmployeesDelete()
         {
-            if (EmployeesListBox.Items.Count != 0)
+            if (EmployeesListBox.Items.Count != 0 & EmployeesListBox.SelectedIndex != -1)
             {
                 Employees.RemoveAt(EmployeesListBox.SelectedIndex);
                 EmployeesListBox.Items.RemoveAt(EmployeesListBox.SelectedIndex);
