@@ -79,7 +79,7 @@
             // 
             // FullNameTextBox
             // 
-            this.FullNameTextBox.Location = new System.Drawing.Point(361, 30);
+            this.FullNameTextBox.Location = new System.Drawing.Point(386, 25);
             this.FullNameTextBox.Name = "FullNameTextBox";
             this.FullNameTextBox.Size = new System.Drawing.Size(304, 23);
             this.FullNameTextBox.TabIndex = 4;
@@ -87,7 +87,7 @@
             // 
             // JobTitleTextBox
             // 
-            this.JobTitleTextBox.Location = new System.Drawing.Point(361, 59);
+            this.JobTitleTextBox.Location = new System.Drawing.Point(386, 54);
             this.JobTitleTextBox.Name = "JobTitleTextBox";
             this.JobTitleTextBox.Size = new System.Drawing.Size(304, 23);
             this.JobTitleTextBox.TabIndex = 5;
@@ -95,7 +95,7 @@
             // 
             // EmployeeDateTimePicker
             // 
-            this.EmployeeDateTimePicker.Location = new System.Drawing.Point(386, 89);
+            this.EmployeeDateTimePicker.Location = new System.Drawing.Point(386, 83);
             this.EmployeeDateTimePicker.Name = "EmployeeDateTimePicker";
             this.EmployeeDateTimePicker.Size = new System.Drawing.Size(279, 23);
             this.EmployeeDateTimePicker.TabIndex = 6;
@@ -103,7 +103,7 @@
             // 
             // SalaryTextBox
             // 
-            this.SalaryTextBox.Location = new System.Drawing.Point(361, 118);
+            this.SalaryTextBox.Location = new System.Drawing.Point(386, 113);
             this.SalaryTextBox.Name = "SalaryTextBox";
             this.SalaryTextBox.Size = new System.Drawing.Size(304, 23);
             this.SalaryTextBox.TabIndex = 7;

@@ -34,7 +34,7 @@
             // 
             // inputEmployeeControl
             // 
-            this.inputEmployeeControl.Location = new System.Drawing.Point(12, 12);
+            this.inputEmployeeControl.Location = new System.Drawing.Point(1, -6);
             this.inputEmployeeControl.Name = "inputEmployeeControl";
             this.inputEmployeeControl.Size = new System.Drawing.Size(765, 381);
             this.inputEmployeeControl.TabIndex = 0;
