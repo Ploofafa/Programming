@@ -13,15 +13,15 @@ namespace Programming.Model.Panels
 {
 
     /// <summary>
-    /// Хранит логику пользовательского элемента управления <see cref="SeasondHandlerControl"/>
+    /// Хранит логику пользовательского элемента управления <see cref="SeasonHandlerControl"/>
     /// </summary>
-    public partial class SeasondHandlerControl : UserControl
+    public partial class SeasonHandlerControl : UserControl
     {
 
         /// <summary>
-        /// Хранит логику пользовательского элемента управления <see cref="SeasondHandlerControl"/>
+        /// Хранит логику пользовательского элемента управления <see cref="SeasonHandlerControl"/>
         /// </summary>
-        public SeasondHandlerControl()
+        public SeasonHandlerControl()
         {
             InitializeComponent();
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));

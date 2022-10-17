@@ -56,7 +56,7 @@
             this.RectangleDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RectangleDeleteButton.ForeColor = System.Drawing.SystemColors.Window;
             this.RectangleDeleteButton.Image = global::Programming.Properties.Resources.rectangle_remove_24x24_uncolor;
-            this.RectangleDeleteButton.Location = new System.Drawing.Point(130, 172);
+            this.RectangleDeleteButton.Location = new System.Drawing.Point(58, 173);
             this.RectangleDeleteButton.Name = "RectangleDeleteButton";
             this.RectangleDeleteButton.Size = new System.Drawing.Size(38, 31);
             this.RectangleDeleteButton.TabIndex = 22;
@@ -77,7 +77,7 @@
             this.RectanglesAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RectanglesAddButton.ForeColor = System.Drawing.SystemColors.Window;
             this.RectanglesAddButton.Image = global::Programming.Properties.Resources.rectangle_add_24x24_uncolor;
-            this.RectanglesAddButton.Location = new System.Drawing.Point(46, 172);
+            this.RectanglesAddButton.Location = new System.Drawing.Point(14, 172);
             this.RectanglesAddButton.Name = "RectanglesAddButton";
             this.RectanglesAddButton.Size = new System.Drawing.Size(38, 31);
             this.RectanglesAddButton.TabIndex = 21;
@@ -130,7 +130,7 @@
             // RectanglesHeightLabel
             // 
             this.RectanglesHeightLabel.AutoSize = true;
-            this.RectanglesHeightLabel.Location = new System.Drawing.Point(21, 362);
+            this.RectanglesHeightLabel.Location = new System.Drawing.Point(19, 369);
             this.RectanglesHeightLabel.Name = "RectanglesHeightLabel";
             this.RectanglesHeightLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RectanglesHeightLabel.Size = new System.Drawing.Size(41, 13);
@@ -140,7 +140,7 @@
             // RectanglesWidthLabel
             // 
             this.RectanglesWidthLabel.AutoSize = true;
-            this.RectanglesWidthLabel.Location = new System.Drawing.Point(24, 336);
+            this.RectanglesWidthLabel.Location = new System.Drawing.Point(22, 343);
             this.RectanglesWidthLabel.Name = "RectanglesWidthLabel";
             this.RectanglesWidthLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RectanglesWidthLabel.Size = new System.Drawing.Size(38, 13);
@@ -150,7 +150,7 @@
             // RectanglesYLabel
             // 
             this.RectanglesYLabel.AutoSize = true;
-            this.RectanglesYLabel.Location = new System.Drawing.Point(43, 310);
+            this.RectanglesYLabel.Location = new System.Drawing.Point(43, 317);
             this.RectanglesYLabel.Name = "RectanglesYLabel";
             this.RectanglesYLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RectanglesYLabel.Size = new System.Drawing.Size(17, 13);
@@ -160,7 +160,7 @@
             // RectanglesXLabel
             // 
             this.RectanglesXLabel.AutoSize = true;
-            this.RectanglesXLabel.Location = new System.Drawing.Point(43, 284);
+            this.RectanglesXLabel.Location = new System.Drawing.Point(43, 291);
             this.RectanglesXLabel.Name = "RectanglesXLabel";
             this.RectanglesXLabel.Size = new System.Drawing.Size(17, 13);
             this.RectanglesXLabel.TabIndex = 13;
@@ -169,7 +169,7 @@
             // RectanglesIdLabel
             // 
             this.RectanglesIdLabel.AutoSize = true;
-            this.RectanglesIdLabel.Location = new System.Drawing.Point(43, 258);
+            this.RectanglesIdLabel.Location = new System.Drawing.Point(41, 265);
             this.RectanglesIdLabel.Name = "RectanglesIdLabel";
             this.RectanglesIdLabel.Size = new System.Drawing.Size(19, 13);
             this.RectanglesIdLabel.TabIndex = 14;

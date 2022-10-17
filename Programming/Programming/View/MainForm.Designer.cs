@@ -35,7 +35,7 @@
             this.classesRectangle1 = new Programming.Model.Panels.ClassesRectangleControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.GroupBoxSeason = new System.Windows.Forms.GroupBox();
-            this.seasondHandler1 = new Programming.Model.Panels.SeasondHandlerControl();
+            this.seasondHandler1 = new Programming.Model.Panels.SeasonHandlerControl();
             this.groupBoxParse = new System.Windows.Forms.GroupBox();
             this.weekdayParsing1 = new Programming.Model.Panels.WeekdayParsingControl();
             this.GroupBoxEnum = new System.Windows.Forms.GroupBox();
@@ -237,7 +237,7 @@
         private Model.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
         private Model.Panels.EnumerationsControl enumerations1;
         private Model.Panels.WeekdayParsingControl weekdayParsing1;
-        private Model.Panels.SeasondHandlerControl seasondHandler1;
+        private Model.Panels.SeasonHandlerControl seasondHandler1;
         private Model.Panels.ClassesRectangleControl classesRectangle1;
         private Model.Panels.MoviesControl movies1;
     }

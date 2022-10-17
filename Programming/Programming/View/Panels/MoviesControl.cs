@@ -55,7 +55,7 @@ namespace Programming.Model.Panels
         }
 
         /// <summary>
-        /// Генерирует нужное количества фильмов.
+        /// Генерирует нужное количество фильмов.
         /// </summary>
         private void InitMovies()
         {
@@ -70,7 +70,7 @@ namespace Programming.Model.Panels
             {
                 _movies[i] = new Movie();
                 _movies[i].Year = random.Next(1900, 2022);
-                _movies[i].Rating = DoubleRandom(1, 10, 2, random);
+                _movies[i].Rating = DoubleRandom(1, 10, 1, random);
                 _movies[i].Title = moviesTitle[random.Next(0, moviesTitle.Length)];
             }
             MoviesListBox.SelectedIndex = 0;

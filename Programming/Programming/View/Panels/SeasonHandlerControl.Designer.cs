@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model.Panels
 {
-    partial class SeasondHandlerControl
+    partial class SeasonHandlerControl
     {
         /// <summary> 
         /// Required designer variable.

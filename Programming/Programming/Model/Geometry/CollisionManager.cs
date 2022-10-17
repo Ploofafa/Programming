@@ -29,7 +29,7 @@ namespace Programming.Model.Classes
         }   
 
         /// <summary>
-        /// Проверка на пересечение Колец.
+        /// Проверка на пересечение колец.
         /// </summary>
         /// <param name="ring1">Кольцо 1.</param>
         /// <param name="ring2">Кольцо 2.</param>

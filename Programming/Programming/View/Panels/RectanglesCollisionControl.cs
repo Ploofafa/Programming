@@ -14,32 +14,67 @@ namespace Programming.Model.Panels
 {
     public partial class RectanglesCollisionControl : UserControl
     {
+        /// <summary>
+        /// Хранит переменную для подсказок пользователю.
+        /// </summary>
         private ToolTip _toolTip = new ToolTip();
 
-        private List<Rectangle> _rectangles = new List<Rectangle>(200);
+        /// <summary>
+        /// Хранит список прямоугольников.
+        /// </summary>
+        private List<Rectangle> _rectangles = new List<Rectangle>();
 
+        /// <summary>
+        /// Хранит переменную с текущим прямоугольником.
+        /// </summary>
         private Rectangle _currentRectangle;
 
+        /// <summary>
+        /// Хранит список нарисованных панелей.
+        /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
 
+        /// <summary>
+        /// Хранит переменную с количество прямоугольников.
+        /// </summary>
         private int _rectanglesCount = 5;
 
+        /// <summary>
+        /// Метод позволяющий получить строку со всей информацией о прямоугольнике.
+        /// </summary>
+        /// <param name="rectangle"></param>
+        /// <returns></returns>
+        private string GetInfoOfRectangle(Rectangle rectangle)
+        {
+            return $"{rectangle.Id}: (" +
+                    $"X = {rectangle.Centre.X}; Y = {rectangle.Centre.Y};" +
+                    $" W = {rectangle.Width}; H = {rectangle.Height})";
+        }
+
+        /// <summary>
+        /// Метод для добавления прямоугольника в лист бокс.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник нужный для добавления.</param>
         private void ItemAddListBox(Rectangle rectangle)
         {
             _rectangles.Add(rectangle);
-            RectanglesListBox.Items.Add($"{ rectangle.Id - _rectanglesCount}: (" +
-                    $"X = {rectangle.Centre.X}; Y = {rectangle.Centre.Y};" +
-                    $" W = {rectangle.Width}; H = {rectangle.Height})");
+            RectanglesListBox.Items.Add(GetInfoOfRectangle(rectangle));
         }
 
+        /// <summary>
+        /// Обновление информации о прямоугольнике
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник информацию о котором нужно обновить.</param>
         private void UpdateRectanglesInfo(Rectangle rectangle)
         {
-            RectanglesListBox.Items[RectanglesListBox.SelectedIndex] = ($"{rectangle.Id}: (" +
-                    $"X = {rectangle.Centre.X}; Y = {rectangle.Centre.Y};" +
-                    $" W = {rectangle.Width}; H = {rectangle.Height})");
+            RectanglesListBox.Items[RectanglesListBox.SelectedIndex] = (GetInfoOfRectangle(rectangle));
         }
 
-        private void PanelAddListBox(Rectangle rectangle)
+        /// <summary>
+        /// Метод добавления прямоугольника.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник, который будут добавлять.</param>
+        private void AddRectangleToPanel(Rectangle rectangle)
         {
             Panel panel = new Panel();
             panel.Location = new Point(rectangle.Centre.X, rectangle.Centre.Y);
@@ -49,13 +84,20 @@ namespace Programming.Model.Panels
             CanvasPanel.Controls.Add(panel);
         }
 
-        private void ChangedRectanglesPanel(Panel panel)
+        /// <summary>
+        /// Изменение локации панели.
+        /// </summary>
+        /// <param name="panel"></param>
+        private void ChangedRectanglePanel(Panel panel)
         {
             panel.Location = new Point(_currentRectangle.Centre.X, _currentRectangle.Centre.Y);
             panel.Size = new Size(_currentRectangle.Width, _currentRectangle.Height);
         }
 
-        private void RectanglesDelete()
+        /// <summary>
+        /// Методя для удаления прямоугольника из списка и с панели.
+        /// </summary>
+        private void DeleteRectangle()
         {
             if (RectanglesListBox.Items.Count != 0)
             {
@@ -70,6 +112,9 @@ namespace Programming.Model.Panels
             }
         }
 
+        /// <summary>
+        /// Метод для очищения всех текстбоксов.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             RectangleIdTextBox.Clear();
@@ -79,6 +124,9 @@ namespace Programming.Model.Panels
             RectangleXTextBox.Clear();
         }
 
+        /// <summary>
+        /// Метод для поиска пересечения прямоугольников.
+        /// </summary>
         private void FindCollisions()
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
@@ -126,14 +174,14 @@ namespace Programming.Model.Panels
             rectangle.Centre.X = Math.Abs(rectangle.Centre.X - rectangle.Width);
             rectangle.Centre.Y = Math.Abs(rectangle.Centre.Y - rectangle.Height);
             ItemAddListBox(rectangle);
-            PanelAddListBox(rectangle);
+            AddRectangleToPanel(rectangle);
             RectanglesListBox.SelectedIndex = RectanglesListBox.Items.Count - 1;
             FindCollisions();
         }
 
         private void RectangleDeleteButton_Click(object sender, EventArgs e)
         {
-            RectanglesDelete();
+            DeleteRectangle();
             FindCollisions();
         }
 
@@ -178,7 +226,7 @@ namespace Programming.Model.Panels
                 {
                     _currentRectangle.Width = Int32.Parse(RectangleWidthTextBox.Text);
                     _toolTip.SetToolTip(RectangleWidthTextBox, "");
-                    ChangedRectanglesPanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
+                    ChangedRectanglePanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
                     UpdateRectanglesInfo(_currentRectangle);
                     FindCollisions();
                 }
@@ -201,7 +249,7 @@ namespace Programming.Model.Panels
                     _currentRectangle.Height = Int32.Parse(RectangleHeightTextBox.Text);
                     _toolTip.SetToolTip(RectangleHeightTextBox, "");
                     UpdateRectanglesInfo(_currentRectangle);
-                    ChangedRectanglesPanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
+                    ChangedRectanglePanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
                     FindCollisions();
                 }
 
@@ -223,7 +271,7 @@ namespace Programming.Model.Panels
                     _currentRectangle.Centre.X = Int32.Parse(RectangleXTextBox.Text);
                     _toolTip.SetToolTip(RectangleXTextBox, "");
                     UpdateRectanglesInfo(_currentRectangle);
-                    ChangedRectanglesPanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
+                    ChangedRectanglePanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
                     FindCollisions();
                 }
 
@@ -244,7 +292,7 @@ namespace Programming.Model.Panels
                 {
                     _currentRectangle.Centre.Y = Int32.Parse(RectangleYTextBox.Text);
                     _toolTip.SetToolTip(RectangleYTextBox, "");
-                    ChangedRectanglesPanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
+                    ChangedRectanglePanel(_rectanglePanels[RectanglesListBox.SelectedIndex]);
                     FindCollisions();
                     if (_currentRectangle.Centre.Y == Int32.Parse(RectangleYTextBox.Text))
                     {
