@@ -29,19 +29,18 @@
         private void InitializeComponent()
         {
             this.CustomersGroupBox = new System.Windows.Forms.GroupBox();
-            this.CustomersLabel = new System.Windows.Forms.Label();
-            this.CustomersListBox = new System.Windows.Forms.ListBox();
-            this.AddCustomersButton = new System.Windows.Forms.Button();
             this.RemoveCustomersButton = new System.Windows.Forms.Button();
+            this.AddCustomersButton = new System.Windows.Forms.Button();
+            this.CustomersListBox = new System.Windows.Forms.ListBox();
+            this.CustomersLabel = new System.Windows.Forms.Label();
             this.CustomersInfoGroupBox = new System.Windows.Forms.GroupBox();
-            this.SelectedCustomerLabel = new System.Windows.Forms.Label();
-            this.IdLabel = new System.Windows.Forms.Label();
-            this.FullNameLabel = new System.Windows.Forms.Label();
-            this.AddressLabel = new System.Windows.Forms.Label();
-            this.IdCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.FullNameTextBox = new System.Windows.Forms.TextBox();
+            this.IdCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.AddressLabel = new System.Windows.Forms.Label();
+            this.FullNameLabel = new System.Windows.Forms.Label();
+            this.IdLabel = new System.Windows.Forms.Label();
+            this.SelectedCustomerLabel = new System.Windows.Forms.Label();
             this.CustomersGroupBox.SuspendLayout();
             this.CustomersInfoGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -58,24 +57,15 @@
             this.CustomersGroupBox.TabIndex = 0;
             this.CustomersGroupBox.TabStop = false;
             // 
-            // CustomersLabel
+            // RemoveCustomersButton
             // 
-            this.CustomersLabel.AutoSize = true;
-            this.CustomersLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomersLabel.Location = new System.Drawing.Point(6, 19);
-            this.CustomersLabel.Name = "CustomersLabel";
-            this.CustomersLabel.Size = new System.Drawing.Size(66, 15);
-            this.CustomersLabel.TabIndex = 0;
-            this.CustomersLabel.Text = "Customers";
-            // 
-            // CustomersListBox
-            // 
-            this.CustomersListBox.FormattingEnabled = true;
-            this.CustomersListBox.ItemHeight = 15;
-            this.CustomersListBox.Location = new System.Drawing.Point(6, 37);
-            this.CustomersListBox.Name = "CustomersListBox";
-            this.CustomersListBox.Size = new System.Drawing.Size(262, 334);
-            this.CustomersListBox.TabIndex = 1;
+            this.RemoveCustomersButton.Location = new System.Drawing.Point(98, 383);
+            this.RemoveCustomersButton.Name = "RemoveCustomersButton";
+            this.RemoveCustomersButton.Size = new System.Drawing.Size(86, 39);
+            this.RemoveCustomersButton.TabIndex = 4;
+            this.RemoveCustomersButton.Text = "Remove";
+            this.RemoveCustomersButton.UseVisualStyleBackColor = true;
+            this.RemoveCustomersButton.Click += new System.EventHandler(this.RemoveCustomersButton_Click);
             // 
             // AddCustomersButton
             // 
@@ -85,15 +75,27 @@
             this.AddCustomersButton.TabIndex = 3;
             this.AddCustomersButton.Text = "Add";
             this.AddCustomersButton.UseVisualStyleBackColor = true;
+            this.AddCustomersButton.Click += new System.EventHandler(this.AddCustomersButton_Click);
             // 
-            // RemoveCustomersButton
+            // CustomersListBox
             // 
-            this.RemoveCustomersButton.Location = new System.Drawing.Point(98, 383);
-            this.RemoveCustomersButton.Name = "RemoveCustomersButton";
-            this.RemoveCustomersButton.Size = new System.Drawing.Size(86, 39);
-            this.RemoveCustomersButton.TabIndex = 4;
-            this.RemoveCustomersButton.Text = "Remove";
-            this.RemoveCustomersButton.UseVisualStyleBackColor = true;
+            this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.ItemHeight = 15;
+            this.CustomersListBox.Location = new System.Drawing.Point(6, 37);
+            this.CustomersListBox.Name = "CustomersListBox";
+            this.CustomersListBox.Size = new System.Drawing.Size(262, 334);
+            this.CustomersListBox.TabIndex = 1;
+            this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
+            // 
+            // CustomersLabel
+            // 
+            this.CustomersLabel.AutoSize = true;
+            this.CustomersLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CustomersLabel.Location = new System.Drawing.Point(6, 19);
+            this.CustomersLabel.Name = "CustomersLabel";
+            this.CustomersLabel.Size = new System.Drawing.Size(66, 15);
+            this.CustomersLabel.TabIndex = 0;
+            this.CustomersLabel.Text = "Customers";
             // 
             // CustomersInfoGroupBox
             // 
@@ -110,33 +112,29 @@
             this.CustomersInfoGroupBox.TabIndex = 1;
             this.CustomersInfoGroupBox.TabStop = false;
             // 
-            // SelectedCustomerLabel
+            // AddressTextBox
             // 
-            this.SelectedCustomerLabel.AutoSize = true;
-            this.SelectedCustomerLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectedCustomerLabel.Location = new System.Drawing.Point(6, 19);
-            this.SelectedCustomerLabel.Name = "SelectedCustomerLabel";
-            this.SelectedCustomerLabel.Size = new System.Drawing.Size(113, 15);
-            this.SelectedCustomerLabel.TabIndex = 1;
-            this.SelectedCustomerLabel.Text = "Selected Customer";
+            this.AddressTextBox.Location = new System.Drawing.Point(81, 93);
+            this.AddressTextBox.Multiline = true;
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(302, 110);
+            this.AddressTextBox.TabIndex = 7;
+            this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
             // 
-            // IdLabel
+            // FullNameTextBox
             // 
-            this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(6, 37);
-            this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(21, 15);
-            this.IdLabel.TabIndex = 2;
-            this.IdLabel.Text = "ID:";
+            this.FullNameTextBox.Location = new System.Drawing.Point(81, 64);
+            this.FullNameTextBox.Name = "FullNameTextBox";
+            this.FullNameTextBox.Size = new System.Drawing.Size(302, 23);
+            this.FullNameTextBox.TabIndex = 6;
+            this.FullNameTextBox.TextChanged += new System.EventHandler(this.FullNameTextBox_TextChanged);
             // 
-            // FullNameLabel
+            // IdCustomerTextBox
             // 
-            this.FullNameLabel.AutoSize = true;
-            this.FullNameLabel.Location = new System.Drawing.Point(6, 67);
-            this.FullNameLabel.Name = "FullNameLabel";
-            this.FullNameLabel.Size = new System.Drawing.Size(64, 15);
-            this.FullNameLabel.TabIndex = 3;
-            this.FullNameLabel.Text = "Full Name:";
+            this.IdCustomerTextBox.Location = new System.Drawing.Point(81, 34);
+            this.IdCustomerTextBox.Name = "IdCustomerTextBox";
+            this.IdCustomerTextBox.Size = new System.Drawing.Size(100, 23);
+            this.IdCustomerTextBox.TabIndex = 5;
             // 
             // AddressLabel
             // 
@@ -147,40 +145,38 @@
             this.AddressLabel.TabIndex = 4;
             this.AddressLabel.Text = "Address:";
             // 
-            // IdCustomerTextBox
+            // FullNameLabel
             // 
-            this.IdCustomerTextBox.Location = new System.Drawing.Point(81, 34);
-            this.IdCustomerTextBox.Name = "IdCustomerTextBox";
-            this.IdCustomerTextBox.Size = new System.Drawing.Size(100, 23);
-            this.IdCustomerTextBox.TabIndex = 5;
+            this.FullNameLabel.AutoSize = true;
+            this.FullNameLabel.Location = new System.Drawing.Point(6, 67);
+            this.FullNameLabel.Name = "FullNameLabel";
+            this.FullNameLabel.Size = new System.Drawing.Size(64, 15);
+            this.FullNameLabel.TabIndex = 3;
+            this.FullNameLabel.Text = "Full Name:";
             // 
-            // FullNameTextBox
+            // IdLabel
             // 
-            this.FullNameTextBox.Location = new System.Drawing.Point(81, 64);
-            this.FullNameTextBox.Name = "FullNameTextBox";
-            this.FullNameTextBox.Size = new System.Drawing.Size(302, 23);
-            this.FullNameTextBox.TabIndex = 6;
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(6, 37);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(21, 15);
+            this.IdLabel.TabIndex = 2;
+            this.IdLabel.Text = "ID:";
             // 
-            // AddressTextBox
+            // SelectedCustomerLabel
             // 
-            this.AddressTextBox.Location = new System.Drawing.Point(81, 93);
-            this.AddressTextBox.Multiline = true;
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(302, 110);
-            this.AddressTextBox.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(283, 216);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 212);
-            this.panel1.TabIndex = 2;
+            this.SelectedCustomerLabel.AutoSize = true;
+            this.SelectedCustomerLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SelectedCustomerLabel.Location = new System.Drawing.Point(6, 19);
+            this.SelectedCustomerLabel.Name = "SelectedCustomerLabel";
+            this.SelectedCustomerLabel.Size = new System.Drawing.Size(113, 15);
+            this.SelectedCustomerLabel.TabIndex = 1;
+            this.SelectedCustomerLabel.Text = "Selected Customer";
             // 
             // CustomerTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.CustomersInfoGroupBox);
             this.Controls.Add(this.CustomersGroupBox);
             this.Name = "CustomerTab";
@@ -208,6 +204,5 @@
         private Label AddressLabel;
         private Label FullNameLabel;
         private Label IdLabel;
-        private Panel panel1;
     }
 }

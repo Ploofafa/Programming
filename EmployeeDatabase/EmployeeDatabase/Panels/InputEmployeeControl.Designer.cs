@@ -172,7 +172,7 @@
         private DateTimePicker EmployeeDateTimePicker;
         private TextBox SalaryTextBox;
         private Button AddEmployeeButton;
-        private ListBox EmployeesListBox;
+        public ListBox EmployeesListBox;
         private Button DeleteEmployeeButton;
     }
 }

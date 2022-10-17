@@ -28,31 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.inputEmployeeControl1 = new EmployeeDatabase.Panels.InputEmployeeControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.inputEmployeeControl = new EmployeeDatabase.Panels.InputEmployeeControl();
             this.SuspendLayout();
             // 
-            // inputEmployeeControl1
+            // inputEmployeeControl
             // 
-            this.inputEmployeeControl1.Location = new System.Drawing.Point(12, 12);
-            this.inputEmployeeControl1.Name = "inputEmployeeControl1";
-            this.inputEmployeeControl1.Size = new System.Drawing.Size(765, 381);
-            this.inputEmployeeControl1.TabIndex = 0;
+            this.inputEmployeeControl.Location = new System.Drawing.Point(12, 12);
+            this.inputEmployeeControl.Name = "inputEmployeeControl";
+            this.inputEmployeeControl.Size = new System.Drawing.Size(765, 381);
+            this.inputEmployeeControl.TabIndex = 0;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 397);
-            this.Controls.Add(this.inputEmployeeControl1);
-            this.Name = "Form1";
-            this.ShowIcon = false;
+            this.Controls.Add(this.inputEmployeeControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "MainForm";
             this.Text = "Employee datebase";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Panels.InputEmployeeControl inputEmployeeControl1;
+        private Panels.InputEmployeeControl inputEmployeeControl;
     }
 }

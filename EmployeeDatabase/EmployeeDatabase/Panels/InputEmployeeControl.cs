@@ -29,7 +29,7 @@ namespace EmployeeDatabase.Panels
         /// <summary>
         /// Хранит список работников.
         /// </summary>
-        private List<Employee> _employees = new List<Employee>()    ;
+        public List<Employee> Employees = new List<Employee>()    ;
 
         /// <summary>
         /// Хранит переменную для подсказок пользователю в элементах.
@@ -41,18 +41,18 @@ namespace EmployeeDatabase.Panels
         /// </summary>
         private void SortListBox()
         {
-            if (_employees.Count > 1)
+            if (Employees.Count > 1)
             {
                 EmployeesListBox.Items.Clear();
-                _employees.Sort(delegate (Employee employee1, Employee employee2)
+                Employees.Sort(delegate (Employee employee1, Employee employee2)
                 {
                     return employee1.FullName.CompareTo(employee2.FullName);
                 });
-                EmployeesListBox.Items.AddRange(_employees.ToArray());
+                EmployeesListBox.Items.AddRange(Employees.ToArray());
             }
-            for(int i = 0; i < _employees.Count; i++)
+            for(int i = 0; i < Employees.Count; i++)
             {
-                EmployeesListBox.Items[i] = _employees[i].FullName;
+                EmployeesListBox.Items[i] = Employees[i].FullName;
             }
             EmployeesListBox.SelectedItem = _currentEmployee.FullName;
         }
@@ -64,9 +64,9 @@ namespace EmployeeDatabase.Panels
         private void EmployeeAddListBox()
         {
             CreateDefaultEmployee();
-            _employees.Add(_currentEmployee);
+            Employees.Add(_currentEmployee);
             EmployeesListBox.Items.Add($"{_currentEmployee.FullName}");
-            EmployeesListBox.SelectedIndex = _employees.Count - 1;
+            EmployeesListBox.SelectedIndex = Employees.Count - 1;
             UpdateEmployeeInfo();
         }
 
@@ -76,9 +76,8 @@ namespace EmployeeDatabase.Panels
         private void EmployeeClearInfo()
         {
             FullNameTextBox.Clear();
-            SalaryTextBox.Text = "0";
+            SalaryTextBox.Clear();
             JobTitleTextBox.Clear();
-            EmployeeDateTimePicker.Value = DateTime.Today;
         }
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace EmployeeDatabase.Panels
         {
             if (EmployeesListBox.Items.Count != 0)
             {
-                _employees.RemoveAt(EmployeesListBox.SelectedIndex);
+                Employees.RemoveAt(EmployeesListBox.SelectedIndex);
                 EmployeesListBox.Items.RemoveAt(EmployeesListBox.SelectedIndex);
                 if (EmployeesListBox.Items.Count != 0)
                 {
@@ -107,6 +106,7 @@ namespace EmployeeDatabase.Panels
             if (EmployeesListBox.Items.Count == 0)
             {
                 EmployeeClearInfo();
+                SalaryTextBox.BackColor = AppColors.NormalColor;
             }
         }
 
@@ -138,7 +138,7 @@ namespace EmployeeDatabase.Panels
         {
             if (EmployeesListBox.SelectedIndex != -1)
             {
-                _currentEmployee = _employees[EmployeesListBox.SelectedIndex];
+                _currentEmployee = Employees[EmployeesListBox.SelectedIndex];
                 FullNameTextBox.Text = _currentEmployee.FullName;
                 SalaryTextBox.Text = _currentEmployee.Salary.ToString();
                 JobTitleTextBox.Text = _currentEmployee.JobTitle;
@@ -153,7 +153,7 @@ namespace EmployeeDatabase.Panels
 
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(FullNameTextBox.Text) == false & _employees.Count != 0)
+            if (string.IsNullOrEmpty(FullNameTextBox.Text) == false & Employees.Count != 0)
             {
                 try
                 {
@@ -175,7 +175,7 @@ namespace EmployeeDatabase.Panels
 
         private void JobTitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_employees.Count != 0)
+            if (Employees.Count != 0)
             {
                 try
                 {

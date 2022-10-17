@@ -35,26 +35,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private ToolTip _toolTip = new ToolTip();
 
         /// <summary>
-        /// Метод для изменения информации в текстбоксах.
-        /// </summary>
-        private void ChangeItem()
-        {
-            if (ItemsListBox.SelectedIndex != -1)
-            {
-                _currentItem = _items[ItemsListBox.SelectedIndex];
-                IdTextBox.Text = _currentItem.Id.ToString();
-                CostTextBox.Text = _currentItem.Cost.ToString();
-                NameTextBox.Text = _currentItem.Name.ToString();
-                DescriptionTextBox.Text = _currentItem.Info.ToString();
-            }  
-        }
-
-        /// <summary>
         /// Обновляет название элемента в текстбокса.
         /// </summary>
         private void UpdateItemInfo()
         {
-            ItemsListBox.Items[ItemsListBox.SelectedIndex] = _currentItem.Name;
+            ItemsListBox.Items[ItemsListBox.SelectedIndex] = ($"{_currentItem.Name}");
         }
 
         /// <summary>
@@ -64,21 +49,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Item item = new Item();
             _currentItem = item;
-            _currentItem.Name = (string)NameTextBox.Text;
-            _currentItem.Info = (string)DescriptionTextBox.Text;
-            IdTextBox.Text = _currentItem.Id.ToString();
-            try
-            {
-                _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
-            }
-
-            catch
-            {
-                _currentItem.Cost = 0;
-            }
-            _items.Add(_currentItem);
-            ItemsListBox.Items.Add(_currentItem.Name);
-            ItemsListBox.SelectedIndex = ItemsListBox.Items.Count - 1;
+            _items.Add(item);
+            ItemsListBox.Items.Add($"{_currentItem.Name}");
+            ItemsListBox.SelectedIndex = _items.Count - 1;
+            UpdateItemInfo();
         }
 
         /// <summary>
@@ -129,7 +103,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ChangeItem();
+            if(ItemsListBox.SelectedIndex != -1)
+            {
+                _currentItem = _items[ItemsListBox.SelectedIndex];
+                IdTextBox.Text = _currentItem.Id.ToString();
+                NameTextBox.Text = _currentItem.Name;
+                DescriptionTextBox.Text = _currentItem.Info;
+                CostTextBox.Text = _currentItem.Cost.ToString();
+            }
         }
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)

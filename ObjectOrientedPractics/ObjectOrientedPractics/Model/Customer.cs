@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит Id покупателя.
         /// </summary>
-        private int _id;
+        private readonly int _id;
 
         /// <summary>
         /// Хранит полное ФИО покупателя. Не более 200 символов.
@@ -30,7 +31,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Customer()
         {
-            _id++;
+            FullName = "Default name";
+            Address = "Input Address";
+            _id = IdGenerator.GetNextId();
         }
 
         /// <summary>
@@ -42,7 +45,7 @@ namespace ObjectOrientedPractics.Model
         {
             FullName = fullName;
             Address = address;
-            _id++;
+            _id = IdGenerator.GetNextId();
         }
 
         /// <summary>
@@ -75,7 +78,18 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 Validator.AssertStringOnMaxLength(value, 501);
+                _address = value;
+            }
+        }
 
+        /// <summary>
+        /// Возвращает уникальный идентификатор.
+        /// </summary>
+        public int Id
+        {
+            get
+            {
+                return _id;
             }
         }
     }

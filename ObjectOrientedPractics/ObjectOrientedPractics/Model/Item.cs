@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,12 +14,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
 		/// Хранит Id товара в программе.
 		/// </summary>
-		private static int _id;
-
-        /// <summary>
-        /// Хранит количество всех товаров.
-        /// </summary>
-        private int _allItemsCount;
+		private readonly int _id;
 
         /// <summary>
         /// Хранит название товара. Должно содержать не больше 200 символов.
@@ -40,8 +36,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Item()
         {
-            _id = _allItemsCount;
-            _allItemsCount++;
+            _id = IdGenerator.GetNextId();
+            Name = "Default Name";
+            Info = "Add description";
+            Cost = 0;
         }
 
         /// <summary>
@@ -55,8 +53,7 @@ namespace ObjectOrientedPractics.Model
             Name = name;
             Info = info;
             Cost = coast;
-            _id = _allItemsCount;
-            _allItemsCount++;
+            _id = IdGenerator.GetNextId();
         }
 
         /// <summary>
