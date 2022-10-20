@@ -46,36 +46,36 @@
             this.FullNameLabel.AutoSize = true;
             this.FullNameLabel.Location = new System.Drawing.Point(294, 33);
             this.FullNameLabel.Name = "FullNameLabel";
-            this.FullNameLabel.Size = new System.Drawing.Size(61, 15);
+            this.FullNameLabel.Size = new System.Drawing.Size(64, 15);
             this.FullNameLabel.TabIndex = 0;
-            this.FullNameLabel.Text = "Full Name";
+            this.FullNameLabel.Text = "Full Name:";
             // 
             // JobTitleLabel
             // 
             this.JobTitleLabel.AutoSize = true;
             this.JobTitleLabel.Location = new System.Drawing.Point(294, 62);
             this.JobTitleLabel.Name = "JobTitleLabel";
-            this.JobTitleLabel.Size = new System.Drawing.Size(50, 15);
+            this.JobTitleLabel.Size = new System.Drawing.Size(53, 15);
             this.JobTitleLabel.TabIndex = 1;
-            this.JobTitleLabel.Text = "Job Title";
+            this.JobTitleLabel.Text = "Job Title:";
             // 
             // EmployeeDateLabel
             // 
             this.EmployeeDateLabel.AutoSize = true;
-            this.EmployeeDateLabel.Location = new System.Drawing.Point(294, 95);
+            this.EmployeeDateLabel.Location = new System.Drawing.Point(294, 91);
             this.EmployeeDateLabel.Name = "EmployeeDateLabel";
-            this.EmployeeDateLabel.Size = new System.Drawing.Size(86, 15);
+            this.EmployeeDateLabel.Size = new System.Drawing.Size(89, 15);
             this.EmployeeDateLabel.TabIndex = 2;
-            this.EmployeeDateLabel.Text = "Employee Date";
+            this.EmployeeDateLabel.Text = "Employee Date:";
             // 
             // SalaryLabel
             // 
             this.SalaryLabel.AutoSize = true;
             this.SalaryLabel.Location = new System.Drawing.Point(294, 121);
             this.SalaryLabel.Name = "SalaryLabel";
-            this.SalaryLabel.Size = new System.Drawing.Size(38, 15);
+            this.SalaryLabel.Size = new System.Drawing.Size(41, 15);
             this.SalaryLabel.TabIndex = 3;
-            this.SalaryLabel.Text = "Salary";
+            this.SalaryLabel.Text = "Salary:";
             // 
             // FullNameTextBox
             // 

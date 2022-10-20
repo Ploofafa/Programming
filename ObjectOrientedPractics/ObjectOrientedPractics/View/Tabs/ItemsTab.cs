@@ -164,6 +164,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     DescriptionTextBox.BackColor = AppColors.NormalColor;
                 }
 
+                //проверочка
                 catch (Exception exception)
                 {
                     DescriptionTextBox.BackColor = AppColors.ErrorColor;

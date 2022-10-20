@@ -47,7 +47,7 @@
             this.Controls.Add(this.inputEmployeeControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Employee datebase";
+            this.Text = "Employee database";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.ResumeLayout(false);
