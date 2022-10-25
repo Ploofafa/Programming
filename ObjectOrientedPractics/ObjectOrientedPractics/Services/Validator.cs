@@ -46,6 +46,26 @@ namespace ObjectOrientedPractics.Services
             return value;
         }
 
-
+        /// <summary>
+        /// Проверяет целочисленное число на нужно количество цифр.
+        /// </summary>
+        /// <param name="value">Проверяемое число.</param>
+        /// <param name="length">Сколько цифр должно содержать.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Сообщение об ошибке.</exception>
+        public static int AssertIntOnNeedLength(int value, int length)
+        {
+            int count = 0;
+            for (int i = 0; value > 0; i++)
+            {
+                value = value % 10;
+                count++;
+            }
+            if (count != length)
+            {
+                throw new ArgumentException($"{nameof(value)} must contain only {length} number.");
+            }
+            return value;
+        }
     }
 }
