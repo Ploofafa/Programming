@@ -34,6 +34,8 @@
             this.AddItemsButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.SelectedItemGroupBox = new System.Windows.Forms.GroupBox();
+            this.ItemCategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.CostTextBox = new System.Windows.Forms.TextBox();
@@ -101,6 +103,8 @@
             // 
             // SelectedItemGroupBox
             // 
+            this.SelectedItemGroupBox.Controls.Add(this.ItemCategoryComboBox);
+            this.SelectedItemGroupBox.Controls.Add(this.CategoryLabel);
             this.SelectedItemGroupBox.Controls.Add(this.DescriptionTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.NameTextBox);
             this.SelectedItemGroupBox.Controls.Add(this.CostTextBox);
@@ -116,9 +120,27 @@
             this.SelectedItemGroupBox.TabIndex = 2;
             this.SelectedItemGroupBox.TabStop = false;
             // 
+            // ItemCategoryComboBox
+            // 
+            this.ItemCategoryComboBox.FormattingEnabled = true;
+            this.ItemCategoryComboBox.Location = new System.Drawing.Point(100, 107);
+            this.ItemCategoryComboBox.Name = "ItemCategoryComboBox";
+            this.ItemCategoryComboBox.Size = new System.Drawing.Size(153, 23);
+            this.ItemCategoryComboBox.TabIndex = 10;
+            this.ItemCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.ItemCategoryComboBox_SelectedIndexChanged);
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Location = new System.Drawing.Point(7, 115);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(58, 15);
+            this.CategoryLabel.TabIndex = 9;
+            this.CategoryLabel.Text = "Category:";
+            // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(7, 246);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 295);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(376, 104);
@@ -127,7 +149,7 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(7, 134);
+            this.NameTextBox.Location = new System.Drawing.Point(6, 183);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(376, 85);
@@ -136,7 +158,7 @@
             // 
             // CostTextBox
             // 
-            this.CostTextBox.Location = new System.Drawing.Point(58, 83);
+            this.CostTextBox.Location = new System.Drawing.Point(100, 78);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(153, 23);
             this.CostTextBox.TabIndex = 6;
@@ -144,7 +166,7 @@
             // 
             // IdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(58, 53);
+            this.IdTextBox.Location = new System.Drawing.Point(100, 48);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.Size = new System.Drawing.Size(153, 23);
             this.IdTextBox.TabIndex = 5;
@@ -152,7 +174,7 @@
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(7, 228);
+            this.DescriptionLabel.Location = new System.Drawing.Point(6, 277);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(67, 15);
             this.DescriptionLabel.TabIndex = 4;
@@ -161,7 +183,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(7, 111);
+            this.NameLabel.Location = new System.Drawing.Point(6, 160);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(42, 15);
             this.NameLabel.TabIndex = 3;
@@ -217,7 +239,7 @@
         private GroupBox ItemsGroupBox;
         private Button RemoveItemsButton;
         private Button AddItemsButton;
-        private ListBox ItemsListBox;
+        public ListBox ItemsListBox;
         private GroupBox SelectedItemGroupBox;
         private TextBox DescriptionTextBox;
         private TextBox NameTextBox;
@@ -228,5 +250,7 @@
         private Label CostLabel;
         private Label IdLabel;
         private Label SelectedItemLabel;
+        private ComboBox ItemCategoryComboBox;
+        private Label CategoryLabel;
     }
 }

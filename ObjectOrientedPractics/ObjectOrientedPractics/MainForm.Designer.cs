@@ -105,6 +105,8 @@
             this.Controls.Add(this.TabControl);
             this.Name = "MainForm";
             this.Text = "SZZ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.TabControl.ResumeLayout(false);
             this.Items.ResumeLayout(false);
             this.CustomersTabPage.ResumeLayout(false);

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Classes;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    
+
     /// <summary>
     /// Содержит логику пользовательского элемента <see cref="ItemsTab"/>.
     /// Даёт возможность добавления, удаления, редактирования товаров в БД.
@@ -22,7 +23,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех товаров.
         /// </summary>
-        private List<Item> _items = new();
+        public List<Item> Items = new();
 
         /// <summary>
         /// Хранит экземпляр выбранного товара.
@@ -49,9 +50,9 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Item item = new Item();
             _currentItem = item;
-            _items.Add(item);
+            Items.Add(item);
             ItemsListBox.Items.Add($"{_currentItem.Name}");
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+            ItemsListBox.SelectedIndex = Items.Count - 1;
             UpdateItemInfo();
         }
 
@@ -73,7 +74,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (ItemsListBox.Items.Count > 0)
             {
-                _items.RemoveAt(ItemsListBox.SelectedIndex);
+                Items.RemoveAt(ItemsListBox.SelectedIndex);
                 ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
                 if (ItemsListBox.Items.Count != 0)
                 {
@@ -89,6 +90,11 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+
+            foreach (int index in Enum.GetValues(typeof(Category)))
+            {
+                ItemCategoryComboBox.Items.Add(Enum.GetName(typeof(Category), index));
+            }
         }
 
         private void AddItemsButton_Click(object sender, EventArgs e)
@@ -105,17 +111,18 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if(ItemsListBox.SelectedIndex != -1)
             {
-                _currentItem = _items[ItemsListBox.SelectedIndex];
+                _currentItem = Items[ItemsListBox.SelectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 DescriptionTextBox.Text = _currentItem.Info;
                 CostTextBox.Text = _currentItem.Cost.ToString();
+                ItemCategoryComboBox.SelectedIndex =(int) _currentItem.Category;
             }
         }
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CostTextBox.Text) == false & _items.Count != 0)
+            if (string.IsNullOrEmpty(CostTextBox.Text) == false & Items.Count != 0)
             {
                 try
                 {
@@ -135,7 +142,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameTextBox.Text) == false & _items.Count != 0)
+            if (string.IsNullOrEmpty(NameTextBox.Text) == false & Items.Count != 0)
             {
                 try
                 {
@@ -155,7 +162,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(DescriptionTextBox.Text) == false & _items.Count != 0)
+            if (string.IsNullOrEmpty(DescriptionTextBox.Text) == false & Items.Count != 0)
             {
                 try
                 {
@@ -164,13 +171,17 @@ namespace ObjectOrientedPractics.View.Tabs
                     DescriptionTextBox.BackColor = AppColors.NormalColor;
                 }
 
-                //проверочка
                 catch (Exception exception)
                 {
                     DescriptionTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(DescriptionTextBox, exception.Message);
                 }
             }
+        }
+
+        private void ItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentItem.Category =(Category)ItemCategoryComboBox.SelectedIndex;
         }
     }
 }

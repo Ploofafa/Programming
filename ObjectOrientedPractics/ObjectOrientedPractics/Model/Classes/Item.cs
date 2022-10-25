@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Validator = ObjectOrientedPractics.Services.Validator;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Classes
 {
     public class Item
     {
@@ -48,12 +49,14 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара. Должно содержать не больше 200 символов.</param>
         /// <param name="info">Описание товара. Должно содержать не больше 1000 символов.</param>
         /// <param name="cost">Стоимость товара. Лежит в пределах от 0 до 100 000.</param>
-        public Item(string name, string info, double coast)
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
-            Cost = coast;
+            Cost = cost;
             _id = IdGenerator.GetNextId();
+            Category = category;
         }
 
         /// <summary>
@@ -119,5 +122,7 @@ namespace ObjectOrientedPractics.Model
                 return _id;
             }
         }
+
+        public Category Category { get; set; }
     }
 }
