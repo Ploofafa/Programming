@@ -53,17 +53,22 @@ namespace ObjectOrientedPractics.Services
         /// <param name="length">Сколько цифр должно содержать.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Сообщение об ошибке.</exception>
-        public static int AssertIntOnNeedLength(int value, int length)
+        public static string AssertOnIndex(string value, int length)
         {
-            int count = 0;
-            for (int i = 0; value > 0; i++)
+            if (value != null)
             {
-                value = value % 10;
-                count++;
-            }
-            if (count != length)
-            {
-                throw new ArgumentException($"{nameof(value)} must contain only {length} number.");
+                foreach (char symbol in value)
+                {
+                    if (symbol < '0' || symbol > '9')
+                    {
+                        throw new ArgumentException($"{nameof(value)} must contain only numbers.");
+                    }
+                }
+
+                if (value.Length != length & value != "")
+                {
+                    throw new ArgumentException($"{nameof(value)} must contain only {length} symbols.");
+                }
             }
             return value;
         }

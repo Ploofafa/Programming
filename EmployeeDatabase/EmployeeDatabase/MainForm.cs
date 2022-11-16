@@ -19,7 +19,9 @@ namespace EmployeeDatabase
 
         private void MainForm_Load_1(object sender, EventArgs e)
         {
-            inputEmployeeControl.Employees.AddRange(ProjectSerializer.LoadEmployeesToFile());
+            List<Employee> employees = new List<Employee>();
+            employees.AddRange(ProjectSerializer.LoadEmployeesToFile());
+            inputEmployeeControl.Employees = employees;
             for (int i = 0; i < inputEmployeeControl.Employees.Count; i++)
             {
                 inputEmployeeControl.EmployeesListBox.Items.Add(inputEmployeeControl.Employees[i].FullName);

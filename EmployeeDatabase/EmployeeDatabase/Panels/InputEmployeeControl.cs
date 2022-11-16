@@ -20,6 +20,10 @@ namespace EmployeeDatabase.Panels
     /// </summary>
     public partial class InputEmployeeControl : UserControl
     {
+        /// <summary>
+        /// Возвращает и задаёт список работников.
+        /// </summary>
+        public List<Employee> Employees { get; set; }
 
         /// <summary>
         /// Содержит информацию о выбранном работнике.
@@ -29,7 +33,7 @@ namespace EmployeeDatabase.Panels
         /// <summary>
         /// Хранит список работников.
         /// </summary>
-        public List<Employee> Employees = new List<Employee>()    ;
+        private List<Employee> _employees = new List<Employee>();
 
         /// <summary>
         /// Хранит переменную для подсказок пользователю в элементах.
@@ -61,7 +65,7 @@ namespace EmployeeDatabase.Panels
         /// Добавляет нового работника в листбокс, список и заносит о нём информацию.
         /// </summary>
         /// <param name="employee">Содержит переменную с информацией о работнике.</param>
-        private void EmployeeAddListBox()
+        private void AddEmployeeToListBox()
         {
             CreateDefaultEmployee();
             Employees.Add(_currentEmployee);
@@ -73,7 +77,7 @@ namespace EmployeeDatabase.Panels
         /// <summary>
         /// Очищает все поля рабочего.
         /// </summary>
-        private void EmployeeClearInfo()
+        private void ClearEmployeeInfo()
         {
             FullNameTextBox.Clear();
             SalaryTextBox.Clear();
@@ -92,7 +96,7 @@ namespace EmployeeDatabase.Panels
         /// Удаляет работника из системы. Если работников не осталось,
         /// то очищает все поля.
         /// </summary>
-        private void EmployeesDelete()
+        private void DeleteEmployees()
         {
             if (EmployeesListBox.Items.Count != 0 & EmployeesListBox.SelectedIndex != -1)
             {
@@ -105,7 +109,7 @@ namespace EmployeeDatabase.Panels
             }
             if (EmployeesListBox.Items.Count == 0)
             {
-                EmployeeClearInfo();
+                ClearEmployeeInfo();
                 SalaryTextBox.BackColor = AppColors.NormalColor;
             }
         }
@@ -131,7 +135,7 @@ namespace EmployeeDatabase.Panels
 
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
-            EmployeeAddListBox();
+            AddEmployeeToListBox();
         }
 
         private void EmployeesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,7 +152,7 @@ namespace EmployeeDatabase.Panels
 
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)
         {
-            EmployeesDelete();
+            DeleteEmployees();
         }
 
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)

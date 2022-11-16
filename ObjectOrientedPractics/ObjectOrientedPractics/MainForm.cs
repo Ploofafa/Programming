@@ -1,3 +1,4 @@
+using ObjectOrientedPractics.Model.Classes;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Tabs;
 
@@ -5,23 +6,35 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Хранит экземпляр класса <see cref="Store"/>.
+        /// </summary>
+        private Store _store = new Store();
+
         public MainForm()
         {
             InitializeComponent();
+            var itemsData = StoreSerializer.LoadItemsData();
+            if (itemsData != null)
+            {
+                itemsTab1.Items = itemsData;
+            }
+            itemsTab1.UpdateListBox();
+
+            var customersData = StoreSerializer.LoadCustomersData();
+            if (customersData != null)
+            {
+                customerTab1.Customers = customersData;
+            }
+            customerTab1.UpdateListBox();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ItemSerializer.SaveItemsToFile(ItemsTab.Items);
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            ItemsTab.Items.AddRange(ItemSerializer.LoadItemsToFile());
-            for (int i = 0; i < ItemsTab.Items.Count; i++)
-            {
-                ItemsTab.ItemsListBox.Items.Add(ItemsTab.Items[i].Name);
-            }
+            _store.Customers = customerTab1.Customers;
+            _store.Items = itemsTab1.Items;
+            StoreSerializer.SaveData(_store.Customers);
+            StoreSerializer.SaveData(_store.Items);
         }
     }
 }

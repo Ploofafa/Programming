@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Хранит почтовый индекс. Целое 6-ти значное число.
         /// </summary>
-        private int _index;
+        private string _index;
 
         /// <summary>
         /// Хранит название страны/региона. Не более 50 символов.
@@ -43,13 +43,13 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Пустой конструктор, создаёт экземпляр класса Address с полями по умолчанию.
         /// </summary>
         public Address() 
-        { 
-            _index = 000000;
-            _country = "Default country";
-            _city = "Default city";
-            _street = "Default street";
-            _building = "0";
-            _apartment = "0";
+        {
+            _index = "000000";
+            _country = "";
+            _city = "";
+            _street = "";
+            _building = "";
+            _apartment = "";
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <param name="street">Название улицы, не более 100 символов.</param>
         /// <param name="building">Номер дома, не более 10 символов.</param>
         /// <param name="apartment">Номер квартиры/помещения, не более 10 символов.</param>
-        public Address(int index, string country, string city, string street, string building, string apartment)
+        public Address(string index, string country, string city, string street, string building, string apartment)
         {
             Index = index;
             Country = country;
@@ -74,7 +74,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Задаёт и возвращает значение индекса. Должно состоять ровно из 6 цифр.
         /// </summary>
-        public int Index 
+        public string Index 
         {
             get
             {
@@ -83,7 +83,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertIntOnNeedLength(value, 6);
+                Validator.AssertOnIndex(value, 6);
                 _index = value;
             }
         }

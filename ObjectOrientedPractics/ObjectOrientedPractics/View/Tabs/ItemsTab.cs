@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model.Classes;
-using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -23,7 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех товаров.
         /// </summary>
-        public List<Item> Items = new();
+        private List<Item> _items = new List<Item>();
 
         /// <summary>
         /// Хранит экземпляр выбранного товара.
@@ -44,13 +43,27 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Заполняет лист бокс имеющимися данными.
+        /// </summary>
+        public void UpdateListBox()
+        {
+            if (_items.Count > 0)
+            {
+                for (int i = 0; i < _items.Count; i++)
+                {
+                    ItemsListBox.Items.Add(_items[i].Name);
+                }
+            }
+        }
+
+        /// <summary>
         /// Метод для добавления элемента в листбокс.
         /// </summary>
         private void ItemAdd()
         {
             Item item = new Item();
             _currentItem = item;
-            Items.Add(item);
+            _items.Add(item);
             ItemsListBox.Items.Add($"{_currentItem.Name}");
             ItemsListBox.SelectedIndex = Items.Count - 1;
             UpdateItemInfo();
@@ -72,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ItemRemove()
         {
-            if (ItemsListBox.Items.Count > 0)
+            if (ItemsListBox.Items.Count > 0 & ItemsListBox.SelectedIndex != -1)
             {
                 Items.RemoveAt(ItemsListBox.SelectedIndex);
                 ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
@@ -80,10 +93,27 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     ItemsListBox.SelectedIndex = 0;
                 }
+
                 else
                 {
                     ClearItemInfo();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт список товаров.
+        /// </summary>
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+
+            set
+            {
+                _items = value;
             }
         }
 
@@ -122,7 +152,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CostTextBox.Text) == false & Items.Count != 0)
+            if (string.IsNullOrEmpty(CostTextBox.Text) == false & _items.Count != 0)
             {
                 try
                 {
@@ -142,7 +172,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameTextBox.Text) == false & Items.Count != 0)
+            if (string.IsNullOrEmpty(NameTextBox.Text) == false & _items.Count != 0)
             {
                 try
                 {
@@ -162,7 +192,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(DescriptionTextBox.Text) == false & Items.Count != 0)
+            if (string.IsNullOrEmpty(DescriptionTextBox.Text) == false & _items.Count != 0)
             {
                 try
                 {

@@ -12,7 +12,7 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class CustomerTab : UserControl
+    partial class CustomerTab : UserControl
     {
         /// <summary>
         /// Содержит список всех покупателей.
@@ -30,22 +30,33 @@ namespace ObjectOrientedPractics.View.Tabs
         private ToolTip _toolTip = new ToolTip();
 
         /// <summary>
-        /// Метод для изменения информации в текстбоксах.
-        /// </summary>
-        private void ChangeCustomer()
-        {
-            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
-            IdCustomerTextBox.Text = _currentCustomer.Id.ToString();
-            FullNameTextBox.Text = _currentCustomer.FullName.ToString();
-            AddressTextBox.Text = _currentCustomer.Address.ToString();
-        }
-
-        /// <summary>
         /// Обновляет название элемента в текстбокса.
         /// </summary>
         private void UpdateCustomerInfo()
         {
             CustomersListBox.Items[CustomersListBox.SelectedIndex] = _currentCustomer.FullName;
+        }
+
+        /// <summary>
+        /// Очищает все текстбоксы.
+        /// </summary>
+        private void CustomerClearInfo()
+        {
+            IdTextBox.Clear();
+            NameTextBox.Clear();
+            addressControl1.ClearAddressInfo();
+        }
+
+        /// <summary>
+        /// Обновляет всю информацию в текстбоксах.
+        /// </summary>
+        /// <param name="customer">Переменная покупателя, который возвращает данные.</param>
+        private void UpdateAllTextBoxes(Customer customer)
+        {
+            IdTextBox.Text = customer.Id.ToString();
+            NameTextBox.Text = customer.FullName.ToString();
+            addressControl1.Address = customer.Address;
+            addressControl1.UpdateAddress();
         }
 
         /// <summary>
@@ -56,9 +67,24 @@ namespace ObjectOrientedPractics.View.Tabs
             Customer customer = new Customer();
             _currentCustomer = customer;
             _customers.Add(_currentCustomer);
-            CustomersListBox.Items.Add($"{_currentCustomer.FullName}");
+            CustomersListBox.Items.Add($"{_currentCustomer.Address.City}");
             CustomersListBox.SelectedIndex = CustomersListBox.Items.Count - 1;
             UpdateCustomerInfo();
+            UpdateAllTextBoxes(customer);
+        }
+
+        /// <summary>
+        /// Обновляет информацию в листбоксе.
+        /// </summary>
+        public void UpdateListBox()
+        {
+            if (_customers.Count > 0)
+            {
+                for (int i = 0; i < _customers.Count; i++)
+                {
+                    CustomersListBox.Items.Add(_customers[i].FullName);
+                }
+            }
         }
 
         /// <summary>
@@ -66,7 +92,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CustomerRemove()
         {
-            if (CustomersListBox.Items.Count > 0)
+            if (CustomersListBox.Items.Count > 0 & CustomersListBox.SelectedIndex != -1)
             {
                 _customers.RemoveAt(CustomersListBox.SelectedIndex);
                 CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
@@ -74,6 +100,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     CustomersListBox.SelectedIndex = 0;
                 }
+
                 else
                 {
                     CustomerClearInfo();
@@ -81,16 +108,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Метод для очищения всех полей ввода.
-        /// </summary>
-        private void CustomerClearInfo()
+        public List<Customer> Customers
         {
-            FullNameTextBox.Clear();
-            AddressTextBox.Clear();
-            IdCustomerTextBox.Clear();
-        }
+            get
+            {
+                return _customers;
+            }
 
+            set
+            {
+                _customers = value;
+                
+            }
+        }
         public CustomerTab()
         {
             InitializeComponent();
@@ -110,43 +140,28 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex != -1)
             {
-                ChangeCustomer();
-            }   
+                _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+                UpdateAllTextBoxes(_customers[CustomersListBox.SelectedIndex]);
+            }
         }
 
-        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(FullNameTextBox.Text) == false & _customers.Count != 0)
+            if (string.IsNullOrEmpty(NameTextBox.Text) == false & _customers.Count != 0)
             {
                 try
                 {
-                    _currentCustomer.FullName = Convert.ToString(FullNameTextBox.Text);
-                    _toolTip.SetToolTip(FullNameTextBox, "");
-                    FullNameTextBox.BackColor = AppColors.NormalColor;
+                    _currentCustomer.FullName = Convert.ToString(NameTextBox.Text);
+                    _toolTip.SetToolTip(NameTextBox, "");
+                    NameTextBox.BackColor = AppColors.NormalColor;
                     UpdateCustomerInfo();
                 }
 
                 catch (Exception exception)
                 {
-                    _toolTip.SetToolTip(FullNameTextBox, exception.Message);
-                    FullNameTextBox.BackColor = AppColors.ErrorColor;
+                    NameTextBox.BackColor = AppColors.ErrorColor;
+                    _toolTip.SetToolTip(NameTextBox, exception.Message);
                 }
-            }
-        }
-
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentCustomer.Address = Convert.ToString(AddressTextBox.Text);
-                _toolTip.SetToolTip(AddressTextBox, "");
-                AddressTextBox.BackColor = AppColors.NormalColor;
-            }
-
-            catch (Exception exception)
-            {
-                _toolTip.SetToolTip(AddressTextBox, exception.Message);
-                AddressTextBox.BackColor = AppColors.ErrorColor;
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using ObjectOrientedPractics.Model.Enums;
-using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

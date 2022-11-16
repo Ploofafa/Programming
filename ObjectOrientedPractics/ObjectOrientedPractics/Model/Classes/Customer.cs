@@ -21,9 +21,14 @@ namespace ObjectOrientedPractics.Model.Classes
         private string _fullName;
 
         /// <summary>
-        /// Хранит полный адрес покупателя. Не более 500 символов.
+        /// Хранит корзину товаров покупателя.
         /// </summary>
-        private string _address;
+        private Cart _cart;
+
+        /// <summary>
+        /// Хранит список всех заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
 
         /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Customer"/>. Id
@@ -32,19 +37,20 @@ namespace ObjectOrientedPractics.Model.Classes
         public Customer()
         {
             FullName = "Default name";
-            Address = "Input Address";
             _id = IdGenerator.GetNextId();
+            Address = new Address();
         }
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullName">Полное ФИО покупателя. Не более 200 символов.</param>
-        /// <param name="address">Полный адрес покупателя. Не более 500 символов.</param>
-        public Customer(string fullName, string address)
+        /// <param name="address">Полный адрес покупателя.</param>
+        public Customer(string fullName, Address address)
         {
             FullName = fullName;
             Address = address;
+            
             _id = IdGenerator.GetNextId();
         }
 
@@ -66,23 +72,6 @@ namespace ObjectOrientedPractics.Model.Classes
         }
 
         /// <summary>
-        /// Задаёт и возвращает полный адрес покупателя. Не более 500 символов.
-        /// </summary>
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-
-            set
-            {
-                Validator.AssertStringOnMaxLength(value, 501);
-                _address = value;
-            }
-        }
-
-        /// <summary>
         /// Возвращает уникальный идентификатор.
         /// </summary>
         public int Id
@@ -92,5 +81,20 @@ namespace ObjectOrientedPractics.Model.Classes
                 return _id;
             }
         }
+
+        /// <summary>
+        /// Задаёт и возвращает список всех заказов покупателя.
+        /// </summary>
+        private List<Order> Orders { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт значение адреса.
+        /// </summary>
+        public Address Address { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт значение данных корзины.
+        /// </summary>
+        public Cart Cart {get; set;}
     }
 }

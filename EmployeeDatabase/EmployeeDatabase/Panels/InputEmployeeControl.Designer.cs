@@ -96,9 +96,12 @@
             // EmployeeDateTimePicker
             // 
             this.EmployeeDateTimePicker.Location = new System.Drawing.Point(386, 83);
+            this.EmployeeDateTimePicker.MaxDate = System.DateTime.Today;
+            this.EmployeeDateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
             this.EmployeeDateTimePicker.Name = "EmployeeDateTimePicker";
             this.EmployeeDateTimePicker.Size = new System.Drawing.Size(279, 23);
             this.EmployeeDateTimePicker.TabIndex = 6;
+            this.EmployeeDateTimePicker.Value = new System.DateTime(2022, 10, 27, 0, 0, 0, 0);
             this.EmployeeDateTimePicker.ValueChanged += new System.EventHandler(this.EmployeeDateTimePicker_ValueChanged);
             // 
             // SalaryTextBox
