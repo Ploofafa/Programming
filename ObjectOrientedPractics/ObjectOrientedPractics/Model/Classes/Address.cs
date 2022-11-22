@@ -83,7 +83,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertOnIndex(value, 6);
+                ValueValidator.AssertOnIndex(value, 6);
                 _index = value;
             }
         }
@@ -100,7 +100,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 50);
+                ValueValidator.AssertStringOnMaxLength(value, 50);
                 _country = value;
             }
         }
@@ -117,7 +117,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 50);
+                ValueValidator.AssertStringOnMaxLength(value, 50);
                 _city = value;
             }
         }
@@ -134,7 +134,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 100);
+                ValueValidator.AssertStringOnMaxLength(value, 100);
                 _street = value;
             }
         } 
@@ -151,7 +151,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 10);
+                ValueValidator.AssertStringOnMaxLength(value, 10);
                 _building = value;
             }
         }
@@ -168,7 +168,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 10);
+                ValueValidator.AssertStringOnMaxLength(value, 10);
                 _apartment = value;
             }
         }

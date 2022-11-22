@@ -21,16 +21,6 @@ namespace ObjectOrientedPractics.Model.Classes
         private string _fullName;
 
         /// <summary>
-        /// Хранит корзину товаров покупателя.
-        /// </summary>
-        private Cart _cart;
-
-        /// <summary>
-        /// Хранит список всех заказов покупателя.
-        /// </summary>
-        private List<Order> _orders;
-
-        /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Customer"/>. Id
         /// генерируется и присваевается автоматически.
         /// </summary>
@@ -66,7 +56,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 201);
+                ValueValidator.AssertStringOnMaxLength(value, 201);
                 _fullName = value;
             }
         }
@@ -83,18 +73,8 @@ namespace ObjectOrientedPractics.Model.Classes
         }
 
         /// <summary>
-        /// Задаёт и возвращает список всех заказов покупателя.
-        /// </summary>
-        private List<Order> Orders { get; set; }
-
-        /// <summary>
         /// Возвращает и задаёт значение адреса.
         /// </summary>
         public Address Address { get; set; }
-
-        /// <summary>
-        /// Возвращает и задаёт значение данных корзины.
-        /// </summary>
-        public Cart Cart {get; set;}
     }
 }

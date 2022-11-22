@@ -47,9 +47,10 @@
             // 
             // ItemsLabel
             // 
+            this.ItemsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemsLabel.AutoSize = true;
             this.ItemsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ItemsLabel.Location = new System.Drawing.Point(14, 1);
+            this.ItemsLabel.Location = new System.Drawing.Point(14, 16);
             this.ItemsLabel.Name = "ItemsLabel";
             this.ItemsLabel.Size = new System.Drawing.Size(39, 15);
             this.ItemsLabel.TabIndex = 0;
@@ -57,10 +58,10 @@
             // 
             // RemoveItemsButton
             // 
-            this.RemoveItemsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RemoveItemsButton.Location = new System.Drawing.Point(146, 362);
+            this.RemoveItemsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveItemsButton.Location = new System.Drawing.Point(111, 344);
             this.RemoveItemsButton.Name = "RemoveItemsButton";
-            this.RemoveItemsButton.Size = new System.Drawing.Size(130, 39);
+            this.RemoveItemsButton.Size = new System.Drawing.Size(91, 39);
             this.RemoveItemsButton.TabIndex = 3;
             this.RemoveItemsButton.Text = "Remove";
             this.RemoveItemsButton.UseVisualStyleBackColor = true;
@@ -68,10 +69,10 @@
             // 
             // AddItemsButton
             // 
-            this.AddItemsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddItemsButton.Location = new System.Drawing.Point(14, 362);
+            this.AddItemsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddItemsButton.Location = new System.Drawing.Point(14, 344);
             this.AddItemsButton.Name = "AddItemsButton";
-            this.AddItemsButton.Size = new System.Drawing.Size(130, 39);
+            this.AddItemsButton.Size = new System.Drawing.Size(91, 39);
             this.AddItemsButton.TabIndex = 2;
             this.AddItemsButton.Text = "Add";
             this.AddItemsButton.UseVisualStyleBackColor = true;
@@ -79,19 +80,21 @@
             // 
             // ItemsListBox
             // 
+            this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.ItemHeight = 15;
-            this.ItemsListBox.Location = new System.Drawing.Point(14, 19);
-            this.ItemsListBox.MinimumSize = new System.Drawing.Size(15, 15);
+            this.ItemsListBox.Location = new System.Drawing.Point(14, 34);
+            this.ItemsListBox.MinimumSize = new System.Drawing.Size(262, 250);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(262, 334);
+            this.ItemsListBox.Size = new System.Drawing.Size(262, 304);
             this.ItemsListBox.TabIndex = 1;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // ItemCategoryComboBox
             // 
+            this.ItemCategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemCategoryComboBox.FormattingEnabled = true;
-            this.ItemCategoryComboBox.Location = new System.Drawing.Point(362, 113);
+            this.ItemCategoryComboBox.Location = new System.Drawing.Point(358, 113);
             this.ItemCategoryComboBox.Name = "ItemCategoryComboBox";
             this.ItemCategoryComboBox.Size = new System.Drawing.Size(153, 23);
             this.ItemCategoryComboBox.TabIndex = 10;
@@ -99,8 +102,9 @@
             // 
             // CategoryLabel
             // 
+            this.CategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(287, 121);
+            this.CategoryLabel.Location = new System.Drawing.Point(294, 121);
             this.CategoryLabel.Name = "CategoryLabel";
             this.CategoryLabel.Size = new System.Drawing.Size(58, 15);
             this.CategoryLabel.TabIndex = 9;
@@ -108,10 +112,8 @@
             // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionTextBox.Location = new System.Drawing.Point(287, 280);
+            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DescriptionTextBox.Location = new System.Drawing.Point(294, 250);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(376, 73);
@@ -120,16 +122,18 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(287, 168);
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameTextBox.Location = new System.Drawing.Point(294, 168);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(376, 85);
+            this.NameTextBox.Size = new System.Drawing.Size(376, 50);
             this.NameTextBox.TabIndex = 7;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // CostTextBox
             // 
-            this.CostTextBox.Location = new System.Drawing.Point(362, 84);
+            this.CostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CostTextBox.Location = new System.Drawing.Point(358, 83);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(153, 23);
             this.CostTextBox.TabIndex = 6;
@@ -137,7 +141,8 @@
             // 
             // IdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(362, 54);
+            this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdTextBox.Location = new System.Drawing.Point(358, 54);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(153, 23);
@@ -145,8 +150,9 @@
             // 
             // DescriptionLabel
             // 
+            this.DescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(287, 262);
+            this.DescriptionLabel.Location = new System.Drawing.Point(294, 232);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(67, 15);
             this.DescriptionLabel.TabIndex = 4;
@@ -154,8 +160,9 @@
             // 
             // NameLabel
             // 
+            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(287, 150);
+            this.NameLabel.Location = new System.Drawing.Point(294, 150);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(42, 15);
             this.NameLabel.TabIndex = 3;
@@ -163,8 +170,9 @@
             // 
             // CostLabel
             // 
+            this.CostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CostLabel.AutoSize = true;
-            this.CostLabel.Location = new System.Drawing.Point(287, 92);
+            this.CostLabel.Location = new System.Drawing.Point(294, 92);
             this.CostLabel.Name = "CostLabel";
             this.CostLabel.Size = new System.Drawing.Size(34, 15);
             this.CostLabel.TabIndex = 2;
@@ -172,8 +180,9 @@
             // 
             // IdLabel
             // 
+            this.IdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(287, 62);
+            this.IdLabel.Location = new System.Drawing.Point(294, 62);
             this.IdLabel.Name = "IdLabel";
             this.IdLabel.Size = new System.Drawing.Size(21, 15);
             this.IdLabel.TabIndex = 1;
@@ -181,9 +190,10 @@
             // 
             // SelectedItemLabel
             // 
+            this.SelectedItemLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedItemLabel.AutoSize = true;
             this.SelectedItemLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SelectedItemLabel.Location = new System.Drawing.Point(287, 19);
+            this.SelectedItemLabel.Location = new System.Drawing.Point(294, 34);
             this.SelectedItemLabel.Name = "SelectedItemLabel";
             this.SelectedItemLabel.Size = new System.Drawing.Size(86, 15);
             this.SelectedItemLabel.TabIndex = 0;
@@ -209,7 +219,7 @@
             this.Controls.Add(this.IdLabel);
             this.Controls.Add(this.CostLabel);
             this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(670, 404);
+            this.Size = new System.Drawing.Size(700, 387);
             this.ResumeLayout(false);
             this.PerformLayout();
 

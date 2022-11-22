@@ -12,6 +12,9 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит логику вкладки покупателя
+    /// </summary>
     partial class CustomerTab : UserControl
     {
         /// <summary>

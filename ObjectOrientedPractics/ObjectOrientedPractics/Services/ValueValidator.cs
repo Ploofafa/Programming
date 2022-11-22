@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Services
     /// <summary>
     /// Класс хранящий методы проверки значений полей.
     /// </summary>
-    public static class Validator
+    public static class ValueValidator
     {
         /// <summary>
         /// Метод для проверки вхождения значения

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Validator = ObjectOrientedPractics.Services.Validator;
+using ValueValidator = ObjectOrientedPractics.Services.ValueValidator;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
@@ -69,7 +69,7 @@ namespace ObjectOrientedPractics.Model.Classes
             }
             set
             {
-                Validator.AssertStringOnMaxLength(value, 201);
+                ValueValidator.AssertStringOnMaxLength(value, 201);
                 _name = value;
             }
 
@@ -87,7 +87,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertStringOnMaxLength(value, 1001);
+                ValueValidator.AssertStringOnMaxLength(value, 1001);
                 _info = value;
 
             }
@@ -105,7 +105,7 @@ namespace ObjectOrientedPractics.Model.Classes
 
             set
             {
-                Validator.AssertValueInRange(value, 0, 100000);
+                ValueValidator.AssertValueInRange(value, 0, 100000);
                 _cost = value;
             }
 
