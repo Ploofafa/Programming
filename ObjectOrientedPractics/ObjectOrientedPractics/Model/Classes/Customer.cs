@@ -24,6 +24,11 @@ namespace ObjectOrientedPractics.Model.Classes
         private string _fullName;
 
         /// <summary>
+        /// Хранит список всех заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
         /// Хранит экземпляр корзины покупателя.
         /// </summary>
         private Cart _cart;
@@ -91,5 +96,10 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Возвращает и задаёт значение корзины.
         /// </summary>
         public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт список заказов покупателя.
+        /// </summary>
+        public Order Orders { get; set; }
     }
 }
