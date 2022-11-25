@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
+    /// <summary>
+    /// Класс описывающий адрес.
+    /// </summary>
     public class Address
     {
         /// <summary>

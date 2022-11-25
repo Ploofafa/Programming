@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
+    /// <summary>
+    /// Описывает класс магазина.
+    /// </summary>
     internal class Store
     {
         /// <summary>

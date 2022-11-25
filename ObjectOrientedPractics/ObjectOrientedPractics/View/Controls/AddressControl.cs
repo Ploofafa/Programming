@@ -14,6 +14,9 @@ using ObjectOrientedPractics;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит логику вкладки <see cref="AddressControl"/>.
+    /// </summary>
     public partial class AddressControl : UserControl
     {
         /// <summary>

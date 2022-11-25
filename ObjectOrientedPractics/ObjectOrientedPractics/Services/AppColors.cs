@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Содержит класс цветов.
+    /// </summary>
     public static class AppColors
     {
         /// <summary>

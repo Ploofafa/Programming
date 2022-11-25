@@ -9,6 +9,9 @@ using ValueValidator = ObjectOrientedPractics.Services.ValueValidator;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
+    /// <summary>
+    /// Описывает класс товаров.
+    /// </summary>
     public class Item
     {
         /// <summary>

@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
+    /// <summary>
+    /// Описывает класс покупателей.
+    /// </summary>
     public class Customer
     {
         /// <summary>
-        /// Хранит Id покупателя.
+        /// Хранит ID покупателя.
         /// </summary>
         private readonly int _id;
 
@@ -21,13 +24,19 @@ namespace ObjectOrientedPractics.Model.Classes
         private string _fullName;
 
         /// <summary>
+        /// Хранит экземпляр корзины покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Customer"/>. Id
-        /// генерируется и присваевается автоматически.
+        /// генерируется и присваивается автоматически.
         /// </summary>
         public Customer()
         {
             FullName = "Default name";
             _id = IdGenerator.GetNextId();
+            _cart = new Cart();
             Address = new Address();
         }
 
@@ -36,11 +45,12 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         /// <param name="fullName">Полное ФИО покупателя. Не более 200 символов.</param>
         /// <param name="address">Полный адрес покупателя.</param>
-        public Customer(string fullName, Address address)
+        public Customer(string fullName, Address address,
+                        Cart cart)
         {
             FullName = fullName;
             Address = address;
-            
+            Cart = cart;
             _id = IdGenerator.GetNextId();
         }
 
@@ -76,5 +86,10 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Возвращает и задаёт значение адреса.
         /// </summary>
         public Address Address { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт значение корзины.
+        /// </summary>
+        public Cart Cart { get; set; }
     }
 }
