@@ -14,13 +14,14 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Поле хранит список товаров в корзине покупателя.
         /// </summary>
-        private List<Item> _items;
+        private List<Item> _items = new List<Item>();
 
         /// <summary>
         /// Пустой конструктор класса <see cref="Cart"/>.
         /// </summary>
         public Cart() 
         {
+            _items = new List<Item>();
         }
 
         /// <summary>
@@ -35,7 +36,18 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Задаёт и возвращает список товаров в корзине покупателя.
         /// </summary>
-        public List<Item> Items { get; set; }
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+
+            set
+            {
+                _items = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает суммарную стоимость товаров в корзине покупателя.
@@ -44,14 +56,14 @@ namespace ObjectOrientedPractics.Model.Classes
         {
             get
             {
-                if (_items.Count != 0 && _items != null)
+                if (_items.Count != 0)
                 {
-                    double _amount = 0;
+                    double amount = 0;
                     for (int i = 0; i < _items.Count; i++)
                     {
-                        _items[i].Cost += _amount;
+                        amount += _items[i].Cost;
                     }
-                    return _amount;
+                    return amount;
                 }
 
                 else

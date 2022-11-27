@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Хранит уникальный идентификатор заказа.
         /// </summary>
         private readonly int _id;
+        
+        /// <summary>
+        /// Хранит статус заказа.
+        /// </summary>
+        private OrderStatus _status;
 
         /// <summary>
         /// Хранит дату создания заказа.
@@ -40,38 +46,105 @@ namespace ObjectOrientedPractics.Model.Classes
             _orderCreationDate= DateTime.Now;
         }
 
-        public Order(Address deliveryAddress, List<Item> items, double amount)
+        public Order(Address deliveryAddress, List<Item> items, double amount,
+                        OrderStatus status)
         {
             _id = IdGenerator.GetNextId();
             _orderCreationDate = DateTime.Now;
             _deliveryAddress = deliveryAddress;
             _items = items;
             _amount = amount;
+            _status = status;
         }
 
         /// <summary>
         /// Возвращает значение уникального идентификатора заказа.
         /// </summary>
-        public int Id { get; }
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
 
         /// <summary>
         /// Возвращает дату создания заказа.
         /// </summary>
-        public DateTime OrderCreationDate { get; }
+        public DateTime OrderCreationDate
+        {
+            get
+            {
+                return _orderCreationDate;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт значение адреса доставки.
         /// </summary>
-        public Address DeliveryAddress { get; set; }
+        public Address DeliveryAddress
+        {
+            get
+            {
+                return _deliveryAddress;
+            }
+
+            set
+            {
+                _deliveryAddress = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт значение списка покупок.
         /// </summary>
-        public List<Item> Items { get; set; }
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт значение общей стоимости заказа.
         /// </summary>
-        public double Amout { get; set; }
+        public double Amount
+        {
+            get
+            {
+                return _amount;
+            }
+
+            set
+            {
+                _amount = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт статус заказа.
+        /// </summary>
+        public OrderStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+
+            set
+            {
+                _status = value;
+            }
+        }
+
+        public static implicit operator List<object>(Order v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

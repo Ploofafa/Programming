@@ -211,7 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentItem.Category =(Category)ItemCategoryComboBox.SelectedIndex;
+            _currentItem.Category = (Category)ItemCategoryComboBox.SelectedIndex;
         }
     }
 }

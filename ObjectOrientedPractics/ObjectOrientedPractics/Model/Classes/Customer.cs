@@ -43,6 +43,7 @@ namespace ObjectOrientedPractics.Model.Classes
             _id = IdGenerator.GetNextId();
             _cart = new Cart();
             Address = new Address();
+            _orders = new List<Order>();
         }
 
         /// <summary>
@@ -51,11 +52,12 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <param name="fullName">Полное ФИО покупателя. Не более 200 символов.</param>
         /// <param name="address">Полный адрес покупателя.</param>
         public Customer(string fullName, Address address,
-                        Cart cart)
+                        Cart cart, List<Order> orders)
         {
             FullName = fullName;
             Address = address;
             Cart = cart;
+            _orders = orders;
             _id = IdGenerator.GetNextId();
         }
 
@@ -95,11 +97,33 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Возвращает и задаёт значение корзины.
         /// </summary>
-        public Cart Cart { get; set; }
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+
+            set
+            {
+                _cart = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт список заказов покупателя.
         /// </summary>
-        public Order Orders { get; set; }
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+
+            set
+            {
+                _orders = value;
+            }
+        }
     }
 }

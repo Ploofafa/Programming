@@ -18,15 +18,19 @@ namespace ObjectOrientedPractics
             if (itemsData != null)
             {
                 itemsTab1.Items = itemsData;
+                cartsTab1.Items = itemsData;
             }
             itemsTab1.UpdateListBox();
+            cartsTab1.UpdateListBox();
 
             var customersData = StoreSerializer.LoadCustomersData();
             if (customersData != null)
             {
                 customerTab1.Customers = customersData;
+                cartsTab1.Customers = customersData;
             }
             customerTab1.UpdateListBox();
+            cartsTab1.UpdateComboBox();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -35,6 +39,14 @@ namespace ObjectOrientedPractics
             _store.Items = itemsTab1.Items;
             StoreSerializer.SaveData(_store.Customers);
             StoreSerializer.SaveData(_store.Items);
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabControl.SelectedIndex == 2)
+            {
+                cartsTab1.RefreshData();
+            }
         }
     }
 }
