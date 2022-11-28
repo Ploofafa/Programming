@@ -53,7 +53,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Заполняет комбобокс имеющимися данными.
+        /// Заполняет комбо бокс имеющимися данными.
         /// </summary>
         public void UpdateComboBox()
         {
