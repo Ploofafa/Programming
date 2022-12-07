@@ -107,6 +107,8 @@
             // 
             // NumberLabel
             // 
+            this.NumberLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberLabel.AutoSize = true;
             this.NumberLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NumberLabel.Location = new System.Drawing.Point(527, 266);
@@ -161,6 +163,8 @@
             // 
             // CartListBox
             // 
+            this.CartListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CartListBox.FormattingEnabled = true;
             this.CartListBox.ItemHeight = 15;
             this.CartListBox.Location = new System.Drawing.Point(232, 104);

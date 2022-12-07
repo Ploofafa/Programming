@@ -39,7 +39,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         public Customer()
         {
-            FullName = "Default name";
+            _fullName = "Default name";
             _id = IdGenerator.GetNextId();
             _cart = new Cart();
             Address = new Address();

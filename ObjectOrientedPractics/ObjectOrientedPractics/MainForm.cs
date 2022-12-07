@@ -28,9 +28,9 @@ namespace ObjectOrientedPractics
             {
                 customerTab1.Customers = customersData;
                 cartsTab1.Customers = customersData;
+                ordersTab1.Customers = customersData;
             }
             customerTab1.UpdateListBox();
-            cartsTab1.UpdateComboBox();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -46,6 +46,11 @@ namespace ObjectOrientedPractics
             if (TabControl.SelectedIndex == 2)
             {
                 cartsTab1.RefreshData();
+            }
+
+            if (TabControl.SelectedIndex == 3)
+            {
+                ordersTab1.RefreshData();
             }
         }
     }

@@ -12,16 +12,45 @@ using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Содержит логику вкладки <see cref="CartsTab"/>.
+    /// </summary>
     public partial class CartsTab : UserControl
     {
+        /// <summary>
+        /// Хранит список товаров.
+        /// </summary>
         private List<Item> _items = new List<Item>();
 
-        private List<Item> _currentCustomerItems = new List<Item>();
-
+        /// <summary>
+        /// Хранит список всех покупателей.
+        /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
+        /// <summary>
+        /// Хранит выбранного покупателя.
+        /// </summary>
         private Customer _currentCustomer;
 
+        /// <summary>
+        /// Метод для создания нового заказа.
+        /// </summary>
+        private void CreateOrder()
+        {
+            if (CartListBox.Items.Count != 0 && _currentCustomer != null &&
+                CustomerComboBox.SelectedIndex != -1)
+            {
+                Order order = new Order();
+                order.Items.AddRange(_currentCustomer.Cart.Items);
+                order.Address = _currentCustomer.Address;
+                order.Status = OrderStatus.New;
+                order.CustomerName = _currentCustomer.FullName;
+                order.Amount = _currentCustomer.Cart.Amount;
+                _currentCustomer.Orders.Add(order);
+                NumberLabel.Text = "0";
+                ClearCart();
+            }
+        }
 
         /// <summary>
         /// Метод для обновления данных на вкладке.
@@ -57,7 +86,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void UpdateComboBox()
         {
-            if (_customers.Count > 0)
+            if (_customers != null)
             {
                 for (int i = 0; i < _customers.Count; i++)
                 {
@@ -74,8 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (_currentCustomer != null && ItemsListBox.SelectedIndex != -1)
             {
                 CartListBox.Items.Add(ItemsListBox.SelectedItem);
-                _currentCustomerItems.Add(_items[ItemsListBox.SelectedIndex]);
-                _currentCustomer.Cart.Items = _currentCustomerItems;
+                _currentCustomer.Cart.Items.Add(_items[ItemsListBox.SelectedIndex]);
                 UpdateAmount();
             }
         }
@@ -88,13 +116,12 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomerComboBox.SelectedIndex != -1)
             {
                 _currentCustomer = _customers[CustomerComboBox.SelectedIndex];
-                _currentCustomerItems = _currentCustomer.Cart.Items;
                 CartListBox.Items.Clear();
-                if (_currentCustomerItems.Count > 0)
+                if (_currentCustomer.Cart.Items.Count > 0)
                 {
-                    for (int i = 0; i < _currentCustomerItems.Count; i++)
+                    for (int i = 0; i < _currentCustomer.Cart.Items.Count; i++)
                     {
-                        CartListBox.Items.Add(_currentCustomerItems[i].Name);
+                        CartListBox.Items.Add(_currentCustomer.Cart.Items[i].Name);
                     }
                     UpdateAmount();
                 }
@@ -120,12 +147,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CartListBox.Items.Count != 0 && CustomerComboBox.SelectedIndex != -1)
             {
-                int length = _currentCustomerItems.Count;
-                for (int i = 0; i < length; i++)
-                {
-                    CartListBox.SelectedIndex = 0;
-                    RemoveItemFromCart();
-                }
+                CartListBox.Items.Clear();
+                _currentCustomer.Cart.Items.Clear();
             }
         }
 
@@ -136,7 +159,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentCustomer != null && CartListBox.SelectedItem != null)
             {
-                _currentCustomerItems.RemoveAt(CartListBox.SelectedIndex);
                 CartListBox.Items.Remove(CartListBox.SelectedItem);
                 UpdateAmount();
                 if (CartListBox.Items.Count != 0)
@@ -197,15 +219,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            if (CartListBox.Items.Count != 0 && _currentCustomer != null)
-            {
-                Order order = new Order();
-                order.Items = _currentCustomerItems;
-                order.DeliveryAddress = _currentCustomer.Address;
-                order.Status = OrderStatus.New;
-                ClearCart();
-                _currentCustomer.Orders.Add(order);
-            }
+            CreateOrder();
         }
     }
 }

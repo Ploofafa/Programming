@@ -15,30 +15,14 @@ using ObjectOrientedPractics;
 namespace ObjectOrientedPractics.View.Tabs
 {
     /// <summary>
-    /// Хранит логику вкладки <see cref="AddressControl"/>.
+    /// Хранит логику пользовательского элемента <see cref="AddressControl"/>.
     /// </summary>
     public partial class AddressControl : UserControl
     {
         /// <summary>
-        /// Хранит переменную адреса.
-        /// </summary>
-        private Address _address = new Address();
-
-        /// <summary>
         /// Возвращает и задаёт значение адреса.
         /// </summary>
-        public Address Address
-        {
-            get
-            {
-                return _address;
-            }
-
-            set
-            {
-                _address = value;
-            }
-        }
+        public Address Address { get; set; }
 
         /// <summary>
         /// Хранит переменную для подсказки пользователю.

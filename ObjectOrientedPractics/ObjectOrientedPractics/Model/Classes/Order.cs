@@ -26,9 +26,9 @@ namespace ObjectOrientedPractics.Model.Classes
         private readonly DateTime _orderCreationDate;
 
         /// <summary>
-        /// Хранит адрес доставки.
+        /// Хранит адрес доставки в экземпляре класса <see cref="Address"/>.
         /// </summary>
-        private Address _deliveryAddress;
+        private Address _address;
 
         /// <summary>
         /// Хранит список товаров, которые нужно доставить.
@@ -40,27 +40,34 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private double _amount;
 
+        /// <summary>
+        /// Хранит имя покупателя.
+        /// </summary>
+        private string _customerName;
+
         public Order()
         {
             _id = IdGenerator.GetNextId();
-            _orderCreationDate= DateTime.Now;
+            _orderCreationDate = DateTime.Now;
+            _items = new List<Item>();
         }
 
-        public Order(Address deliveryAddress, List<Item> items, double amount,
-                        OrderStatus status)
+        public Order(Address address, List<Item> items, double amount,
+                        OrderStatus status, string customerName)
         {
             _id = IdGenerator.GetNextId();
             _orderCreationDate = DateTime.Now;
-            _deliveryAddress = deliveryAddress;
+            _address = address;
             _items = items;
             _amount = amount;
             _status = status;
+            _customerName = customerName;
         }
 
         /// <summary>
         /// Возвращает значение уникального идентификатора заказа.
         /// </summary>
-        public int Id
+        public int ID
         {
             get
             {
@@ -80,18 +87,31 @@ namespace ObjectOrientedPractics.Model.Classes
         }
 
         /// <summary>
-        /// Возвращает и задаёт значение адреса доставки.
+        /// Возвращает значение адреса доставки.
         /// </summary>
-        public Address DeliveryAddress
+        public string DeliveryAddress
         {
             get
             {
-                return _deliveryAddress;
+                return _address.City + ", " +
+                        _address.Country + ", " +
+                        Convert.ToString(_address.Index) + ", " +
+                        _address.Street + ", " +
+                        _address.Building + ", " +
+                        _address.Apartment; ;
+            }
+        }
+
+        public Address Address
+        {
+            get
+            {
+                return _address;
             }
 
             set
             {
-                _deliveryAddress = value;
+                _address = value;
             }
         }
 
@@ -104,6 +124,7 @@ namespace ObjectOrientedPractics.Model.Classes
             {
                 return _items;
             }
+
             set
             {
                 _items = value;
@@ -127,6 +148,22 @@ namespace ObjectOrientedPractics.Model.Classes
         }
 
         /// <summary>
+        /// Возвращает и задаёт имя покупателя.
+        /// </summary>
+        public string CustomerName
+        {
+            get
+            {
+                return _customerName;
+            }
+
+            set
+            {
+                _customerName = value;
+            }
+        }
+
+        /// <summary>
         /// Возвращает и задаёт статус заказа.
         /// </summary>
         public OrderStatus Status
@@ -140,11 +177,6 @@ namespace ObjectOrientedPractics.Model.Classes
             {
                 _status = value;
             }
-        }
-
-        public static implicit operator List<object>(Order v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -81,7 +81,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void UpdateListBox()
         {
-            if (_customers.Count > 0)
+            if (_customers != null && _customers.Count > 0)
             {
                 for (int i = 0; i < _customers.Count; i++)
                 {

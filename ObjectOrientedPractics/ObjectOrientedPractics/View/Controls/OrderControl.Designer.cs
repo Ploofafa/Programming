@@ -78,6 +78,7 @@
             // 
             this.IDTextBox.Location = new System.Drawing.Point(57, 36);
             this.IDTextBox.Name = "IDTextBox";
+            this.IDTextBox.ReadOnly = true;
             this.IDTextBox.Size = new System.Drawing.Size(138, 23);
             this.IDTextBox.TabIndex = 4;
             // 
@@ -85,6 +86,7 @@
             // 
             this.CreatedDateTextBox.Location = new System.Drawing.Point(57, 72);
             this.CreatedDateTextBox.Name = "CreatedDateTextBox";
+            this.CreatedDateTextBox.ReadOnly = true;
             this.CreatedDateTextBox.Size = new System.Drawing.Size(138, 23);
             this.CreatedDateTextBox.TabIndex = 5;
             // 
@@ -95,6 +97,7 @@
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(138, 23);
             this.StatusComboBox.TabIndex = 6;
+            this.StatusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
             // OrderControl
             // 
@@ -108,7 +111,7 @@
             this.Controls.Add(this.IDLabel);
             this.Controls.Add(this.SelectedOrderLabel);
             this.Name = "OrderControl";
-            this.Size = new System.Drawing.Size(217, 149);
+            this.Size = new System.Drawing.Size(217, 156);
             this.ResumeLayout(false);
             this.PerformLayout();
 

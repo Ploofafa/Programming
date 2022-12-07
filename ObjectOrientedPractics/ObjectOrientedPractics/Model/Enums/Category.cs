@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics.Model.Classes
+﻿namespace ObjectOrientedPractics.Model.Enums
 {
 
     /// <summary>
