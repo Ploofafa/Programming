@@ -12,6 +12,6 @@
         Tools,
         Hunting,
         Accessories,
-        Furniture
+        Furniture,
     }
 }
