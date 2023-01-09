@@ -19,6 +19,7 @@ namespace ObjectOrientedPractics
             {
                 itemsTab1.Items = itemsData;
                 cartsTab1.Items = itemsData;
+                priorityOrdersTab1.Items = itemsData;
             }
             itemsTab1.UpdateListBox();
             cartsTab1.UpdateListBox();

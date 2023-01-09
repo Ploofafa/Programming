@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Хранит все диапазоны значений времени доставки.
         /// </summary>
-        private string[] _rangeTime= new string[]
+        private static string[] _rangeTime= new string[]
             {
             "9:00 - 11:00",
             "11:00 - 13:00",
@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private string _desiredTime;
 
-        public string[] RangeTime
+        public static string[] RangeTime
         {
             get
             {
@@ -46,6 +46,7 @@ namespace ObjectOrientedPractics.Model.Classes
             {
                 return _desiredDate;
             }
+
             set
             {
 
@@ -59,6 +60,7 @@ namespace ObjectOrientedPractics.Model.Classes
             {
                 return _desiredTime;
             }
+
             set
             {
                 _desiredTime = value;
@@ -69,6 +71,11 @@ namespace ObjectOrientedPractics.Model.Classes
         {
         }
 
+        /// <summary>
+        /// Конструктор класса PriorityOrder
+        /// </summary>
+        /// <param name="desiredTime">Время доставки.</param>
+        /// <param name="desiredDate">Дата доставки.</param>
         public PriorityOrder( DateTime desiredTime, DateTime desiredDate) : base()
         {
             _desiredDate = DesiredDate;

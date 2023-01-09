@@ -32,6 +32,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             ObjectOrientedPractics.Model.Classes.Address address1 = new ObjectOrientedPractics.Model.Classes.Address();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.OrderIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderItemsLabel = new System.Windows.Forms.Label();
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
             this.AmountLabel = new System.Windows.Forms.Label();
@@ -39,13 +45,12 @@ namespace ObjectOrientedPractics.View.Tabs
             this.NumberLabel = new System.Windows.Forms.Label();
             this.addressControl1 = new ObjectOrientedPractics.View.Tabs.AddressControl();
             this.orderControl1 = new ObjectOrientedPractics.View.Controls.OrderControl();
-            this.OrderIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriorityOptionsLabel = new System.Windows.Forms.Label();
+            this.DeliveryTimeLabel = new System.Windows.Forms.Label();
+            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
+            this.PriorityOptionsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.PriorityOptionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -69,6 +74,48 @@ namespace ObjectOrientedPractics.View.Tabs
             this.dataGridView1.Size = new System.Drawing.Size(314, 466);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            // 
+            // OrderIDColumn
+            // 
+            this.OrderIDColumn.DataPropertyName = "ID";
+            this.OrderIDColumn.HeaderText = "Order ID";
+            this.OrderIDColumn.Name = "OrderIDColumn";
+            this.OrderIDColumn.ReadOnly = true;
+            // 
+            // CustomerFullNameColumn
+            // 
+            this.CustomerFullNameColumn.DataPropertyName = "CustomerName";
+            this.CustomerFullNameColumn.HeaderText = "Customer Full Name";
+            this.CustomerFullNameColumn.Name = "CustomerFullNameColumn";
+            this.CustomerFullNameColumn.ReadOnly = true;
+            // 
+            // CreatedColumn
+            // 
+            this.CreatedColumn.DataPropertyName = "OrderCreationDate";
+            this.CreatedColumn.HeaderText = "Created";
+            this.CreatedColumn.Name = "CreatedColumn";
+            this.CreatedColumn.ReadOnly = true;
+            // 
+            // OrderStatusColumn
+            // 
+            this.OrderStatusColumn.DataPropertyName = "Status";
+            this.OrderStatusColumn.HeaderText = "Order Status";
+            this.OrderStatusColumn.Name = "OrderStatusColumn";
+            this.OrderStatusColumn.ReadOnly = true;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.DataPropertyName = "DeliveryAddress";
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            // 
+            // AmountColumn
+            // 
+            this.AmountColumn.DataPropertyName = "Amount";
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.ReadOnly = true;
             // 
             // OrderItemsLabel
             // 
@@ -141,52 +188,49 @@ namespace ObjectOrientedPractics.View.Tabs
             this.orderControl1.Size = new System.Drawing.Size(206, 133);
             this.orderControl1.TabIndex = 10;
             // 
-            // OrderIDColumn
+            // PriorityOptionsLabel
             // 
-            this.OrderIDColumn.DataPropertyName = "ID";
-            this.OrderIDColumn.HeaderText = "Order ID";
-            this.OrderIDColumn.Name = "OrderIDColumn";
-            this.OrderIDColumn.ReadOnly = true;
+            this.PriorityOptionsLabel.AutoSize = true;
+            this.PriorityOptionsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PriorityOptionsLabel.Location = new System.Drawing.Point(3, 8);
+            this.PriorityOptionsLabel.Name = "PriorityOptionsLabel";
+            this.PriorityOptionsLabel.Size = new System.Drawing.Size(94, 15);
+            this.PriorityOptionsLabel.TabIndex = 11;
+            this.PriorityOptionsLabel.Text = "Priority Options";
             // 
-            // CustomerFullNameColumn
+            // DeliveryTimeLabel
             // 
-            this.CustomerFullNameColumn.DataPropertyName = "CustomerName";
-            this.CustomerFullNameColumn.HeaderText = "Customer Full Name";
-            this.CustomerFullNameColumn.Name = "CustomerFullNameColumn";
-            this.CustomerFullNameColumn.ReadOnly = true;
+            this.DeliveryTimeLabel.AutoSize = true;
+            this.DeliveryTimeLabel.Location = new System.Drawing.Point(3, 37);
+            this.DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            this.DeliveryTimeLabel.Size = new System.Drawing.Size(81, 15);
+            this.DeliveryTimeLabel.TabIndex = 12;
+            this.DeliveryTimeLabel.Text = "Delivery Time:";
             // 
-            // CreatedColumn
+            // DeliveryTimeComboBox
             // 
-            this.CreatedColumn.DataPropertyName = "OrderCreationDate";
-            this.CreatedColumn.HeaderText = "Created";
-            this.CreatedColumn.Name = "CreatedColumn";
-            this.CreatedColumn.ReadOnly = true;
+            this.DeliveryTimeComboBox.FormattingEnabled = true;
+            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(86, 34);
+            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(121, 23);
+            this.DeliveryTimeComboBox.TabIndex = 13;
+            this.DeliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
-            // OrderStatusColumn
+            // PriorityOptionsPanel
             // 
-            this.OrderStatusColumn.DataPropertyName = "Status";
-            this.OrderStatusColumn.HeaderText = "Order Status";
-            this.OrderStatusColumn.Name = "OrderStatusColumn";
-            this.OrderStatusColumn.ReadOnly = true;
-            // 
-            // AddressColumn
-            // 
-            this.AddressColumn.DataPropertyName = "DeliveryAddress";
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.ReadOnly = true;
-            // 
-            // AmountColumn
-            // 
-            this.AmountColumn.DataPropertyName = "Amount";
-            this.AmountColumn.HeaderText = "Amount";
-            this.AmountColumn.Name = "AmountColumn";
-            this.AmountColumn.ReadOnly = true;
+            this.PriorityOptionsPanel.Controls.Add(this.PriorityOptionsLabel);
+            this.PriorityOptionsPanel.Controls.Add(this.DeliveryTimeComboBox);
+            this.PriorityOptionsPanel.Controls.Add(this.DeliveryTimeLabel);
+            this.PriorityOptionsPanel.Location = new System.Drawing.Point(532, 17);
+            this.PriorityOptionsPanel.Name = "PriorityOptionsPanel";
+            this.PriorityOptionsPanel.Size = new System.Drawing.Size(210, 100);
+            this.PriorityOptionsPanel.TabIndex = 14;
             // 
             // OrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.PriorityOptionsPanel);
             this.Controls.Add(this.orderControl1);
             this.Controls.Add(this.addressControl1);
             this.Controls.Add(this.NumberLabel);
@@ -196,8 +240,10 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.OrderItemsLabel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "OrdersTab";
-            this.Size = new System.Drawing.Size(730, 483);
+            this.Size = new System.Drawing.Size(753, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.PriorityOptionsPanel.ResumeLayout(false);
+            this.PriorityOptionsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +265,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn OrderStatusColumn;
         private DataGridViewTextBoxColumn AddressColumn;
         private DataGridViewTextBoxColumn AmountColumn;
+        private Label PriorityOptionsLabel;
+        private Label DeliveryTimeLabel;
+        private ComboBox DeliveryTimeComboBox;
+        private Panel PriorityOptionsPanel;
     }
 }

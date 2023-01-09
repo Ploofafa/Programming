@@ -63,6 +63,7 @@ namespace ObjectOrientedPractics.Model.Classes
                     {
                         amount += _items[i].Cost;
                     }
+
                     return amount;
                 }
 

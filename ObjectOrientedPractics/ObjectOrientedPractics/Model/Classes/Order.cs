@@ -138,12 +138,13 @@ namespace ObjectOrientedPractics.Model.Classes
         {
             get
             {
-                return _amount;
-            }
+                _amount = 0;
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    _amount += Items[i].Cost;
+                }
 
-            set
-            {
-                _amount = value;
+                return _amount;
             }
         }
 

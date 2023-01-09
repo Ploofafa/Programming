@@ -34,6 +34,11 @@ namespace ObjectOrientedPractics.Model.Classes
         private Cart _cart;
 
         /// <summary>
+        /// Хранит показатель приоритета заказа.
+        /// </summary>
+        private bool _IsPriority;
+
+        /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Customer"/>. Id
         /// генерируется и присваивается автоматически.
         /// </summary>
@@ -44,6 +49,7 @@ namespace ObjectOrientedPractics.Model.Classes
             _cart = new Cart();
             Address = new Address();
             _orders = new List<Order>();
+            _IsPriority = false;
         }
 
         /// <summary>
@@ -52,13 +58,14 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <param name="fullName">Полное ФИО покупателя. Не более 200 символов.</param>
         /// <param name="address">Полный адрес покупателя.</param>
         public Customer(string fullName, Address address,
-                        Cart cart, List<Order> orders)
+                        Cart cart, List<Order> orders, bool isPriority)
         {
             FullName = fullName;
             Address = address;
             Cart = cart;
             _orders = orders;
             _id = IdGenerator.GetNextId();
+            _IsPriority = isPriority;
         }
 
         /// <summary>
@@ -93,6 +100,11 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Возвращает и задаёт значение адреса.
         /// </summary>
         public Address Address { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт значение приоритет заказа.
+        /// </summary>
+        public bool IsPriority { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт значение корзины.

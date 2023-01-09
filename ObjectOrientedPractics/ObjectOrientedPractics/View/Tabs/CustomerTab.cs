@@ -60,6 +60,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = customer.FullName.ToString();
             addressControl1.Address = customer.Address;
             addressControl1.UpdateAddress();
+            IsPriorityCheckBox.Checked = customer.IsPriority;
         }
 
         /// <summary>
@@ -165,6 +166,14 @@ namespace ObjectOrientedPractics.View.Tabs
                     NameTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(NameTextBox, exception.Message);
                 }
+            }
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedIndex != -1)
+            {
+                _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
             }
         }
     }

@@ -24,6 +24,16 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Order> _orders = new List<Order>();
 
         /// <summary>
+        /// Хранит выбранный экземпляр заказа типа <see cref="Order"/>.
+        /// </summary>
+        private Order _selectedOrder = new Order();
+
+        /// <summary>
+        /// Хранит выбранный экземпляр приоритетного заказа типа <see cref="PriorityOrder"/>.
+        /// </summary>
+        private PriorityOrder _selectedPriorityOrder = new PriorityOrder();
+
+        /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
         private List<Customer> _customers;
@@ -69,20 +79,62 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обновляет всю имеющуюся информацию по заказу.
         /// </summary>
-        private void UpdateInformationOnRightPanel()
+        private void UpdateInformationAboutOrder()
         {
             if (dataGridView1.CurrentRow != null)
             {
-                Order order = _orders[dataGridView1.CurrentRow.Index];
-                NumberLabel.Text = Convert.ToString(order.Amount);
-                for (int i = 0; i < order.Items.Count; i++)
+                for (int i = 0; i < _selectedOrder.Items.Count; i++)
                 {
-                    OrderItemsListBox.Items.Add(order.Items[i].Name);
+                    OrderItemsListBox.Items.Add(_selectedOrder.Items[i].Name);
                 }
-                orderControl1.Order = order;
+                orderControl1.Order = _selectedOrder;
                 orderControl1.UpdateOrder();
-                addressControl1.Address = order.Address;
+                addressControl1.Address = _selectedOrder.Address;
                 addressControl1.UpdateAddress();
+                NumberLabel.Text = Convert.ToString(_selectedOrder.Amount);
+                PriorityOptionsPanel.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Обновляет информацию на правой панели, для приоритетного заказа.
+        /// </summary>
+        private void UpdateInformationAboutPriorityOrder()
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                PriorityOptionsPanel.Visible = true;
+                DeliveryTimeComboBox.SelectedItem = _selectedPriorityOrder.DesiredTime;
+                for (int i = 0; i < _selectedOrder.Items.Count; i++)
+                {
+                    OrderItemsListBox.Items.Add(_selectedOrder.Items[i].Name);
+                }
+                orderControl1.Order = _selectedOrder;
+                orderControl1.UpdateOrder();
+                addressControl1.Address = _selectedOrder.Address;
+                addressControl1.UpdateAddress();
+                NumberLabel.Text = Convert.ToString(_selectedOrder.Amount);
+                
+            }
+        }
+
+        /// <summary>
+        /// Функция для выбора нового заказа в DataGridView.
+        /// </summary>
+        private void ChangeSelectedOrder()
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                _selectedOrder = _orders[dataGridView1.CurrentRow.Index];
+                if (_selectedOrder.GetType() == typeof(PriorityOrder))
+                {
+                    _selectedPriorityOrder = (PriorityOrder)_selectedOrder;
+                }
+
+                else
+                {
+                    _selectedPriorityOrder = null;
+                }
             }
         }
 
@@ -100,12 +152,27 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             NumberLabel.Text = "0";
+            DeliveryTimeComboBox.Items.AddRange(PriorityOrder.RangeTime);
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             OrderItemsListBox.Items.Clear();
-            UpdateInformationOnRightPanel();
+            ChangeSelectedOrder();
+            if (_selectedPriorityOrder == null)
+            {
+                UpdateInformationAboutOrder();
+            }
+
+            else
+            {
+                UpdateInformationAboutPriorityOrder();
+            }
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedPriorityOrder.DesiredTime = (string) DeliveryTimeComboBox.SelectedItem;
         }
     }
 }

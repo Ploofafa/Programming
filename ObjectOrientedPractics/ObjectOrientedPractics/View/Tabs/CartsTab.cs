@@ -40,13 +40,26 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CartListBox.Items.Count != 0 && _currentCustomer != null &&
                 CustomerComboBox.SelectedIndex != -1)
             {
-                Order order = new Order();
-                order.Items.AddRange(_currentCustomer.Cart.Items);
-                order.Address = _currentCustomer.Address;
-                order.Status = OrderStatus.New;
-                order.CustomerName = _currentCustomer.FullName;
-                order.Amount = _currentCustomer.Cart.Amount;
-                _currentCustomer.Orders.Add(order);
+                if(_currentCustomer.IsPriority == false)
+                {
+                    Order order = new Order();
+                    order.Items.AddRange(_currentCustomer.Cart.Items);
+                    order.Address = _currentCustomer.Address;
+                    order.Status = OrderStatus.New;
+                    order.CustomerName = _currentCustomer.FullName;
+                    _currentCustomer.Orders.Add(order);
+                }
+
+                else
+                {
+                    PriorityOrder order = new PriorityOrder();
+                    order.Items.AddRange(_currentCustomer.Cart.Items);
+                    order.Address = _currentCustomer.Address;
+                    order.Status = OrderStatus.New;
+                    order.CustomerName = _currentCustomer.FullName;
+                    _currentCustomer.Orders.Add(order);
+                }
+                
                 NumberLabel.Text = "0";
                 ClearCart();
             }
@@ -125,30 +138,38 @@ namespace ObjectOrientedPractics.View.Tabs
                     }
                     UpdateAmount();
                 }
-            }
 
-            else
-            {
-                CartListBox.Items.Clear();
-                NumberLabel.Text = "0";
+                else
+                {
+                    CartListBox.Items.Clear();
+                    NumberLabel.Text = "0";
+                }
             }
-            
         }
         
         private void UpdateAmount()
         {
-            NumberLabel.Text = Convert.ToString(Math.Round(_currentCustomer.Cart.Amount, 2)); 
+            if(_currentCustomer.Cart.Items.Count != 0)
+            {
+                NumberLabel.Text = Convert.ToString(Math.Round(_currentCustomer.Cart.Amount, 2));
+            }
+
+            else
+            {
+                NumberLabel.Text = "0";
+            }
         }
 
         /// <summary>
         /// Метод очищающий корзину пользователя.
-        /// </summary>
+        /// </summary>C
         private void ClearCart()
         {
             if (CartListBox.Items.Count != 0 && CustomerComboBox.SelectedIndex != -1)
             {
                 CartListBox.Items.Clear();
                 _currentCustomer.Cart.Items.Clear();
+                UpdateAmount();
             }
         }
 
@@ -159,6 +180,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentCustomer != null && CartListBox.SelectedItem != null)
             {
+                _currentCustomer.Cart.Items.Remove
+                    (_currentCustomer.Cart.Items[CartListBox.SelectedIndex]);
                 CartListBox.Items.Remove(CartListBox.SelectedItem);
                 UpdateAmount();
                 if (CartListBox.Items.Count != 0)
