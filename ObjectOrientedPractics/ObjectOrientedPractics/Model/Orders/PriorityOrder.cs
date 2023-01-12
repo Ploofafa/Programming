@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model.Classes
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class PriorityOrder : Order
     {
@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Хранит все диапазоны значений времени доставки.
         /// </summary>
-        private static string[] _rangeTime= new string[]
+        private static string[] _rangeTime = new string[]
             {
             "9:00 - 11:00",
             "11:00 - 13:00",
@@ -76,7 +76,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         /// <param name="desiredTime">Время доставки.</param>
         /// <param name="desiredDate">Дата доставки.</param>
-        public PriorityOrder( DateTime desiredTime, DateTime desiredDate) : base()
+        public PriorityOrder(DateTime desiredTime, DateTime desiredDate) : base()
         {
             _desiredDate = DesiredDate;
             _desiredTime = DesiredTime;

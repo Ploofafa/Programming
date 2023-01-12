@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model.Classes;
 using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -47,6 +48,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     order.Address = _currentCustomer.Address;
                     order.Status = OrderStatus.New;
                     order.CustomerName = _currentCustomer.FullName;
+                    order.IsPriority = false;
                     _currentCustomer.Orders.Add(order);
                 }
 
@@ -57,6 +59,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     order.Address = _currentCustomer.Address;
                     order.Status = OrderStatus.New;
                     order.CustomerName = _currentCustomer.FullName;
+                    order.IsPriority = true;
                     _currentCustomer.Orders.Add(order);
                 }
                 

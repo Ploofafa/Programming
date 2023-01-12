@@ -1,10 +1,12 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model.Classes
 {
@@ -38,6 +40,8 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private bool _IsPriority;
 
+        private List<IDiscount> _discounts;
+
         /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Customer"/>. Id
         /// генерируется и присваивается автоматически.
@@ -66,6 +70,7 @@ namespace ObjectOrientedPractics.Model.Classes
             _orders = orders;
             _id = IdGenerator.GetNextId();
             _IsPriority = isPriority;
+            _discounts = new List<IDiscount> { new PointsDiscount()};
         }
 
         /// <summary>
@@ -104,7 +109,18 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <summary>
         /// Возвращает и задаёт значение приоритет заказа.
         /// </summary>
-        public bool IsPriority { get; set; }
+        public bool IsPriority
+        {
+            get
+            {
+                return _IsPriority;
+            }
+
+            set
+            {
+                _IsPriority = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт значение корзины.
