@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             this.orderControl1 = new ObjectOrientedPractics.View.Controls.OrderControl();
             this.addressControl1 = new ObjectOrientedPractics.View.Tabs.AddressControl();
             this.PriorityOptionsLabel = new System.Windows.Forms.Label();
             this.DeliveryTimeLabel = new System.Windows.Forms.Label();
-            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             this.OrderItemsLabel = new System.Windows.Forms.Label();
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
             this.NumberLabel = new System.Windows.Forms.Label();
@@ -41,6 +41,14 @@
             this.RemoveItemButton = new System.Windows.Forms.Button();
             this.ClearOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // DeliveryTimeComboBox
+            // 
+            this.DeliveryTimeComboBox.FormattingEnabled = true;
+            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(325, 38);
+            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(163, 23);
+            this.DeliveryTimeComboBox.TabIndex = 4;
             // 
             // orderControl1
             // 
@@ -76,14 +84,6 @@
             this.DeliveryTimeLabel.Size = new System.Drawing.Size(81, 15);
             this.DeliveryTimeLabel.TabIndex = 3;
             this.DeliveryTimeLabel.Text = "Delivery Time:";
-            // 
-            // DeliveryTimeComboBox
-            // 
-            this.DeliveryTimeComboBox.FormattingEnabled = true;
-            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(325, 38);
-            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
-            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(163, 23);
-            this.DeliveryTimeComboBox.TabIndex = 4;
             // 
             // OrderItemsLabel
             // 
