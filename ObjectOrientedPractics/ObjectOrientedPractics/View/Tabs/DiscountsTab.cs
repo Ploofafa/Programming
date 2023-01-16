@@ -18,7 +18,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private PointsDiscount points = new PointsDiscount();
 
-        private PercentDiscount percent = new PercentDiscount();
+        private PercentDiscount percent = new PercentDiscount(Model.Enums.Category.Tools);
 
         private Item testItem = new Item("bubble", "", 5000, Model.Enums.Category.Tools);
         
@@ -31,7 +31,6 @@ namespace ObjectOrientedPractics.View.Tabs
             InfoLabel.Text = points.Info;
             percent.Accumulated = 4999;
             percent.Discount = 0.04;
-            percent.Category = Model.Enums.Category.Tools;
         }
 
         private void CalculateButton_Click(object sender, EventArgs e)

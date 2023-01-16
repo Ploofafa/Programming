@@ -73,6 +73,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         }
 
         /// <summary>
+        /// Конструктор создающий экземпляр процентной скидки.
+        /// </summary>
+        /// <param name="category">Категория товаров входящих в скидку.</param>
+        public PercentDiscount(Category category)
+        {
+            _category = category;
+            _accumulated = 0;
+            _discount = 0.01;
+        }
+
+        /// <summary>
         /// Метод для вычисления размера скидки к конкретному заказу.
         /// </summary>
         /// <param name="items">Список товаров в заказе.</param>

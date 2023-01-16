@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Classes.Address address2 = new ObjectOrientedPractics.Model.Classes.Address();
+            ObjectOrientedPractics.Model.Classes.Address address1 = new ObjectOrientedPractics.Model.Classes.Address();
             this.RemoveCustomersButton = new System.Windows.Forms.Button();
             this.AddCustomersButton = new System.Windows.Forms.Button();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
@@ -40,11 +40,15 @@
             this.SelectedCustomerLabel = new System.Windows.Forms.Label();
             this.addressControl1 = new ObjectOrientedPractics.View.Tabs.AddressControl();
             this.IsPriorityCheckBox = new System.Windows.Forms.CheckBox();
+            this.DiscountsLabel = new System.Windows.Forms.Label();
+            this.DiscountsListBox = new System.Windows.Forms.ListBox();
+            this.AddDiscountButton = new System.Windows.Forms.Button();
+            this.RemoveDiscountButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RemoveCustomersButton
             // 
-            this.RemoveCustomersButton.Location = new System.Drawing.Point(135, 362);
+            this.RemoveCustomersButton.Location = new System.Drawing.Point(135, 422);
             this.RemoveCustomersButton.Name = "RemoveCustomersButton";
             this.RemoveCustomersButton.Size = new System.Drawing.Size(130, 39);
             this.RemoveCustomersButton.TabIndex = 4;
@@ -54,7 +58,7 @@
             // 
             // AddCustomersButton
             // 
-            this.AddCustomersButton.Location = new System.Drawing.Point(3, 362);
+            this.AddCustomersButton.Location = new System.Drawing.Point(3, 422);
             this.AddCustomersButton.Name = "AddCustomersButton";
             this.AddCustomersButton.Size = new System.Drawing.Size(130, 39);
             this.AddCustomersButton.TabIndex = 3;
@@ -68,7 +72,7 @@
             this.CustomersListBox.ItemHeight = 15;
             this.CustomersListBox.Location = new System.Drawing.Point(3, 22);
             this.CustomersListBox.Name = "CustomersListBox";
-            this.CustomersListBox.Size = new System.Drawing.Size(262, 334);
+            this.CustomersListBox.Size = new System.Drawing.Size(262, 394);
             this.CustomersListBox.TabIndex = 1;
             this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
@@ -128,13 +132,13 @@
             // 
             // addressControl1
             // 
-            address2.Apartment = "";
-            address2.Building = "";
-            address2.City = "";
-            address2.Country = "";
-            address2.Index = "000000";
-            address2.Street = "";
-            this.addressControl1.Address = address2;
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = "000000";
+            address1.Street = "";
+            this.addressControl1.Address = address1;
             this.addressControl1.Location = new System.Drawing.Point(271, 131);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(421, 160);
@@ -151,10 +155,53 @@
             this.IsPriorityCheckBox.UseVisualStyleBackColor = true;
             this.IsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.IsPriorityCheckBox_CheckedChanged);
             // 
+            // DiscountsLabel
+            // 
+            this.DiscountsLabel.AutoSize = true;
+            this.DiscountsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DiscountsLabel.Location = new System.Drawing.Point(271, 304);
+            this.DiscountsLabel.Name = "DiscountsLabel";
+            this.DiscountsLabel.Size = new System.Drawing.Size(61, 15);
+            this.DiscountsLabel.TabIndex = 9;
+            this.DiscountsLabel.Text = "Discounts";
+            // 
+            // DiscountsListBox
+            // 
+            this.DiscountsListBox.FormattingEnabled = true;
+            this.DiscountsListBox.ItemHeight = 15;
+            this.DiscountsListBox.Location = new System.Drawing.Point(271, 322);
+            this.DiscountsListBox.Name = "DiscountsListBox";
+            this.DiscountsListBox.Size = new System.Drawing.Size(241, 94);
+            this.DiscountsListBox.TabIndex = 10;
+            // 
+            // AddDiscountButton
+            // 
+            this.AddDiscountButton.Location = new System.Drawing.Point(518, 322);
+            this.AddDiscountButton.Name = "AddDiscountButton";
+            this.AddDiscountButton.Size = new System.Drawing.Size(98, 44);
+            this.AddDiscountButton.TabIndex = 11;
+            this.AddDiscountButton.Text = "Add";
+            this.AddDiscountButton.UseVisualStyleBackColor = true;
+            this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
+            // 
+            // RemoveDiscountButton
+            // 
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(518, 372);
+            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(98, 44);
+            this.RemoveDiscountButton.TabIndex = 11;
+            this.RemoveDiscountButton.Text = "Remove";
+            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
+            // 
             // CustomerTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RemoveDiscountButton);
+            this.Controls.Add(this.AddDiscountButton);
+            this.Controls.Add(this.DiscountsListBox);
+            this.Controls.Add(this.DiscountsLabel);
             this.Controls.Add(this.IsPriorityCheckBox);
             this.Controls.Add(this.addressControl1);
             this.Controls.Add(this.SelectedCustomerLabel);
@@ -167,7 +214,7 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.IdTextBox);
             this.Name = "CustomerTab";
-            this.Size = new System.Drawing.Size(670, 408);
+            this.Size = new System.Drawing.Size(675, 467);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +232,9 @@
         private Label SelectedCustomerLabel;
         private AddressControl addressControl1;
         private CheckBox IsPriorityCheckBox;
+        private Label DiscountsLabel;
+        private ListBox DiscountsListBox;
+        private Button AddDiscountButton;
+        private Button RemoveDiscountButton;
     }
 }

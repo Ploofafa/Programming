@@ -40,6 +40,9 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private bool _IsPriority;
 
+        /// <summary>
+        /// Хранит список доступных скидок у покупателя
+        /// </summary>
         private List<IDiscount> _discounts;
 
         /// <summary>
@@ -54,6 +57,7 @@ namespace ObjectOrientedPractics.Model.Classes
             Address = new Address();
             _orders = new List<Order>();
             _IsPriority = false;
+            _discounts = new List<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>
@@ -62,7 +66,8 @@ namespace ObjectOrientedPractics.Model.Classes
         /// <param name="fullName">Полное ФИО покупателя. Не более 200 символов.</param>
         /// <param name="address">Полный адрес покупателя.</param>
         public Customer(string fullName, Address address,
-                        Cart cart, List<Order> orders, bool isPriority)
+                        Cart cart, List<Order> orders, bool isPriority,
+                        List<IDiscount> discounts)
         {
             FullName = fullName;
             Address = address;
@@ -70,7 +75,12 @@ namespace ObjectOrientedPractics.Model.Classes
             _orders = orders;
             _id = IdGenerator.GetNextId();
             _IsPriority = isPriority;
-            _discounts = new List<IDiscount> { new PointsDiscount()};
+            _discounts = new List<IDiscount> { new PointsDiscount() };
+
+            foreach (var discount in discounts)
+            {
+                _discounts.Add(discount);
+            }
         }
 
         /// <summary>
@@ -151,6 +161,22 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 _orders = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт список доступных покупателю скидок.
+        /// </summary>
+        public List<IDiscount> Discounts
+        {
+            get
+            {
+                return _discounts;
+            }
+
+            set
+            {
+                _discounts = value;
             }
         }
     }
