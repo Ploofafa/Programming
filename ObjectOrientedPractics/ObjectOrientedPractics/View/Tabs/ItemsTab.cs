@@ -35,6 +35,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private ToolTip _toolTip = new ToolTip();
 
+        public event EventHandler<EventArgs> ItemsChanged; 
+
         /// <summary>
         /// Обновляет название элемента в текстбокса.
         /// </summary>
@@ -68,6 +70,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add($"{_currentItem.Name}");
             ItemsListBox.SelectedIndex = Items.Count - 1;
             UpdateItemInfo();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -90,6 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 Items.RemoveAt(ItemsListBox.SelectedIndex);
                 ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
                 if (ItemsListBox.Items.Count != 0)
                 {
                     ItemsListBox.SelectedIndex = 0;
@@ -160,6 +164,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _currentItem.Cost = double.Parse(CostTextBox.Text);
                     _toolTip.SetToolTip(CostTextBox, "");
                     CostTextBox.BackColor = AppColors.NormalColor;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
 
                 catch (Exception exception)
@@ -181,6 +186,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _toolTip.SetToolTip(NameTextBox, "");
                     NameTextBox.BackColor = AppColors.NormalColor;
                     UpdateItemInfo();
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
 
                 catch (Exception exception)
@@ -200,6 +206,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _currentItem.Info = Convert.ToString(DescriptionTextBox.Text);
                     _toolTip.SetToolTip(DescriptionTextBox, "");
                     DescriptionTextBox.BackColor = AppColors.NormalColor;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
 
                 catch (Exception exception)
@@ -212,7 +219,22 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _currentItem.Category = (Category)ItemCategoryComboBox.SelectedIndex;
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
+            try
+            {
+                if (_currentItem == null)
+                {
+                    return;
+                }
+                _currentItem.Category = (Category)ItemCategoryComboBox.SelectedIndex;
+                ItemCategoryComboBox.BackColor = AppColors.NormalColor;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                _toolTip.SetToolTip(ItemCategoryComboBox, ex.Message);
+                ItemCategoryComboBox.BackColor = AppColors.ErrorColor;
+            }
         }
     }
 }

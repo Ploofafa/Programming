@@ -282,7 +282,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Задаёт список товаров.
+        /// Возвращает и задаёт список товаров.
         /// </summary>
         public List<Item> Items
         {
@@ -290,16 +290,26 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items = value;
             }
+
+            get
+            {
+                return _items;
+            }
         }
 
         /// <summary>
-        /// Задаёт список покупателей.
+        /// Возвращает и задаёт список покупателей.
         /// </summary>
         public List<Customer> Customers
         {
             set
             {
                 _customers = value;
+            }
+
+            get
+            {
+                return _customers;
             }
         }
 

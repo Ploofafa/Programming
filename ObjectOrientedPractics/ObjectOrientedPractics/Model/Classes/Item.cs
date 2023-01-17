@@ -35,6 +35,12 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private double _cost;
 
+        public event EventHandler<EventArgs> NameChanged;
+
+        public event EventHandler<EventArgs> CostChanged;
+
+        public event EventHandler<EventArgs> InfoChanged;
+
         /// <summary>
         /// Создаёт пустой экземпляр класса <see cref="Item"/>.
         /// </summary>
@@ -74,7 +80,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 201);
-                _name = value;
+                if (_name != value)
+                {
+                    _name = value;
+                    NameChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
 
         }
@@ -92,7 +102,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 1001);
-                _info = value;
+                if(_info != value)
+                {
+                    _info = value;
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
+                }
 
             }
         }
@@ -110,7 +124,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertValueInRange(value, 0, 100000);
-                _cost = value;
+                if (_cost != value)
+                {
+                    _cost = value;
+                    CostChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
 
         }

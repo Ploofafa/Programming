@@ -42,6 +42,8 @@ namespace ObjectOrientedPractics.Model.Classes
         /// </summary>
         private string _apartment;
 
+        public EventHandler<EventArgs> AddressChanged;
+
         /// <summary>
         /// Пустой конструктор, создаёт экземпляр класса Address с полями по умолчанию.
         /// </summary>
@@ -87,7 +89,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertOnIndex(value, 6);
-                _index = value;
+                if (_index != value)
+                {
+                    _index = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -104,7 +110,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 50);
-                _country = value;
+                if (_country != value)
+                {
+                    _country = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -121,7 +131,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 50);
-                _city = value;
+                if(_city != value)
+                {
+                    _city = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -138,7 +152,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 100);
-                _street = value;
+                if (_street != value)
+                {
+                    _street = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         } 
 
@@ -155,7 +173,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 10);
-                _building = value;
+                if (_building != value)
+                {
+                    _building = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -172,7 +194,11 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 ValueValidator.AssertStringOnMaxLength(value, 10);
-                _apartment = value;
+                if (_apartment != value)
+                {
+                    _apartment = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
     }
