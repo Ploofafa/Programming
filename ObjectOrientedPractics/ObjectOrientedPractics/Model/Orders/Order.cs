@@ -51,6 +51,16 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         private bool _isPriority;
 
+        /// <summary>
+        /// Хранит сумму скидки заказа.
+        /// </summary>
+        private double _discountAmount;
+
+        /// <summary>
+        /// Хранит итоговую стоимость закаказа.
+        /// </summary>
+        private double _total;
+
         public Order()
         {
             _id = IdGenerator.GetNextId();
@@ -113,6 +123,22 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         public bool IsPriority { get; set; }
 
+        /// <summary>
+        /// Возвращает и задаёт сумму скидки.
+        /// </summary>
+        public double DiscountAmount
+        {
+            get
+            {
+                return _discountAmount;
+            }
+
+            set
+            {
+                _discountAmount = value;
+            }
+        }
+
         public Address Address
         {
             get
@@ -143,23 +169,13 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// Задаёт и возвращает сумму скидки.
-        /// </summary>
-        public double DiscountAmount { get; set; }
-
-        /// <summary>
-        /// Задаёт и возвращают итоговую стоимость заказа.
+        /// Возвращает итоговую стоимость заказа.
         /// </summary>
         public double Total
         {
             get
             {
-                return _amount - DiscountAmount;
-            }
-
-            set
-            {
-                Total = _amount;
+                return _amount - _discountAmount;
             }
         }
 

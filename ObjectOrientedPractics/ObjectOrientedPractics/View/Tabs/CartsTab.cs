@@ -41,6 +41,9 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CartListBox.Items.Count != 0 && _currentCustomer != null &&
                 CustomerComboBox.SelectedIndex != -1)
             {
+                UpdateDiscounts();
+                UpdateDiscountCheckedListBox();
+
                 if(_currentCustomer.IsPriority == false)
                 {
                     Order order = new Order();
@@ -49,6 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     order.Status = OrderStatus.New;
                     order.CustomerName = _currentCustomer.FullName;
                     order.IsPriority = false;
+                    order.DiscountAmount = ApplyDiscounts();
                     _currentCustomer.Orders.Add(order);
                 }
 
@@ -60,12 +64,34 @@ namespace ObjectOrientedPractics.View.Tabs
                     order.Status = OrderStatus.New;
                     order.CustomerName = _currentCustomer.FullName;
                     order.IsPriority = true;
+                    order.DiscountAmount = ApplyDiscounts();
                     _currentCustomer.Orders.Add(order);
                 }
                 
-                NumberLabel.Text = "0";
+                ClearNumbers();
                 ClearCart();
             }
+        }
+
+        /// <summary>
+        /// Обновляет все скидки после покупки.
+        /// </summary>
+        private void UpdateDiscounts()
+        {
+            for(var i = 0; i < _currentCustomer.Discounts.Count; i++)
+            {
+                _currentCustomer.Discounts[i].Update(_currentCustomer.Cart.Items);
+            }
+        }
+
+        /// <summary>
+        /// Обнуляет все значения стоимости для пустой корзины.
+        /// </summary>
+        private void ClearNumbers()
+        {
+            NumberLabel.Text = "0";
+            DiscountNumberLabel.Text = "0";
+            TotalNumberLabel.Text = "0";
         }
 
         /// <summary>
@@ -76,6 +102,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CartListBox.Items.Clear();
             ItemsListBox.Items.Clear();
             CustomerComboBox.Items.Clear();
+            DiscountsCheckedListBox.Items.Clear();
             UpdateListBox();
             UpdateComboBox();
             CustomerComboBox.SelectedIndex = -1;
@@ -145,8 +172,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 else
                 {
                     CartListBox.Items.Clear();
-                    NumberLabel.Text = "0";
+                    ClearNumbers();
                 }
+
+                UpdateDiscountCheckedListBox();
+                UpdateDiscountNumber();
             }
         }
         
@@ -159,7 +189,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             else
             {
-                NumberLabel.Text = "0";
+                ClearNumbers();
             }
         }
 
@@ -195,6 +225,63 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Обновляет список доступных скидок.
+        /// </summary>
+        private void UpdateDiscountCheckedListBox()
+        {
+            if (CustomerComboBox.SelectedIndex != -1)
+            {
+                DiscountsCheckedListBox.Items.Clear();
+
+                for (var i = 0; i < _currentCustomer.Discounts.Count; i++)
+                {
+                    DiscountsCheckedListBox.Items.Add
+                        (_currentCustomer.Discounts[i].Info);
+                    DiscountsCheckedListBox.SetItemChecked(i, true);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Применяет к заказу все выбранные скидки.
+        /// </summary>
+        private double ApplyDiscounts()
+        {
+            for (var i = 0; i < _currentCustomer.Discounts.Count; i++)
+            {
+                double discountAmount = 0;
+                if (DiscountsCheckedListBox.GetItemChecked(i) == true)
+                {
+                    discountAmount  += _currentCustomer.Discounts[i].Calculate(
+                        _currentCustomer.Cart.Items);
+                }
+                return discountAmount;
+            }
+
+            return 0;
+        }
+
+        private void UpdateDiscountNumber()
+        {
+            if (CustomerComboBox.SelectedIndex != -1 && _currentCustomer.Cart.Items.Count > 0)
+            {
+                double discountNumber = 0;
+                for (var i = 0; i < _currentCustomer.Discounts.Count ; i++)
+                {
+                    if (DiscountsCheckedListBox.GetItemChecked(i) == true)
+                    {
+                        discountNumber += _currentCustomer.Discounts[i].Calculate(
+                            _currentCustomer.Cart.Items);
+                    }
+                }
+
+                DiscountNumberLabel.Text = Convert.ToString(Math.Ceiling(discountNumber));
+                TotalNumberLabel.Text = Convert.ToString(
+                    _currentCustomer.Cart.Amount - Math.Ceiling(discountNumber));
+            }
+        }
+
+        /// <summary>
         /// Задаёт список товаров.
         /// </summary>
         public List<Item> Items
@@ -220,12 +307,13 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
-            NumberLabel.Text = "0";
+            ClearNumbers();
         }
 
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
             AddItemToCart();
+            UpdateDiscountNumber();
         }
 
         private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -236,16 +324,23 @@ namespace ObjectOrientedPractics.View.Tabs
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             RemoveItemFromCart();
+            UpdateDiscountNumber(); 
         }
 
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
             ClearCart();
+            ClearNumbers();
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             CreateOrder();
+        }
+
+        private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiscountNumber();
         }
     }
 }

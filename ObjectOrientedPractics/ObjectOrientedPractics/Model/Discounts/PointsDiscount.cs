@@ -86,14 +86,14 @@ namespace ObjectOrientedPractics.Model.Discounts
 
             if (_points <= Math.Floor(amount * 0.3))
             {
-                amount -= _points;
+                amount = amount - _points;
                 _points = 0;
                 return amount;
             }
 
             else
             {
-                _points -= Math.Ceiling(amount * 0.3);
+                _points = _points - Math.Ceiling(amount * 0.3);
                 return amount - Math.Ceiling(amount * 0.3);
             }
         }

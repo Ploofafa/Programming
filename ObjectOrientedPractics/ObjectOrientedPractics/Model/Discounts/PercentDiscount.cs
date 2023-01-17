@@ -134,7 +134,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
 
                 amount -= amount * _discount;
-                return Math.Floor(amount);
+                return Math.Ceiling(amount);
             }
 
             else

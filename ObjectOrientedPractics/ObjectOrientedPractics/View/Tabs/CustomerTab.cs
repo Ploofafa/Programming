@@ -229,7 +229,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
         {
-            if (CustomersListBox.SelectedIndex != -1 && DiscountsListBox.SelectedIndex != 0)
+            if (DiscountsListBox.SelectedIndex != -1 && DiscountsListBox.SelectedIndex != 0)
             {
                 _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
                 DiscountsListBox.Items.RemoveAt(DiscountsListBox.SelectedIndex);
