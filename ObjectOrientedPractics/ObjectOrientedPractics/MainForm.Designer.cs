@@ -38,11 +38,14 @@
             this.cartsTab1 = new ObjectOrientedPractics.View.Tabs.CartsTab();
             this.OrdersTabPage = new System.Windows.Forms.TabPage();
             this.ordersTab1 = new ObjectOrientedPractics.View.Tabs.OrdersTab();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.discountsTab1 = new ObjectOrientedPractics.View.Tabs.DiscountsTab();
             this.TabControl.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
             this.CustomersTabPage.SuspendLayout();
             this.CartsTabPage.SuspendLayout();
             this.OrdersTabPage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -54,6 +57,7 @@
             this.TabControl.Controls.Add(this.CustomersTabPage);
             this.TabControl.Controls.Add(this.CartsTabPage);
             this.TabControl.Controls.Add(this.OrdersTabPage);
+            this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
@@ -135,6 +139,23 @@
             this.ordersTab1.Size = new System.Drawing.Size(812, 524);
             this.ordersTab1.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.discountsTab1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(812, 524);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "test5";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // discountsTab1
+            // 
+            this.discountsTab1.Location = new System.Drawing.Point(0, 0);
+            this.discountsTab1.Name = "discountsTab1";
+            this.discountsTab1.Size = new System.Drawing.Size(521, 263);
+            this.discountsTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -149,6 +170,7 @@
             this.CustomersTabPage.ResumeLayout(false);
             this.CartsTabPage.ResumeLayout(false);
             this.OrdersTabPage.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -164,5 +186,7 @@
         private View.Tabs.CartsTab cartsTab1;
         private TabPage OrdersTabPage;
         private View.Tabs.OrdersTab ordersTab1;
+        private TabPage tabPage1;
+        private View.Tabs.DiscountsTab discountsTab1;
     }
 }

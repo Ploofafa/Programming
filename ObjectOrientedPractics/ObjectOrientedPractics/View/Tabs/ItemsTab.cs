@@ -122,7 +122,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
-            foreach (int index in Enum.GetValues(typeof(Category)))
+            foreach (var index in Enum.GetValues(typeof(Category)))
             {
                 ItemCategoryComboBox.Items.Add(Enum.GetName(typeof(Category), index));
             }

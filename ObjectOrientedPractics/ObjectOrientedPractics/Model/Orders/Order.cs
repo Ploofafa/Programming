@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Model.Enums;
+﻿using ObjectOrientedPractics.Model.Classes;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model.Classes
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class Order
     {
@@ -14,7 +15,7 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Хранит уникальный идентификатор заказа.
         /// </summary>
         private readonly int _id;
-        
+
         /// <summary>
         /// Хранит статус заказа.
         /// </summary>
@@ -44,6 +45,21 @@ namespace ObjectOrientedPractics.Model.Classes
         /// Хранит имя покупателя.
         /// </summary>
         private string _customerName;
+
+        /// <summary>
+        /// Хранит статус приоритета заказа.
+        /// </summary>
+        private bool _isPriority;
+
+        /// <summary>
+        /// Хранит сумму скидки заказа.
+        /// </summary>
+        private double _discountAmount;
+
+        /// <summary>
+        /// Хранит итоговую стоимость закаказа.
+        /// </summary>
+        private double _total;
 
         public Order()
         {
@@ -102,6 +118,27 @@ namespace ObjectOrientedPractics.Model.Classes
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт статус приоритета заказа.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт сумму скидки.
+        /// </summary>
+        public double DiscountAmount
+        {
+            get
+            {
+                return _discountAmount;
+            }
+
+            set
+            {
+                _discountAmount = value;
+            }
+        }
+
         public Address Address
         {
             get
@@ -128,6 +165,17 @@ namespace ObjectOrientedPractics.Model.Classes
             set
             {
                 _items = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает итоговую стоимость заказа.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return _amount - _discountAmount;
             }
         }
 
