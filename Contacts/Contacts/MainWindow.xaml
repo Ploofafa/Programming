@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Contacts" Height="450" Width="800" Icon="/contacts_96x96.ico">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Edit Contact" Margin="15">
+            <Grid>
+                <TextBox HorizontalAlignment="Left" Margin="3,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="3,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Phone Number:"/>
+                <TextBox HorizontalAlignment="Left" Margin="3,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,91,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Margin="3,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Read Contact" Margin="15">
+            <Grid/>
+        </GroupBox>
     </Grid>
 </Window>
