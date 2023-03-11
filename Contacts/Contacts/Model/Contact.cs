@@ -66,7 +66,7 @@ namespace Contacts.Model
         {
             get
             {
-                return PhoneNumber;
+                return _phoneNumber;
             }
 
             set

@@ -16,16 +16,23 @@
         </Grid.RowDefinitions>
         <GroupBox Header="Edit Contact" Margin="15">
             <Grid>
-                <TextBox HorizontalAlignment="Left" Margin="3,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+                <TextBox HorizontalAlignment="Left" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" Margin="3,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
                 <TextBlock HorizontalAlignment="Left" Margin="3,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
                 <TextBlock HorizontalAlignment="Left" Margin="3,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Phone Number:"/>
-                <TextBox HorizontalAlignment="Left" Margin="3,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+                <TextBox HorizontalAlignment="Left" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" Margin="3,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
                 <TextBlock HorizontalAlignment="Left" Margin="3,91,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Margin="3,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
+                <TextBox HorizontalAlignment="Left" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" Margin="3,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Read Contact" Margin="15">
-            <Grid/>
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="3,3,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,24,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Phone Number:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="3,66,0,0" TextWrapping="Wrap" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,87,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="3,108,0,0" TextWrapping="Wrap" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>
