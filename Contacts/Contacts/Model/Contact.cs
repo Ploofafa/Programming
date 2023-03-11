@@ -9,7 +9,7 @@ namespace Contacts.Model
     /// <summary>
     /// Класс описывающий контакт записной книги.
     /// </summary>
-    internal class Contact
+    public class Contact
     {
         /// <summary>
         /// Поле, хранящее имя контакта.
