@@ -25,7 +25,7 @@ namespace Contacts.Model
         /// Поле, хранящее почту контакта.
         /// </summary>
         private string _email;
-        
+
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>

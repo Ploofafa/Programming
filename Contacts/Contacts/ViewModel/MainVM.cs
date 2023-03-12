@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Contacts.Model;
+using Contacts.Model.Services;
 
 namespace Contacts.ViewModel
 {
@@ -24,6 +26,37 @@ namespace Contacts.ViewModel
         /// для отслеживания состояния объекта в реальном времени.
         /// </summary>
         private Contact _contact;
+
+        private SaveCommand _saveCommand;
+
+        public SaveCommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ??
+                    (_saveCommand = new SaveCommand(obj =>
+                    {
+                        ContactSerializer.SaveContact(_contact);
+                    }));
+            }
+        }
+
+        private LoadCommand _loadCommand;
+
+        public LoadCommand LoadCommand
+        {
+            get
+            {
+                return _loadCommand ??
+                    (_loadCommand = new LoadCommand(obj =>
+                    {
+                        var contact = ContactSerializer.LoadContact(_contact);
+                        Name = contact.Name;
+                        Email = contact.Email;
+                        PhoneNumber = contact.PhoneNumber;
+                    }));
+            }
+        }
 
         /// <summary>
         /// Коструктор класса <see cref="MainVM"/> с созданием объекта <see cref="Contact"/>.

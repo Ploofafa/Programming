@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Contacts.Model.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Contacts.Model.Services;
 using System.Windows.Input;
 
-namespace Contacts.Model
+namespace Contacts.ViewModel
 {
-    class SaveCommand : ICommand
+    class LoadCommand : ICommand
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
 
-        public SaveCommand(Action<object> execute)
+        public LoadCommand(Action<object> execute)
         {
             _execute = execute;
         }
