@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -27,36 +27,15 @@ namespace Contacts.ViewModel
         /// </summary>
         private Contact _contact;
 
+        /// <summary>
+        /// Переменная хранящая экземпляр класса <see cref="SaveCommand"/>.
+        /// </summary>
         private SaveCommand _saveCommand;
 
-        public SaveCommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ??
-                    (_saveCommand = new SaveCommand(obj =>
-                    {
-                        ContactSerializer.SaveContact(_contact);
-                    }));
-            }
-        }
-
+        /// <summary>
+        /// Переменная хранящая экземпляр класса <see cref="LoadCommand"/>.
+        /// </summary>
         private LoadCommand _loadCommand;
-
-        public LoadCommand LoadCommand
-        {
-            get
-            {
-                return _loadCommand ??
-                    (_loadCommand = new LoadCommand(obj =>
-                    {
-                        var contact = ContactSerializer.LoadContact(_contact);
-                        Name = contact.Name;
-                        Email = contact.Email;
-                        PhoneNumber = contact.PhoneNumber;
-                    }));
-            }
-        }
 
         /// <summary>
         /// Коструктор класса <see cref="MainVM"/> с созданием объекта <see cref="Contact"/>.
@@ -113,6 +92,47 @@ namespace Contacts.ViewModel
             {
                 _contact.PhoneNumber = value;
                 OnPropertyChanged(nameof(PhoneNumber));
+            }
+        }
+
+        /// <summary>
+        /// Возвращает команду для сохранения контакта.
+        /// </summary>
+        public SaveCommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ??
+                    (_saveCommand = new SaveCommand(obj =>
+                    {
+                        ContactSerializer.SaveContact(_contact);
+                    },
+                    obj =>
+                    {
+                        return true;
+                    }));
+            }
+        }
+
+        /// <summary>
+        /// Возвращает метод для загрузки контакта.
+        /// </summary>
+        public LoadCommand LoadCommand
+        {
+            get
+            {
+                return _loadCommand ??
+                    (_loadCommand = new LoadCommand(obj =>
+                    {
+                        var contact = ContactSerializer.LoadContact(_contact);
+                        Name = contact.Name;
+                        Email = contact.Email;
+                        PhoneNumber = contact.PhoneNumber;
+                    },
+                    obj =>
+                    {
+                        return true;
+                    }));
             }
         }
 

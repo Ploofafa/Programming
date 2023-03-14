@@ -15,12 +15,15 @@ namespace Contacts.Model.Services
     public static class ContactSerializer
     {
         /// <summary>
-        /// Хранит путь к файлу сохранения и загрузки.
+        /// Хранит путь к папке сохранения и загрузки.
         /// </summary>
         private static string _folderName = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData) + @"\Contacts";
 
-        private static string _ContactFilePath = Environment.GetFolderPath(
+        /// <summary>
+        /// Хранит путь к файлу сохранения и загрузки
+        /// </summary>
+        private static string _contactFilePath = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData) + @"\Contacts\ContactData";
 
         /// <summary>
@@ -34,9 +37,9 @@ namespace Contacts.Model.Services
                 Directory.CreateDirectory(_folderName);
             }
 
-            if (!File.Exists(_ContactFilePath))
+            if (!File.Exists(_contactFilePath))
             {
-                FileStream fileStream = new FileStream(_ContactFilePath, FileMode.Create);
+                FileStream fileStream = new FileStream(_contactFilePath, FileMode.Create);
                 fileStream.Close();
             }
         }
@@ -48,7 +51,7 @@ namespace Contacts.Model.Services
         public static void SaveContact(Contact contact)
         {
             СheckFile();
-            StreamWriter streamWriter = new StreamWriter(_ContactFilePath);
+            StreamWriter streamWriter = new StreamWriter(_contactFilePath);
             var jsonContact = JsonConvert.SerializeObject(contact);
             streamWriter.Write(jsonContact);
             streamWriter.Close();
@@ -61,7 +64,7 @@ namespace Contacts.Model.Services
         /// <returns></returns>
         public static Contact LoadContact(Contact contact)
         {
-            StreamReader streamReader = new StreamReader(_ContactFilePath);
+            StreamReader streamReader = new StreamReader(_contactFilePath);
             var data = streamReader.ReadToEnd();
             var jsonContact = JsonConvert.DeserializeObject<Contact>(data);
             streamReader.Close();

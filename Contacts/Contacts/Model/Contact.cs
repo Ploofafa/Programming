@@ -62,6 +62,9 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Задаёт и возвращает номер телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get
@@ -75,6 +78,9 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Задаёт и возвращает почту контакта.
+        /// </summary>
         public string Email
         {
             get

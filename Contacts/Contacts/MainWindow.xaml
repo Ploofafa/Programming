@@ -6,35 +6,45 @@
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
         Title="Contacts" MinHeight="365" MinWidth="615" Icon="/contacts_96x96.ico" Height="365" Width="615">
-    <Grid Height="auto" Width="auto">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.12*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Edit Contact" Margin="15,15,15,149" MinHeight="270" Height="auto">
-            <Grid Height="250">
-                <TextBox HorizontalAlignment="Left" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Margin="3,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="3,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Phone Number:"/>
-                <TextBox HorizontalAlignment="Left" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,91,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" Margin="3,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox Grid.Column="1" Header="Read Contact" Margin="15,15,15,149" MinHeight="270" Height="auto">
-            <Grid Height="250">
-                <TextBlock HorizontalAlignment="Left" Margin="3,3,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,24,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Phone Number:"/><LineBreak/><Run/></TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="3,66,0,0" TextWrapping="Wrap" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,87,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="3,108,0,0" TextWrapping="Wrap" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
-            </Grid>
-        </GroupBox>
-        <Button Grid.Column="1" Command="{Binding LoadCommand}" Content="Load" HorizontalAlignment="Left" Margin="208,290,0,15" VerticalAlignment="Top" Width="75" Height="25"/>
-        <Button Grid.Column="1" Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="128,290,0,15" VerticalAlignment="Top" Width="76" Height="25"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Edit Contact" Margin="15">
+                <Grid MinHeight="250">
+                    <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Margin="3,24,3,0" VerticalAlignment="Top"/>
+                    <TextBlock Margin="3,3,0,0" VerticalAlignment="Top" Height="17"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+                    <TextBlock Margin="3,47,0,0" VerticalAlignment="Top" Text="Phone Number:"/>
+                    <TextBox Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="3,68,3,0" VerticalAlignment="Top"/>
+                    <TextBlock Margin="3,91,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
+                    <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" Margin="3,112,3,0" VerticalAlignment="Top"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Read Contact" Margin="15">
+                <Grid MinHeight="250">
+                    <TextBlock Margin="3,3,0,0" Text="Name:" VerticalAlignment="Top"/>
+                    <TextBlock Margin="3,24,0,0" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBlock Margin="3,45,0,0" VerticalAlignment="Top"><Run Text="Phone Number:"/><LineBreak/><Run/></TextBlock>
+                    <TextBlock Margin="3,66,0,0" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBlock Margin="3,87,0,0" Text="Email:" VerticalAlignment="Top"/>
+                    <TextBlock Margin="3,108,0,0" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontWeight="Bold"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding LoadCommand}" Content="Load" Margin="0,0,93,0" Width="75" HorizontalAlignment="Right" Height="25"/>
+                <Button Command="{Binding SaveCommand}" Content="Save" Margin="0,0,15,0" HorizontalAlignment="Right" Width="75" Height="25"/>
+            </Grid>    
+        </StackPanel>
     </Grid>
 </Window>
