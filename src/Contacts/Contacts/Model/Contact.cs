@@ -12,21 +12,6 @@ namespace Contacts.Model
     public class Contact
     {
         /// <summary>
-        /// Поле, хранящее имя контакта.
-        /// </summary>
-        private string _name;
-
-        /// <summary>
-        /// Поле, хранящее номер телефона.
-        /// </summary>
-        private string _phoneNumber;
-
-        /// <summary>
-        /// Поле, хранящее почту контакта.
-        /// </summary>
-        private string _email;
-
-        /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
         public Contact()
@@ -49,49 +34,16 @@ namespace Contacts.Model
         /// <summary>
         /// Задаёт и возвращает имя контакта.
         /// </summary>
-        public string Name 
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Задаёт и возвращает номер телефона контакта.
         /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-
-            set
-            {
-                _phoneNumber = value;
-            }
-        }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Задаёт и возвращает почту контакта.
         /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                _email = value;
-            }
-        }
+        public string Email { get; set; }
     }
 }

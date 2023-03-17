@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using Contacts.Model;
 using Contacts.Model.Services;
 
@@ -25,24 +26,23 @@ namespace Contacts.ViewModel
         /// Переменная, хранящая экземпляр класса <see cref="Contact"/>
         /// для отслеживания состояния объекта в реальном времени.
         /// </summary>
-        private Contact _contact;
+        private Contact _contact = new Contact();
 
         /// <summary>
-        /// Переменная хранящая экземпляр класса <see cref="SaveCommand"/>.
+        /// Переменная, хранящая делегат для сохранения.
         /// </summary>
-        private SaveCommand _saveCommand;
-
+        private RelayCommand _saveCommand;
+    
         /// <summary>
-        /// Переменная хранящая экземпляр класса <see cref="LoadCommand"/>.
+        /// Переменная, хранящая делегат для загрузки.
         /// </summary>
-        private LoadCommand _loadCommand;
+        private RelayCommand _loadCommand;
 
         /// <summary>
-        /// Коструктор класса <see cref="MainVM"/> с созданием объекта <see cref="Contact"/>.
+        /// Конструктор класса <see cref="MainVM"/>.
         /// </summary>
         public MainVM()
         {
-            _contact = new Contact();
         }
 
         /// <summary>
@@ -57,8 +57,11 @@ namespace Contacts.ViewModel
 
             set
             {
-                _contact.Name = value;
-                OnPropertyChanged(nameof(Name));
+                if(_contact.Name != value)
+                {
+                    _contact.Name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
             }
         }
 
@@ -74,8 +77,11 @@ namespace Contacts.ViewModel
 
             set
             {
-                _contact.Email = value;
-                OnPropertyChanged(nameof(Email));
+                if (_contact.Email != value)
+                {
+                    _contact.Email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
             }
         }
 
@@ -90,20 +96,24 @@ namespace Contacts.ViewModel
             }
             set
             {
-                _contact.PhoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
+                if (_contact.PhoneNumber != value)
+                {
+                    _contact.PhoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
+                }
+                
             }
         }
 
         /// <summary>
         /// Возвращает команду для сохранения контакта.
         /// </summary>
-        public SaveCommand SaveCommand
+        public RelayCommand SaveCommand
         {
             get
             {
-                return _saveCommand ??
-                    (_saveCommand = new SaveCommand(obj =>
+                return _saveCommand ?? 
+                    (_saveCommand = new RelayCommand(obj =>
                     {
                         ContactSerializer.SaveContact(_contact);
                     },
@@ -117,12 +127,12 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Возвращает метод для загрузки контакта.
         /// </summary>
-        public LoadCommand LoadCommand
+        public RelayCommand LoadCommand
         {
             get
             {
-                return _loadCommand ??
-                    (_loadCommand = new LoadCommand(obj =>
+                return _loadCommand ?? 
+                    (_loadCommand = new RelayCommand(obj =>
                     {
                         var contact = ContactSerializer.LoadContact(_contact);
                         Name = contact.Name;
