@@ -6,12 +6,17 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\employee_24z24.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Serializer\**" />
     <EmbeddedResource Remove="Serializer\**" />
     <None Remove="Serializer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\employee_24z24.ico" />
   </ItemGroup>
 
   <ItemGroup>

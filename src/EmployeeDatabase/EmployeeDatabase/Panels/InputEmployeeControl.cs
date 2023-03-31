@@ -29,7 +29,7 @@ namespace EmployeeDatabase.Panels
         /// Содержит информацию о выбранном работнике.
         /// </summary>
         private Employee _currentEmployee;
-        
+
         /// <summary>
         /// Хранит список работников.
         /// </summary>
@@ -54,7 +54,7 @@ namespace EmployeeDatabase.Panels
                 });
                 EmployeesListBox.Items.AddRange(Employees.ToArray());
             }
-            for(int i = 0; i < Employees.Count; i++)
+            for (int i = 0; i < Employees.Count; i++)
             {
                 EmployeesListBox.Items[i] = Employees[i].FullName;
             }
@@ -129,8 +129,8 @@ namespace EmployeeDatabase.Panels
 
         public InputEmployeeControl()
         {
-            InitializeComponent();     
-            
+            InitializeComponent();
+
         }
 
         private void AddEmployeeButton_Click(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace EmployeeDatabase.Panels
             {
                 try
                 {
-                    _currentEmployee.FullName = Convert.ToString(FullNameTextBox.Text);   
+                    _currentEmployee.FullName = Convert.ToString(FullNameTextBox.Text);
                     _toolTip.SetToolTip(FullNameTextBox, "");
                     FullNameTextBox.BackColor = AppColors.NormalColor;
                     UpdateEmployeeInfo();
@@ -193,7 +193,7 @@ namespace EmployeeDatabase.Panels
                     JobTitleTextBox.BackColor = AppColors.ErrorColor;
                     _toolTip.SetToolTip(JobTitleTextBox, exception.Message);
                 }
-            } 
+            }
         }
 
         private void EmployeeDateTimePicker_ValueChanged(object sender, EventArgs e)

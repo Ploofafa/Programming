@@ -220,7 +220,7 @@ namespace Programming.Model.Panels
         private void RectanglesWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             RectangleWidthTextBox.BackColor = AppColors.NormalColor;
-            if (string.IsNullOrEmpty(RectangleWidthTextBox.Text) == false)
+            if (string.IsNullOrEmpty(RectangleWidthTextBox.Text) == false && RectanglesListBox.Items.Count != 0)
             {
                 try
                 {
@@ -241,7 +241,7 @@ namespace Programming.Model.Panels
         private void RectanglesHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             RectangleHeightTextBox.BackColor = AppColors.NormalColor;
-            if (string.IsNullOrEmpty(RectangleHeightTextBox.Text) == false)
+            if (string.IsNullOrEmpty(RectangleHeightTextBox.Text) == false && RectanglesListBox.Items.Count != 0)
             {
                 try
                 {
@@ -264,7 +264,7 @@ namespace Programming.Model.Panels
         private void RectanglesXTextBox_TextChanged(object sender, EventArgs e)
         {
             RectangleXTextBox.BackColor = AppColors.NormalColor;
-            if (string.IsNullOrEmpty(RectangleXTextBox.Text) == false)
+            if (string.IsNullOrEmpty(RectangleXTextBox.Text) == false && RectanglesListBox.Items.Count != 0)
             {
                 try
                 {
@@ -286,7 +286,7 @@ namespace Programming.Model.Panels
         private void RectanglesYTextBox_TextChanged(object sender, EventArgs e)
         {
             RectangleYTextBox.BackColor = AppColors.NormalColor;
-            if (string.IsNullOrEmpty(RectangleYTextBox.Text) == false)
+            if (string.IsNullOrEmpty(RectangleYTextBox.Text) == false && RectanglesListBox.Items.Count != 0)
             {
                 try
                 {

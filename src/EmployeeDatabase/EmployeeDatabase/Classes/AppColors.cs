@@ -10,7 +10,7 @@ namespace EmployeeDatabase.Classes
     /// <summary>
     /// Хранит данные о цветах.
     /// </summary>
-    public class AppColors
+    public static class AppColors
     {
         /// <summary>
         /// Хранит нормальный цвет текстбокса.

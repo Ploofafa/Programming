@@ -29,29 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.inputEmployeeControl = new EmployeeDatabase.Panels.InputEmployeeControl();
-            this.SuspendLayout();
+            inputEmployeeControl = new Panels.InputEmployeeControl();
+            SuspendLayout();
             // 
             // inputEmployeeControl
             // 
-            this.inputEmployeeControl.Location = new System.Drawing.Point(1, -6);
-            this.inputEmployeeControl.Name = "inputEmployeeControl";
-            this.inputEmployeeControl.Size = new System.Drawing.Size(765, 381);
-            this.inputEmployeeControl.TabIndex = 0;
+            inputEmployeeControl.Dock = DockStyle.Fill;
+            inputEmployeeControl.Employees = null;
+            inputEmployeeControl.Location = new Point(0, 0);
+            inputEmployeeControl.MinimumSize = new Size(717, 397);
+            inputEmployeeControl.Name = "inputEmployeeControl";
+            inputEmployeeControl.Size = new Size(717, 397);
+            inputEmployeeControl.TabIndex = 0;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 397);
-            this.Controls.Add(this.inputEmployeeControl);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainForm";
-            this.Text = "Employee database";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
-            this.Load += new System.EventHandler(this.MainForm_Load_1);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(707, 397);
+            Controls.Add(inputEmployeeControl);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MinimumSize = new Size(723, 436);
+            Name = "MainForm";
+            Text = "Employee database";
+            FormClosed += MainForm_FormClosed;
+            Load += MainForm_Load_1;
+            ResumeLayout(false);
         }
 
         #endregion

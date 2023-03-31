@@ -51,6 +51,7 @@ namespace EmployeeDatabase.Classes
         /// <returns>Возвращает список работников.</returns>
         public static List<Employee> LoadEmployeesToFile()
         {
+            СheckFile();
             StreamReader streamReader = new StreamReader(_fileName);
             var data = streamReader.ReadToEnd();
             var jsonEmployee = JsonConvert.DeserializeObject<List<Employee>>(data);

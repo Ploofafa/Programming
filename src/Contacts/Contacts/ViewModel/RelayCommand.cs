@@ -58,18 +58,18 @@ namespace Contacts.Model
         /// </summary>
         /// <param name="parameter">Метод, который будет передан в делегат.</param>
         /// <returns>Возвращает значение возможности выполнения метода.</returns>
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
-            return this._canExecute(parameter);
+            return this._canExecute(parameter!);
         }
 
         /// <summary>
         /// Выполняет логику команды.
         /// </summary>
         /// <param name="parameter">Выполняемая команда.</param>
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            this._execute(parameter);
+            this._execute(parameter!);
         }
     }
 }
