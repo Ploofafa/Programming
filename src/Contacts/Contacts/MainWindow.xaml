@@ -49,5 +49,41 @@
                 <ListBox Margin="3"/>
             </UniformGrid>
         </DockPanel>
+
+        <DockPanel Grid.Column="1" 
+                     Margin="8"
+                     >
+            <Image Source="Resources/photo_placeholder_100x100.png"
+                   Width="100"
+                   Height="100"
+                   VerticalAlignment="Top"
+                   Margin="3,25,3,3"/>
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" 
+                               Text="Name:" 
+                               Margin="3"/>
+                    <TextBox HorizontalAlignment="Stretch"
+                             Margin="3"/>
+                    <TextBlock HorizontalAlignment="Left" 
+                               Text="Phone Number:" 
+                               Margin="3"/>
+                    <TextBox HorizontalAlignment="Stretch"
+                             Margin="3"/>
+                    <TextBlock Text="Email:" 
+                               HorizontalAlignment="Left" 
+                               Margin="3"/>
+                    <TextBox HorizontalAlignment="Stretch"
+                             Margin="3"/>
+                    <Button Content="Apply"
+                            Margin="3,50,0,0"
+                            Height="25"
+                            Width="75"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
+
     </Grid>
 </Window>
