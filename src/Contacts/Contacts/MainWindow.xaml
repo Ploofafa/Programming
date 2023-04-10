@@ -11,63 +11,43 @@
         Icon="/contacts_96x96.ico" 
         Height="365" 
         Width="615">
-    <Grid VerticalAlignment="Stretch" Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <GroupBox
-                Header="Edit Contact" 
-                Grid.Column="0"
-                Grid.Row="0"
-                Margin="3">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Left" Height="17" Text="Name:" Margin="3"/>
-                    <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                    <TextBlock HorizontalAlignment="Left" Text="Phone Number:" Margin="3"/>
-                    <TextBox Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                    <TextBlock Text="Email:" HorizontalAlignment="Left" Margin="3"/>
-                    <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Grid.Column="1" Header="Read Contact" Margin="3">
-                <StackPanel>
-                    <TextBlock Text="Name:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                    <TextBlock Text="Phone Number:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                    <TextBlock Text="Email:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                </StackPanel>
-            </GroupBox>
-        </Grid>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Command="{Binding LoadCommand}" 
-                    Content="Load" 
-                    Width="75"  
-                    Height="25"
-                    Margin="3"/>
-            <Button Command="{Binding SaveCommand}" 
-                    Content="Save"
-                    Width="75" 
-                    Height="25"/>
-        </StackPanel>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter Width="3"
+                      Grid.Column="1"
+                      Background="White"
+                      HorizontalAlignment="Left"/>
+        <Rectangle Fill="#f8f8f8" Grid.Column="0"/>
+        <DockPanel Margin="8">
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock Margin="3" 
+                           Text="Find:"/>
+                <TextBox Margin="3"/>
+            </DockPanel>
+            <UniformGrid Columns="3" 
+                         DockPanel.Dock="Bottom">
+                <Button Content="Add"
+                        Margin="3"
+                        Height="25"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch"/>
+                <Button Content="Edit"
+                        Margin="3"
+                        Height="25"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch"/>
+                <Button Content="Delete"
+                        Margin="3"
+                        Height="25"
+                        MinWidth="50"
+                        HorizontalAlignment="Stretch"/>
+            </UniformGrid>
+            <UniformGrid>
+                <ListBox Margin="3"/>
+            </UniformGrid>
+        </DockPanel>
     </Grid>
 </Window>
