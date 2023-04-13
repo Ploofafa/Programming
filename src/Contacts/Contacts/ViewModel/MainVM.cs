@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,21 +98,32 @@ namespace Contacts.ViewModel
             {
                 if (IsVisible == true && CloneContact != null)
                 {
-                    _selectedContact.Name = CloneContact.Name;
-                    _selectedContact.Email = CloneContact.Email;
-                    _selectedContact.PhoneNumber = CloneContact.PhoneNumber;
-                    CloneContact = null;
-                    IsVisible = false;
-                    IsReadOnly = true;
+                    UndoChanges();
                 }
-                else if (Contacts.IndexOf(_selectedContact) == -1)
+                else if (Contacts.IndexOf(_selectedContact) == -1 && Contacts.Count > 0)
                 {
-                    IsVisible = false;
-                    IsReadOnly = true;
+                    UndoCreate();
                 }
                 _selectedContact = value;
                 OnPropertyChanged(nameof(SelectedContact));
             }
+        }
+
+        private void UndoChanges()
+        {
+            _selectedContact.Name = CloneContact.Name;
+            _selectedContact.Email = CloneContact.Email;
+            _selectedContact.PhoneNumber = CloneContact.PhoneNumber;
+            CloneContact = null;
+            IsVisible = false;
+            IsReadOnly = true;
+        }
+
+        private void UndoCreate()
+        {
+            _selectedContact = null;
+            IsVisible = false;
+            IsReadOnly = true;
         }
 
         public RelayCommand AddCommand
@@ -135,20 +147,25 @@ namespace Contacts.ViewModel
                 {
                     int index = Contacts.IndexOf(SelectedContact);
                     Contacts.Remove(SelectedContact);
-                    if (Contacts.Count > 0 && Contacts.Count - 1 >= index)
-                    {
-                        SelectedContact = Contacts[index];
-                    }
-                    else if (Contacts.Count >= 1)
-                    {
-                        SelectedContact = Contacts[index - 1];
-                    }
-                    else
-                    {
-                        SelectedContact = null;
-                    }
+                    ChangeSelectAfterRemove(index);
                 }, 
                     (obj) => Contacts.Count > 0 && SelectedContact != null);
+            }
+        }
+
+        private void ChangeSelectAfterRemove(int index)
+        {
+            if (Contacts.Count > 0 && Contacts.Count - 1 >= index)
+            {
+                SelectedContact = Contacts[index];
+            }
+            else if (Contacts.Count >= 1)
+            {
+                SelectedContact = Contacts[index - 1];
+            }
+            else
+            {
+                SelectedContact = null;
             }
         }
 
