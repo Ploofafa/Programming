@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -48,12 +49,12 @@ namespace Contacts.Model.Services
         /// Метод, который записывает контакт в файл.
         /// </summary>
         /// <param name="contact">Контакт для сохранения.</param>
-        public static void SaveContact(Contact contact)
+        public static void SaveContacts(ObservableCollection<Contact> contacts)
         {
             СheckFile();
             StreamWriter streamWriter = new StreamWriter(_contactFilePath);
-            var jsonContact = JsonConvert.SerializeObject(contact);
-            streamWriter.Write(jsonContact);
+            var jsonContacts = JsonConvert.SerializeObject(contacts);
+            streamWriter.Write(jsonContacts);
             streamWriter.Close();
         }
 
@@ -62,18 +63,19 @@ namespace Contacts.Model.Services
         /// </summary>
         /// <param name="contact">Загруженный контакт.</param>
         /// <returns></returns>
-        public static Contact LoadContact(Contact contact)
+        public static ObservableCollection<Contact> LoadContact()
         {
+            СheckFile();
             StreamReader streamReader = new StreamReader(_contactFilePath);
             var data = streamReader.ReadToEnd();
-            var jsonContact = JsonConvert.DeserializeObject<Contact>(data);
+            var jsonContacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(data);
             streamReader.Close();
-            if( jsonContact == null)
+            if( jsonContacts == null)
             {
-                return new Contact();
+                return new ObservableCollection<Contact>();
             }
 
-            return jsonContact;
+            return jsonContacts;
         }
     }
 }

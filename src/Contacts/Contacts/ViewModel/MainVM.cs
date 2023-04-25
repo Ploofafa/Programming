@@ -1,12 +1,19 @@
 ﻿    using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Media.Media3D;
 using Contacts.Model;
 using Contacts.Model.Services;
 
@@ -18,141 +25,256 @@ namespace Contacts.ViewModel
     class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// Событие для отслеживания изменений в GUI.
+        /// Хранит выбранный из <see cref="ListBox"/> экземпляр класса <see cref="Contact"/> в 
+        /// <see cref="ObservableCollection{Contact}"/> для связи с View.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Contact _selectedContact;
 
         /// <summary>
-        /// Переменная, хранящая экземпляр класса <see cref="Contact"/>
-        /// для отслеживания состояния объекта в реальном времени.
+        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
+        /// Реализует команду добавления контакта в коллекцию.
         /// </summary>
-        private Contact _contact = new Contact();
+        private RelayCommand _addCommand;
 
         /// <summary>
-        /// Переменная, хранящая делегат для сохранения.
+        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
+        /// Реализует команду удаления контакта из коллекции.
         /// </summary>
-        private RelayCommand _saveCommand;
-    
-        /// <summary>
-        /// Переменная, хранящая делегат для загрузки.
-        /// </summary>
-        private RelayCommand _loadCommand;
+        private RelayCommand _removeCommand;
 
         /// <summary>
-        /// Конструктор класса <see cref="MainVM"/>.
+        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
+        /// Реализует команду редактирования контакта в коллекции.
         /// </summary>
+        private RelayCommand _editCommand;
+
+        /// <summary>
+        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
+        /// Реализует команду для применения изменений контакта в коллекции.
+        /// </summary>
+        private RelayCommand _applyCommand;
+
+        /// <summary>
+        /// Задаёт и возвращат клон экземпляра <see cref="Contact"/> выбранный в
+        /// <see cref="ListBox"/> для присваивания его значений при отмене редактирования
+        /// экземпляру в <see cref="ObservableCollection{Contact}"/>.
+        /// </summary>
+        private Contact CloneContact { get; set; }
+
+        /// <summary>
+        /// Поле, хранящее значение видимости и читаемости 
+        /// элементов управления, которые могут храниться.
+        /// </summary>
+        private bool _isReadOnly = true;
+
+        /// <summary>
+        /// Коллекция экземпляров класса <see cref="Contact"/>.
+        /// </summary>
+        public ObservableCollection<Contact> Contacts{ get; set; } = new ObservableCollection<Contact>();
+
+        /// <summary>
+        /// Задаёт и возвращает видимость кнопки Apply.
+        /// </summary>
+        public bool IsVisible
+        {
+            get
+            {
+                return !_isReadOnly;
+            }
+
+            private set
+            {
+                _isReadOnly = !value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Задаёт и возвращает доступность на изменение текстовых полей.
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+
+            private set
+            {
+                _isReadOnly = value;
+                OnPropertyChanged(nameof(IsReadOnly));
+            }
+        }
+
+        /// <summary>
+        /// Задаёт и возвращает выбранного контакта в листбоксе.
+        /// </summary>
+        public Contact SelectedContact
+        {
+            get
+            {
+                return _selectedContact;
+            }
+            set
+            {
+                if (IsVisible == true && CloneContact != null)
+                {
+                    UndoChanges();
+                }
+                else if (Contacts.IndexOf(_selectedContact) == -1 && Contacts.Count > 0)
+                {
+                    UndoCreate();
+                }
+                _selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+            }
+        }
+
+        /// <summary>
+        /// Метод для отмены изменений при редактировании.
+        /// </summary>
+        private void UndoChanges()
+        {
+            _selectedContact.Name = CloneContact.Name;
+            _selectedContact.Email = CloneContact.Email;
+            _selectedContact.PhoneNumber = CloneContact.PhoneNumber;
+            CloneContact = null;
+            IsVisible = false;
+            IsReadOnly = true;
+        }
+        
+        /// <summary>
+        /// Метод для отмены создания контакта.
+        /// </summary>
+        private void UndoCreate()
+        {
+            _selectedContact = null;
+            IsVisible = false;
+            IsReadOnly = true;
+        }
+
+        /// <summary>
+        /// Команда для добавления контакта в список.
+        /// </summary>
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                return _addCommand ?? new RelayCommand(obj =>
+                {
+                    IsVisible = true;
+                    IsReadOnly = false;
+                    SelectedContact  = new Contact();
+                });
+            }
+        }
+
+        /// <summary>
+        /// Команда для удаления контакта из списка.
+        /// </summary>
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ?? new RelayCommand(obj => 
+                {
+                    int index = Contacts.IndexOf(SelectedContact);
+                    Contacts.Remove(SelectedContact);
+                    ChangeSelectAfterRemove(index);
+                }, 
+                    (obj) => Contacts.Count > 0 && SelectedContact != null);
+            }
+        }
+
+        /// <summary>
+        /// Метод, определяющий, какой после удаления контакта будет выбран 
+        /// элемент.
+        /// </summary>
+        /// <param name="index">Индекс удаляемого контакта.</param>
+        private void ChangeSelectAfterRemove(int index)
+        {
+            if (Contacts.Count > 0 && Contacts.Count - 1 >= index)
+            {
+                SelectedContact = Contacts[index];
+                return;
+            }
+            if (Contacts.Count >= 1)
+            {
+                SelectedContact = Contacts[index - 1];
+                return;
+            }
+            SelectedContact = null;            
+        }
+
+        /// <summary>
+        /// Командаа для изменения контакта из списка.
+        /// </summary>
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ?? new RelayCommand(obj =>
+                {
+                    IsVisible = true;
+                    IsReadOnly = false;
+                    CloneContact = (Contact)SelectedContact.Clone();
+                },
+                (obj) => Contacts.Count > 0 && SelectedContact != null);
+            }
+        }
+
+        /// <summary>
+        /// Команда для применения изменений контакта.
+        /// </summary>
+        public RelayCommand ApplyCommand
+        {
+            get
+            {
+                return _applyCommand ?? new RelayCommand(obj =>
+                {
+                    IsVisible = false;
+                    IsReadOnly = true;
+                    if (Contacts.IndexOf(SelectedContact) == -1)
+                    {
+                        Contacts.Add(SelectedContact);
+                    }
+                });
+            }
+        }
+
+        /// <summary>
+        /// Метод для сохранения списка контактов.
+        /// </summary>
+        public void SaveContacts()
+        {
+            ContactSerializer.SaveContacts(Contacts);
+        }
+
+        /// <summary>
+        /// Метод для выгрузки списка контактов в приложение.
+        /// </summary>
+        public void LoadContacts()
+        {
+            Contacts = ContactSerializer.LoadContact();
+        }
+
         public MainVM()
         {
         }
 
         /// <summary>
-        /// Задаёт и возвращает имя контакта.
+        /// Событие на изменения свойства для связи View и Model.
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _contact.Name;
-            }
-
-            set
-            {
-                if(_contact.Name != value)
-                {
-                    _contact.Name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Задаёт и возвращает почту контакта.
+        /// Метод, вызывающийся при изменении свойства.
         /// </summary>
-        public string Email
+        /// <param name="property">Имя свойства, которое его вызвало</param>
+        public void OnPropertyChanged([CallerMemberName] string property = "")
         {
-            get
-            {
-                return _contact.Email;
-            }
-
-            set
-            {
-                if (_contact.Email != value)
-                {
-                    _contact.Email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Задаёт и возвращает номер телефона контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _contact.PhoneNumber;
-            }
-            set
-            {
-                if (_contact.PhoneNumber != value)
-                {
-                    _contact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-                
-            }
-        }
-
-        /// <summary>
-        /// Возвращает команду для сохранения контакта.
-        /// </summary>
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ?? 
-                    (_saveCommand = new RelayCommand(obj =>
-                    {
-                        ContactSerializer.SaveContact(_contact);
-                    },
-                    obj =>
-                    {
-                        return true;
-                    }));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает метод для загрузки контакта.
-        /// </summary>
-        public RelayCommand LoadCommand
-        {
-            get
-            {
-                return _loadCommand ?? 
-                    (_loadCommand = new RelayCommand(obj =>
-                    {
-                        var contact = ContactSerializer.LoadContact(_contact);
-                        Name = contact.Name;
-                        Email = contact.Email;
-                        PhoneNumber = contact.PhoneNumber;
-                    },
-                    obj =>
-                    {
-                        return true;
-                    }));
-            }
-        }
-
-        /// <summary>
-        /// Метод для отслеживания изменений свойств.
-        /// </summary>
-        /// <param name="propertyName">Имя изменяемого свойства.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
     }
 }

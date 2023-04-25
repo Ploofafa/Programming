@@ -3,71 +3,108 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts"
+        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" xmlns:viewmodel="clr-namespace:Contacts.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         Title="Contacts" 
         MinHeight="365" 
         MinWidth="615" 
         Icon="/contacts_96x96.ico" 
         Height="365" 
-        Width="615">
-    <Grid VerticalAlignment="Stretch" Margin="15">
+        Width="615" Closing="Window_Closing">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <GroupBox
-                Header="Edit Contact" 
-                Grid.Column="0"
-                Grid.Row="0"
-                Margin="3">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Left" Height="17" Text="Name:" Margin="3"/>
-                    <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                    <TextBlock HorizontalAlignment="Left" Text="Phone Number:" Margin="3"/>
-                    <TextBox Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                    <TextBlock Text="Email:" HorizontalAlignment="Left" Margin="3"/>
-                    <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch"
-                             Margin="3"/>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Grid.Column="1" Header="Read Contact" Margin="3">
-                <StackPanel>
-                    <TextBlock Text="Name:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                    <TextBlock Text="Phone Number:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                    <TextBlock Text="Email:" Margin="3"/>
-                    <TextBlock Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"
-                               FontWeight="Bold"
-                               Margin="3"/>
-                </StackPanel>
-            </GroupBox>
-        </Grid>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Command="{Binding LoadCommand}" 
-                    Content="Load" 
-                    Width="75"  
+        <GridSplitter Width="3"
+                      Grid.Column="1"
+                      Grid.RowSpan="3"
+                      Background="White"
+                      HorizontalAlignment="Left"/>
+        <Rectangle Fill="#f8f8f8" 
+                   Grid.Column="0"
+                   Grid.RowSpan="3"/>
+        <DockPanel Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="8">
+            <TextBlock Margin="3" 
+                       Text="Find:"/>
+            <TextBox Margin="3"/>
+        </DockPanel>
+        <ListBox Grid.Row="1"
+                 Grid.Column="0"
+                 ItemsSource="{Binding Contacts}"
+                 SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 DisplayMemberPath="Name"
+                 Margin="11"/>
+        <UniformGrid Columns="3"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Margin="8">
+            <Button Content="Add"
+                    Margin="3"
                     Height="25"
-                    Margin="3"/>
-            <Button Command="{Binding SaveCommand}" 
-                    Content="Save"
-                    Width="75" 
-                    Height="25"/>
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding AddCommand}"
+                    IsEnabled="{Binding EditCommand}"/>
+            <Button Content="Edit"
+                    Margin="3"
+                    Height="25"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding AddCommand}"/>
+            <Button Content="Remove"
+                    Margin="3"
+                    Height="25"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding RemoveCommand}"/>
+        </UniformGrid>
+        <Image Source="Resources/photo_placeholder_100x100.png"
+               Width="100"
+               Height="100"
+               VerticalAlignment="Top"
+               Margin="3,25,3,3"
+               Grid.Column="1"
+               Grid.Row="1"/>
+        <StackPanel Grid.Column="2"
+                    Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" 
+                       Text="Name:" 
+                       Margin="3"/>
+            <TextBox HorizontalAlignment="Stretch"
+                     Margin="3"
+                     Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsReadOnly="{Binding IsReadOnly}"/>
+            <TextBlock HorizontalAlignment="Left" 
+                       Text="Phone Number:" 
+                       Margin="3"/>
+            <TextBox HorizontalAlignment="Stretch"
+                     Margin="3"
+                     Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsReadOnly="{Binding IsReadOnly}"/>
+            <TextBlock Text="Email:" 
+                       HorizontalAlignment="Left" 
+                       Margin="3"/>
+            <TextBox HorizontalAlignment="Stretch"
+                     Margin="3"
+                     Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsReadOnly="{Binding IsReadOnly}"/>
+            <Button Content="Apply"
+                    Margin="3,50,0,0"
+                    Height="25"
+                    Width="75"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ApplyCommand}"
+                    Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </StackPanel>
     </Grid>
 </Window>

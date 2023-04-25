@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace Contacts.Model
 {
     /// <summary>
-    /// Класс, реализующий сохранение контакта.
+    /// Класс для создания команд.
     /// Реализует интерфейс <see cref="ICommand"/>.
     /// </summary>
     class RelayCommand : ICommand
@@ -31,7 +31,7 @@ namespace Contacts.Model
         /// </summary>
         /// <param name="execute">Делегат, вызываемый при выполнении.</param>
         /// <param name="canExecute">Делегат, проверяющий возможность выполнения.</param>
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -60,7 +60,7 @@ namespace Contacts.Model
         /// <returns>Возвращает значение возможности выполнения метода.</returns>
         public bool CanExecute(object? parameter)
         {
-            return this._canExecute(parameter!);
+            return this._canExecute == null || this._canExecute(parameter);
         }
 
         /// <summary>
