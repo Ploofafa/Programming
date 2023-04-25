@@ -25,8 +25,8 @@ namespace Contacts.ViewModel
     class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// Хранит выбранный экземпляр класса <see cref="Contact"/> в 
-        /// <see cref="ObservableCollection{T}"/> для связи с View.
+        /// Хранит выбранный из <see cref="ListBox"/> экземпляр класса <see cref="Contact"/> в 
+        /// <see cref="ObservableCollection{Contact}"/> для связи с View.
         /// </summary>
         private Contact _selectedContact;
 
@@ -54,12 +54,27 @@ namespace Contacts.ViewModel
         /// </summary>
         private RelayCommand _applyCommand;
 
+        /// <summary>
+        /// Задаёт и возвращат клон экземпляра <see cref="Contact"/> выбранный в
+        /// <see cref="ListBox"/> для присваивания его значений при отмене редактирования
+        /// экземпляру в <see cref="ObservableCollection{Contact}"/>.
+        /// </summary>
         private Contact CloneContact { get; set; }
 
+        /// <summary>
+        /// Поле, хранящее значение видимости и читаемости 
+        /// элементов управления, которые могут храниться.
+        /// </summary>
         private bool _isReadOnly = true;
 
+        /// <summary>
+        /// Коллекция экземпляров класса <see cref="Contact"/>.
+        /// </summary>
         public ObservableCollection<Contact> Contacts{ get; set; } = new ObservableCollection<Contact>();
 
+        /// <summary>
+        /// Задаёт и возвращает видимость кнопки Apply.
+        /// </summary>
         public bool IsVisible
         {
             get
@@ -74,6 +89,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Задаёт и возвращает доступность на изменение текстовых полей.
+        /// </summary>
         public bool IsReadOnly
         {
             get
@@ -88,6 +106,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Задаёт и возвращает выбранного контакта в листбоксе.
+        /// </summary>
         public Contact SelectedContact
         {
             get
@@ -109,6 +130,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод для отмены изменений при редактировании.
+        /// </summary>
         private void UndoChanges()
         {
             _selectedContact.Name = CloneContact.Name;
@@ -118,7 +142,10 @@ namespace Contacts.ViewModel
             IsVisible = false;
             IsReadOnly = true;
         }
-
+        
+        /// <summary>
+        /// Метод для отмены создания контакта.
+        /// </summary>
         private void UndoCreate()
         {
             _selectedContact = null;
@@ -126,6 +153,9 @@ namespace Contacts.ViewModel
             IsReadOnly = true;
         }
 
+        /// <summary>
+        /// Команда для добавления контакта в список.
+        /// </summary>
         public RelayCommand AddCommand
         {
             get
@@ -139,6 +169,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда для удаления контакта из списка.
+        /// </summary>
         public RelayCommand RemoveCommand
         {
             get
@@ -153,22 +186,29 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод, определяющий, какой после удаления контакта будет выбран 
+        /// элемент.
+        /// </summary>
+        /// <param name="index">Индекс удаляемого контакта.</param>
         private void ChangeSelectAfterRemove(int index)
         {
             if (Contacts.Count > 0 && Contacts.Count - 1 >= index)
             {
                 SelectedContact = Contacts[index];
+                return;
             }
-            else if (Contacts.Count >= 1)
+            if (Contacts.Count >= 1)
             {
                 SelectedContact = Contacts[index - 1];
+                return;
             }
-            else
-            {
-                SelectedContact = null;
-            }
+            SelectedContact = null;            
         }
 
+        /// <summary>
+        /// Командаа для изменения контакта из списка.
+        /// </summary>
         public RelayCommand EditCommand
         {
             get
@@ -183,6 +223,9 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда для применения изменений контакта.
+        /// </summary>
         public RelayCommand ApplyCommand
         {
             get
@@ -199,11 +242,17 @@ namespace Contacts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Метод для сохранения списка контактов.
+        /// </summary>
         public void SaveContacts()
         {
             ContactSerializer.SaveContacts(Contacts);
         }
 
+        /// <summary>
+        /// Метод для выгрузки списка контактов в приложение.
+        /// </summary>
         public void LoadContacts()
         {
             Contacts = ContactSerializer.LoadContact();
@@ -213,8 +262,15 @@ namespace Contacts.ViewModel
         {
         }
 
+        /// <summary>
+        /// Событие на изменения свойства для связи View и Model.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Метод, вызывающийся при изменении свойства.
+        /// </summary>
+        /// <param name="property">Имя свойства, которое его вызвало</param>
         public void OnPropertyChanged([CallerMemberName] string property = "")
         {
             if (PropertyChanged != null)

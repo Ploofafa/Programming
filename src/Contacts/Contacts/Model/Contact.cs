@@ -14,10 +14,21 @@ namespace Contacts.Model
     /// </summary>
     public class Contact : INotifyPropertyChanged, ICloneable
     {
-
+        /// <summary>
+        /// Хранит имя контакта.
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Хранит email контакта.
+        /// </summary>
         private string _email;
+
+        /// <summary>
+        /// Хранит номер телефона контакта. 
+        /// </summary>
         private string _phoneNumber;
+
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
@@ -98,13 +109,24 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт клон контакта.
+        /// </summary>
+        /// <returns>Клонированный контакт.</returns>
         public object Clone()
         {
             return new Contact(Name, PhoneNumber, Email);
         }
 
+        /// <summary>
+        /// Событие на изменения свойства для связи View и Model.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Метод, вызывающийся при изменении свойства.
+        /// </summary>
+        /// <param name="property">Имя свойства, которое его вызвало</param>
         public void OnPropertyChanged([CallerMemberName] string property = "")
         {
             if (PropertyChanged != null)
