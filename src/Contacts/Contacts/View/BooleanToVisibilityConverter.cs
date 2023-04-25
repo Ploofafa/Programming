@@ -12,8 +12,13 @@ namespace Contacts.Model.Services
     /// <summary>
     /// Класс реализующий преобразование типа <see cref="bool"/> к <see cref="Visibility"/>.
     /// </summary>
-    public class BooleanToVisibilityConverter : IValueConverter
+    public class BoolToVisibilityConverter : IValueConverter
     {
+        /// <summary>
+        /// Свойство проверяющее нужно ли провести инвертированную конвертацию.
+        /// </summary>
+        public bool IsInverse { get; set; }
+
         /// <summary>
         /// Метод преобразующий bool к Visibility.
         /// </summary>
@@ -24,17 +29,14 @@ namespace Contacts.Model.Services
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool bValue = false;
-            if (value is bool)
+            if (IsInverse)
             {
-                bValue = (bool)value;
+                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
             }
-            else if (value is bool?)
+            else 
             {
-                bool? tmp = (bool?)value;
-                bValue = tmp.HasValue ? tmp.Value : false;
-            }
-            return bValue ? Visibility.Visible : Visibility.Collapsed;
+                return !(bool)value ? Visibility.Visible : Visibility.Collapsed;
+            };
         }
 
         /// <summary>
@@ -51,10 +53,7 @@ namespace Contacts.Model.Services
             {
                 return (Visibility)value == Visibility.Visible;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

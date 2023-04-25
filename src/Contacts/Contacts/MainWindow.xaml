@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" xmlns:viewmodel="clr-namespace:Contacts.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
+        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" xmlns:viewmodel="clr-namespace:Contacts.ViewModel" xmlns:services="clr-namespace:Contacts.Model.Services" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         Title="Contacts" 
         MinHeight="365" 
@@ -12,7 +12,8 @@
         Height="365" 
         Width="615" Closing="Window_Closing">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <services:BoolToVisibilityConverter x:Key="InverseConverter" IsInverse="True"/>
+        <services:BoolToVisibilityConverter x:Key="Converter" IsInverse="False"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +36,7 @@
                    Grid.RowSpan="3"/>
         <DockPanel Grid.Column="0"
                    Grid.Row="0"
-                   Margin="8">
+                   Margin="8,8,0,0">
             <TextBlock Margin="3" 
                        Text="Find:"/>
             <TextBox Margin="3"/>
@@ -45,11 +46,11 @@
                  ItemsSource="{Binding Contacts}"
                  SelectedItem="{Binding SelectedContact, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  DisplayMemberPath="Name"
-                 Margin="11"/>
+                 Margin="11,0,3,0"/>
         <UniformGrid Columns="3"
                      Grid.Row="2"
                      Grid.Column="0"
-                     Margin="8">
+                     Margin="8,0,0,8">
             <Button Content="Add"
                     Margin="3"
                     Height="25"
@@ -83,28 +84,28 @@
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
                      Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     IsReadOnly="{Binding IsReadOnly}"/>
+                     IsReadOnly="{Binding ViewingMode}"/>
             <TextBlock HorizontalAlignment="Left" 
                        Text="Phone Number:" 
                        Margin="3"/>
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
                      Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     IsReadOnly="{Binding IsReadOnly}"/>
+                     IsReadOnly="{Binding ViewingMode}"/>
             <TextBlock Text="Email:" 
                        HorizontalAlignment="Left" 
                        Margin="3"/>
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
                      Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     IsReadOnly="{Binding IsReadOnly}"/>
+                     IsReadOnly="{Binding ViewingMode}"/>
             <Button Content="Apply"
                     Margin="3,50,0,0"
                     Height="25"
                     Width="75"
                     HorizontalAlignment="Left"
                     Command="{Binding ApplyCommand}"
-                    Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    Visibility="{Binding ViewingMode, Converter={StaticResource Converter}}"/>
         </StackPanel>
     </Grid>
 </Window>

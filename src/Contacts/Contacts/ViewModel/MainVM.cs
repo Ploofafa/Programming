@@ -28,7 +28,7 @@ namespace Contacts.ViewModel
         /// Хранит выбранный из <see cref="ListBox"/> экземпляр класса <see cref="Contact"/> в 
         /// <see cref="ObservableCollection{Contact}"/> для связи с View.
         /// </summary>
-        private Contact _selectedContact;
+        private Contact _selectedContact = new Contact();
 
         /// <summary>
         /// Хранит экземпляр класса <see cref="RelayCommand"/>.
@@ -65,7 +65,7 @@ namespace Contacts.ViewModel
         /// Поле, хранящее значение видимости и читаемости 
         /// элементов управления, которые могут храниться.
         /// </summary>
-        private bool _isReadOnly = true;
+        private bool _viewingMode = false;
 
         /// <summary>
         /// Коллекция экземпляров класса <see cref="Contact"/>.
@@ -75,34 +75,17 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Задаёт и возвращает видимость кнопки Apply.
         /// </summary>
-        public bool IsVisible
+        public bool ViewingMode
         {
             get
             {
-                return !_isReadOnly;
+                return _viewingMode;
             }
 
             private set
             {
-                _isReadOnly = !value;
-                OnPropertyChanged(nameof(IsVisible));
-            }
-        }
-
-        /// <summary>
-        /// Задаёт и возвращает доступность на изменение текстовых полей.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _isReadOnly;
-            }
-
-            private set
-            {
-                _isReadOnly = value;
-                OnPropertyChanged(nameof(IsReadOnly));
+                _viewingMode = value;
+                OnPropertyChanged(nameof(ViewingMode));
             }
         }
 
@@ -117,11 +100,11 @@ namespace Contacts.ViewModel
             }
             set
             {
-                if (IsVisible == true && CloneContact != null)
+                if (ViewingMode == false && CloneContact != null)
                 {
                     UndoChanges();
                 }
-                else if (Contacts.IndexOf(_selectedContact) == -1 && Contacts.Count > 0)
+                else if (Contacts.Count > 0 && Contacts.IndexOf(_selectedContact) == -1)
                 {
                     UndoCreate();
                 }
@@ -139,8 +122,7 @@ namespace Contacts.ViewModel
             _selectedContact.Email = CloneContact.Email;
             _selectedContact.PhoneNumber = CloneContact.PhoneNumber;
             CloneContact = null;
-            IsVisible = false;
-            IsReadOnly = true;
+            ViewingMode = true;
         }
         
         /// <summary>
@@ -149,8 +131,7 @@ namespace Contacts.ViewModel
         private void UndoCreate()
         {
             _selectedContact = null;
-            IsVisible = false;
-            IsReadOnly = true;
+            ViewingMode = true;
         }
 
         /// <summary>
@@ -162,8 +143,7 @@ namespace Contacts.ViewModel
             {
                 return _addCommand ?? new RelayCommand(obj =>
                 {
-                    IsVisible = true;
-                    IsReadOnly = false;
+                    ViewingMode = false;
                     SelectedContact  = new Contact();
                 });
             }
@@ -215,8 +195,7 @@ namespace Contacts.ViewModel
             {
                 return _editCommand ?? new RelayCommand(obj =>
                 {
-                    IsVisible = true;
-                    IsReadOnly = false;
+                    ViewingMode = false;
                     CloneContact = (Contact)SelectedContact.Clone();
                 },
                 (obj) => Contacts.Count > 0 && SelectedContact != null);
@@ -232,11 +211,14 @@ namespace Contacts.ViewModel
             {
                 return _applyCommand ?? new RelayCommand(obj =>
                 {
-                    IsVisible = false;
-                    IsReadOnly = true;
+                    ViewingMode = true;
                     if (Contacts.IndexOf(SelectedContact) == -1)
                     {
                         Contacts.Add(SelectedContact);
+                    }
+                    if (CloneContact != null)
+                    {
+                        CloneContact = null;
                     }
                 });
             }
@@ -256,6 +238,10 @@ namespace Contacts.ViewModel
         public void LoadContacts()
         {
             Contacts = ContactSerializer.LoadContact();
+            if (Contacts.Count > 0)
+            {
+                SelectedContact = Contacts[0];
+            }
         }
 
         public MainVM()
