@@ -29,14 +29,7 @@ namespace Contacts.Model.Services
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (IsInverse)
-            {
-                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
-            }
-            else 
-            {
-                return !(bool)value ? Visibility.Visible : Visibility.Collapsed;
-            };
+            return !(bool)value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>

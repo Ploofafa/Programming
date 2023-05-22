@@ -73,7 +73,7 @@ namespace Contacts.ViewModel
         public ObservableCollection<Contact> Contacts{ get; set; } = new ObservableCollection<Contact>();
 
         /// <summary>
-        /// Задаёт и возвращает видимость кнопки Apply.
+        /// Задаёт и возвращает значение включённости режима просмотра.
         /// </summary>
         public bool ViewingMode
         {
