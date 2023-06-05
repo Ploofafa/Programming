@@ -1,12 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Model;
 using Contacts.Model.Services;
-using Contacts.View.Controls;
 
 namespace Contacts.ViewModel
 {
@@ -56,7 +53,7 @@ namespace Contacts.ViewModel
         /// Поле, хранящее значение видимости и читаемости 
         /// элементов управления, которые могут храниться.
         /// </summary>
-        private bool _viewingMode = false;
+        private bool _viewingMode = true;
 
         /// <summary>
         /// Коллекция экземпляров класса <see cref="Contact"/>.
@@ -200,7 +197,7 @@ namespace Contacts.ViewModel
                     {
                         CloneContact = null;
                     }
-                }, () => SelectedContact.IsOk);
+                }, ()=> SelectedContact.IsValid);
             }
         }
 
