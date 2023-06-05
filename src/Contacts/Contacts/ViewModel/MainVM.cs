@@ -1,78 +1,87 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Model;
 using Contacts.Model.Services;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Contacts.ViewModel
 {
     /// <summary>
     /// Класс, реализующий связь между GUI и бизнес-логикой.
     /// </summary>
-    class MainVM : ObservableObject
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Хранит выбранный из <see cref="ListBox"/> экземпляр класса <see cref="Contact"/> в 
         /// <see cref="ObservableCollection{Contact}"/> для связи с View.
         /// </summary>
-        private Contact _selectedContact = new Contact();
+        private Contact? _selectedContact = new Contact();
 
+        [RelayCommand]
         private void Add()
         {
-
+            ViewingMode = false;
+            SelectedContact = new Contact();
         }
 
-        /// <summary>
-        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
-        /// Реализует команду добавления контакта в коллекцию.
-        /// </summary>
-        private RelayCommand _addCommand;
+        [RelayCommand(CanExecute = nameof(CanEditOrRemove))]
+        private void Remove()
+        {
+            int index = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+            ChangeSelectAfterRemove(index);
+        }
 
-        /// <summary>
-        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
-        /// Реализует команду удаления контакта из коллекции.
-        /// </summary>
-        private RelayCommand _removeCommand;
+        [RelayCommand(CanExecute = nameof(CanEditOrRemove))]
+        private void Edit()
+        {
+            ViewingMode = false;
+            CloneContact = (Contact)SelectedContact.Clone();
+        }
 
-        /// <summary>
-        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
-        /// Реализует команду редактирования контакта в коллекции.
-        /// </summary>
-        private RelayCommand _editCommand;
+        private bool CanEditOrRemove()
+        {
+            return Contacts.Count > 0 && SelectedContact != null;
+        }
 
-        /// <summary>
-        /// Хранит экземпляр класса <see cref="RelayCommand"/>.
-        /// Реализует команду для применения изменений контакта в коллекции.
-        /// </summary>
-        private RelayCommand _applyCommand;
+        [RelayCommand(CanExecute = nameof(CanApply))]
+        private void Apply()
+        {
+            ViewingMode = true;
+            if (Contacts.IndexOf(SelectedContact) == -1)
+            {
+                Contacts.Add(SelectedContact);
+            }
+            if (CloneContact != null)
+            {
+                CloneContact = null;
+            }
+        }
+
+        private bool CanApply()
+        {
+            return SelectedContact.IsValid;
+        }
 
         /// <summary>
         /// Задаёт и возвращат клон экземпляра <see cref="Contact"/> выбранный в
         /// <see cref="ListBox"/> для присваивания его значений при отмене редактирования
         /// экземпляру в <see cref="ObservableCollection{Contact}"/>.
         /// </summary>
-        private Contact CloneContact { get; set; }
+        private Contact? CloneContact { get; set; }
 
         /// <summary>
         /// Поле, хранящее значение видимости и читаемости 
         /// элементов управления, которые могут храниться.
         /// </summary>
+        [ObservableProperty]
         private bool _viewingMode = true;
 
         /// <summary>
         /// Коллекция экземпляров класса <see cref="Contact"/>.
         /// </summary>
-        public ObservableCollection<Contact> Contacts{ get; set; } = new ObservableCollection<Contact>();
-
-        /// <summary>
-        /// Задаёт и возвращает значение включённости режима просмотра.
-        /// </summary>
-        public bool ViewingMode
-        {
-            get => _viewingMode;
-            set => SetProperty(ref _viewingMode, value);
-        }
+        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
 
         /// <summary>
         /// Задаёт и возвращает выбранного контакта в листбоксе.
@@ -106,7 +115,7 @@ namespace Contacts.ViewModel
             CloneContact = null;
             ViewingMode = true;
         }
-        
+
         /// <summary>
         /// Метод для отмены создания контакта.
         /// </summary>
@@ -114,38 +123,6 @@ namespace Contacts.ViewModel
         {
             _selectedContact = null;
             ViewingMode = true;
-        }
-
-        /// <summary>
-        /// Команда для добавления контакта в список.
-        /// </summary>
-        public RelayCommand AddCommand
-        {
-            get
-            {
-                return _addCommand ?? new RelayCommand(() =>
-                {
-                    ViewingMode = false;
-                    SelectedContact  = new Contact();
-                });
-            }
-        }
-
-        /// <summary>
-        /// Команда для удаления контакта из списка.
-        /// </summary>
-        public RelayCommand RemoveCommand
-        {
-            get
-            {
-                return _removeCommand ?? new RelayCommand(() => 
-                {
-                    int index = Contacts.IndexOf(SelectedContact);
-                    Contacts.Remove(SelectedContact);
-                    ChangeSelectAfterRemove(index);
-                }, 
-                    () => Contacts.Count > 0 && SelectedContact != null);
-            }
         }
 
         /// <summary>
@@ -165,45 +142,7 @@ namespace Contacts.ViewModel
                 SelectedContact = Contacts[index - 1];
                 return;
             }
-            SelectedContact = null;            
-        }
-
-        /// <summary>
-        /// Командаа для изменения контакта из списка.
-        /// </summary>
-        public RelayCommand EditCommand
-        {
-            get
-            {
-                return _editCommand ?? new RelayCommand(() =>
-                {
-                    ViewingMode = false;
-                    CloneContact = (Contact)SelectedContact.Clone();
-                },
-                () => Contacts.Count > 0 && SelectedContact != null);
-            }
-        }
-
-        /// <summary>
-        /// Команда для применения изменений контакта.
-        /// </summary>
-        public RelayCommand ApplyCommand
-        {
-            get
-            {
-                return _applyCommand ?? new RelayCommand(() =>
-                {
-                    ViewingMode = true;
-                    if (Contacts.IndexOf(SelectedContact) == -1)
-                    {
-                        Contacts.Add(SelectedContact);
-                    }
-                    if (CloneContact != null)
-                    {
-                        CloneContact = null;
-                    }
-                }, ()=> SelectedContact.IsValid);
-            }
+            SelectedContact = null;
         }
 
         /// <summary>
