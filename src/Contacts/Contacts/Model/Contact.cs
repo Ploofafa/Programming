@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Contacts.Model
 {
     /// <summary>
     /// Класс описывающий контакт записной книги.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, ICloneable
+    public class Contact : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
+        private Dictionary<string, string> Errors { get; } = new Dictionary<string, string>();
+
         /// <summary>
         /// Хранит имя контакта.
         /// </summary>
@@ -35,6 +34,10 @@ namespace Contacts.Model
         public Contact()
         {
         }
+
+        public bool IsError => Errors.Any();
+
+        public bool IsOk => !IsError;
 
         /// <summary>
         /// Конструктор для создания экземпляра класса <see cref="Contact"/>.
@@ -61,11 +64,13 @@ namespace Contacts.Model
 
             set
             {
-                if (_name != value)
+                if (_name == value)
                 {
-                    _name = value;
-                    OnPropertyChanged("Name");
+                    return;
                 }
+
+                _name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -84,7 +89,7 @@ namespace Contacts.Model
                 if (_phoneNumber != value)
                 {
                     _phoneNumber = value;
-                    OnPropertyChanged("PhoneNumber");
+                    OnPropertyChanged(nameof(PhoneNumber));
                 }
             }
         }
@@ -104,8 +109,50 @@ namespace Contacts.Model
                 if (value != _email)
                 {
                     _email = value;
-                    OnPropertyChanged("Email");
+                    OnPropertyChanged(nameof(Email));
                 }
+            }
+        }
+ 
+        public bool HasError { get; set; }
+
+        public string Error => String.Empty;
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                CollectErrors();
+                return Errors.ContainsKey(propertyName) ? Errors[propertyName] : String.Empty; 
+            }
+        }
+
+        private void CollectErrors()
+        {
+            Errors.Clear();
+            if (string.IsNullOrEmpty(Name))
+            {
+                Errors.Add(nameof(Name), "Name must be defined!");
+            }
+
+            if (Name.Length > 100)
+            {
+                Errors.Add(nameof(Name), "Name must be less than 100 charactters!");
+            }
+
+            if (Email.Length > 100)
+            {
+                Errors.Add(nameof(Email), "Email must be less than 100 charactters!");
+            }
+
+            if (PhoneNumber.Length > 100)
+            {
+                Errors.Add(nameof(PhoneNumber), "PhoneNumber must be less than 100 charactters!");
+            }
+
+            if (!Email.Contains("@"))
+            {
+                Errors.Add(nameof(Email), "Email must contains symbol: @!");
             }
         }
 
@@ -121,7 +168,7 @@ namespace Contacts.Model
         /// <summary>
         /// Событие на изменения свойства для связи View и Model.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Метод, вызывающийся при изменении свойства.

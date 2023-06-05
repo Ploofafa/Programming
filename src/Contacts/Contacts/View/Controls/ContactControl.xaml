@@ -4,12 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Contacts.View.Controls"
-             xmlns:services="clr-namespace:Contacts.Model.Services"
+             xmlns:converters="clr-namespace:Contacts.View.Converters"
              xmlns:VM="clr-namespace:Contacts.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
-        <services:BoolToVisibilityConverter x:Key="Converter" IsInverse="False"/>
+        <converters:BoolToVisibilityConverter x:Key="Converter" IsInverse="False"/>
+        <converters:NumberToPhoneConverter x:Key="PhoneNumberConverer"/>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                                    Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <Setter Property="Background" Value="Pink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,21 +46,32 @@
                        Margin="3"/>
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
-                     Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     Text="{Binding SelectedContact.Name, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnDataErrors=True, 
+                            Mode=TwoWay}"
                      IsReadOnly="{Binding ViewingMode}"/>
             <TextBlock HorizontalAlignment="Left" 
                        Text="Phone Number:" 
                        Margin="3"/>
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
-                     Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     IsReadOnly="{Binding ViewingMode}"/>
+                     Text="{Binding SelectedContact.PhoneNumber, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            Mode=TwoWay, 
+                            ValidatesOnDataErrors=True,
+                            Converter={StaticResource PhoneNumberConverer}}"
+                     IsReadOnly="{Binding ViewingMode}"
+                     />
             <TextBlock Text="Email:" 
                        HorizontalAlignment="Left" 
                        Margin="3"/>
             <TextBox HorizontalAlignment="Stretch"
                      Margin="3"
-                     Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     Text="{Binding SelectedContact.Email, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            Mode=TwoWay, 
+                            ValidatesOnDataErrors=True}"
                      IsReadOnly="{Binding ViewingMode}"/>
             <Button Content="Apply"
                     Margin="3,50,0,0"

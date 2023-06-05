@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" xmlns:viewmodel="clr-namespace:Contacts.ViewModel" xmlns:services="clr-namespace:Contacts.Model.Services" xmlns:Controls="clr-namespace:Contacts.View.Controls" x:Class="Contacts.MainWindow"
+        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" 
+        xmlns:viewmodel="clr-namespace:Contacts.ViewModel" 
+        xmlns:services="clr-namespace:Contacts.Model.Services"
+        xmlns:converters="clr-namespace:Contacts.View.Converters"
+        xmlns:Controls="clr-namespace:Contacts.View.Controls"
+        x:Class="Contacts.MainWindow"
         d:DataContext="{d:DesignInstance Type={x:Type viewmodel:MainVM}}"
         mc:Ignorable="d"
         Title="Contacts" 
@@ -13,6 +18,7 @@
         Height="365" 
         Width="615" Closing="Window_Closing">
     <Window.Resources>
+        <converters:NumberToPhoneConverter x:Key="PhoneNumberConverer"/>
         <DataTemplate x:Key="contactTemplate">
             <StackPanel Margin="3">
                 <TextBlock 
@@ -21,7 +27,7 @@
                     Text="{Binding Name}"/>
                 <TextBlock 
                     FontSize="10"
-                    Text="{Binding PhoneNumber}"/>
+                    Text="{Binding PhoneNumber, Converter={StaticResource PhoneNumberConverer}}"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -83,7 +89,8 @@
             Grid.Column="1"
             HorizontalAlignment="Stretch" 
             VerticalAlignment="Stretch" 
-            Grid.RowSpan="3"/>
+            Grid.RowSpan="3"
+            Margin="8,8,0,8"/>
 
     </Grid>
 </Window>

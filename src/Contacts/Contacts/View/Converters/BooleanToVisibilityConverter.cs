@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Contacts.Model.Services
+namespace Contacts.View.Converters
 {
     /// <summary>
     /// Класс реализующий преобразование типа <see cref="bool"/> к <see cref="Visibility"/>.

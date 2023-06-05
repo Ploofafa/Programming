@@ -1,21 +1,10 @@
-﻿    using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media.Media3D;
 using Contacts.Model;
 using Contacts.Model.Services;
+using Contacts.View.Controls;
 
 namespace Contacts.ViewModel
 {
@@ -220,7 +209,7 @@ namespace Contacts.ViewModel
                     {
                         CloneContact = null;
                     }
-                });
+                }, obj => SelectedContact.IsOk);
             }
         }
 
