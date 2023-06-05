@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Contacts.Model;
 using Contacts.Model.Services;
 using Contacts.View.Controls;
@@ -11,7 +13,7 @@ namespace Contacts.ViewModel
     /// <summary>
     /// Класс, реализующий связь между GUI и бизнес-логикой.
     /// </summary>
-    class MainVM : INotifyPropertyChanged
+    class MainVM : ObservableObject
     {
         /// <summary>
         /// Хранит выбранный из <see cref="ListBox"/> экземпляр класса <see cref="Contact"/> в 
@@ -66,16 +68,8 @@ namespace Contacts.ViewModel
         /// </summary>
         public bool ViewingMode
         {
-            get
-            {
-                return _viewingMode;
-            }
-
-            private set
-            {
-                _viewingMode = value;
-                OnPropertyChanged(nameof(ViewingMode));
-            }
+            get => _viewingMode;
+            set => SetProperty(ref _viewingMode, value);
         }
 
         /// <summary>
@@ -83,10 +77,7 @@ namespace Contacts.ViewModel
         /// </summary>
         public Contact SelectedContact
         {
-            get
-            {
-                return _selectedContact;
-            }
+            get => _selectedContact;
             set
             {
                 if (ViewingMode == false && CloneContact != null)
@@ -130,7 +121,7 @@ namespace Contacts.ViewModel
         {
             get
             {
-                return _addCommand ?? new RelayCommand(obj =>
+                return _addCommand ?? new RelayCommand(() =>
                 {
                     ViewingMode = false;
                     SelectedContact  = new Contact();
@@ -145,13 +136,13 @@ namespace Contacts.ViewModel
         {
             get
             {
-                return _removeCommand ?? new RelayCommand(obj => 
+                return _removeCommand ?? new RelayCommand(() => 
                 {
                     int index = Contacts.IndexOf(SelectedContact);
                     Contacts.Remove(SelectedContact);
                     ChangeSelectAfterRemove(index);
                 }, 
-                    (obj) => Contacts.Count > 0 && SelectedContact != null);
+                    () => Contacts.Count > 0 && SelectedContact != null);
             }
         }
 
@@ -182,12 +173,12 @@ namespace Contacts.ViewModel
         {
             get
             {
-                return _editCommand ?? new RelayCommand(obj =>
+                return _editCommand ?? new RelayCommand(() =>
                 {
                     ViewingMode = false;
                     CloneContact = (Contact)SelectedContact.Clone();
                 },
-                (obj) => Contacts.Count > 0 && SelectedContact != null);
+                () => Contacts.Count > 0 && SelectedContact != null);
             }
         }
 
@@ -198,7 +189,7 @@ namespace Contacts.ViewModel
         {
             get
             {
-                return _applyCommand ?? new RelayCommand(obj =>
+                return _applyCommand ?? new RelayCommand(() =>
                 {
                     ViewingMode = true;
                     if (Contacts.IndexOf(SelectedContact) == -1)
@@ -209,7 +200,7 @@ namespace Contacts.ViewModel
                     {
                         CloneContact = null;
                     }
-                }, obj => SelectedContact.IsOk);
+                }, () => SelectedContact.IsOk);
             }
         }
 
@@ -235,21 +226,6 @@ namespace Contacts.ViewModel
 
         public MainVM()
         {
-        }
-
-        /// <summary>
-        /// Событие на изменения свойства для связи View и Model.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Метод, вызывающийся при изменении свойства.
-        /// </summary>
-        /// <param name="property">Имя свойства, которое его вызвало</param>
-        public void OnPropertyChanged([CallerMemberName] string property = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
     }
 }
