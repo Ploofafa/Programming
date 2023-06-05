@@ -209,7 +209,14 @@ namespace Contacts.ViewModel
                     {
                         CloneContact = null;
                     }
-                }, obj => SelectedContact.IsOk);
+                }, obj => 
+                {
+                    if (SelectedContact != null)
+                    {
+                        return !SelectedContact.IsError;
+                    }
+                    return false;
+                });
             }
         }
 

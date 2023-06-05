@@ -37,8 +37,6 @@ namespace Contacts.Model
 
         public bool IsError => Errors.Any();
 
-        public bool IsOk => !IsError;
-
         /// <summary>
         /// Конструктор для создания экземпляра класса <see cref="Contact"/>.
         /// </summary>
@@ -135,22 +133,22 @@ namespace Contacts.Model
                 Errors.Add(nameof(Name), "Name must be defined!");
             }
 
-            if (Name.Length > 100)
+            if (Name?.Length > 100)
             {
                 Errors.Add(nameof(Name), "Name must be less than 100 charactters!");
             }
 
-            if (Email.Length > 100)
+            if (Email?.Length > 100)
             {
                 Errors.Add(nameof(Email), "Email must be less than 100 charactters!");
             }
 
-            if (PhoneNumber.Length > 100)
+            if (PhoneNumber?.Length > 100)
             {
                 Errors.Add(nameof(PhoneNumber), "PhoneNumber must be less than 100 charactters!");
             }
 
-            if (!Email.Contains("@"))
+            if (Email != null && !Email.Contains("@"))
             {
                 Errors.Add(nameof(Email), "Email must contains symbol: @!");
             }
