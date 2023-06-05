@@ -9,23 +9,26 @@ namespace Contacts.Model
     /// <summary>
     /// Класс описывающий контакт записной книги.
     /// </summary>
-    public class Contact : ObservableObject, ICloneable, IDataErrorInfo
+    public partial class Contact : ObservableObject, ICloneable, IDataErrorInfo
     {
         private Dictionary<string, string> Errors = new Dictionary<string, string>();
 
         /// <summary>
         /// Хранит имя контакта.
-        /// </summary>
+        /// </summary>с
+        [ObservableProperty]
         private string _name;
 
         /// <summary>
         /// Хранит email контакта.
         /// </summary>
+        [ObservableProperty]
         private string _email;
 
         /// <summary>
         /// Хранит номер телефона контакта. 
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         /// <summary>
@@ -46,33 +49,6 @@ namespace Contacts.Model
             _name = name;
             _phoneNumber = phoneNumber;
             _email = email;
-        }
-
-        /// <summary>
-        /// Задаёт и возвращает имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
-
-        /// <summary>
-        /// Задаёт и возвращает номер телефона контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get => _phoneNumber;
-            set => SetProperty(ref _phoneNumber, value);
-        }
-
-        /// <summary>
-        /// Задаёт и возвращает почту контакта.
-        /// </summary>
-        public string Email
-        {
-            get => _email;
-            set => SetProperty(ref _email, value);
         }
 
         /// <summary>

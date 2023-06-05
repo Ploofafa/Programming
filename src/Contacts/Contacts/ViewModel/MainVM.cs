@@ -18,6 +18,11 @@ namespace Contacts.ViewModel
         /// </summary>
         private Contact _selectedContact = new Contact();
 
+        private void Add()
+        {
+
+        }
+
         /// <summary>
         /// Хранит экземпляр класса <see cref="RelayCommand"/>.
         /// Реализует команду добавления контакта в коллекцию.
