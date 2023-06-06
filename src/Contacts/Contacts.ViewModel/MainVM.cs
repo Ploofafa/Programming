@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Contacts.Model;
 using Contacts.Model.Services;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
 
 namespace Contacts.ViewModel
 {
