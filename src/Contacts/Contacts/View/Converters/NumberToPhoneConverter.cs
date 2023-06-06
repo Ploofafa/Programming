@@ -6,7 +6,11 @@ using System.Windows.Data;
 
 namespace Contacts.View.Converters
 {
-    internal class NumberToPhoneConverter : IValueConverter
+    /// <summary>
+    /// Класс выполняющий преобразование из строки в номер. Также не даёт
+    /// записывать буквы в строку.
+    /// </summary>
+    public class NumberToPhoneConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

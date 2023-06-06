@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Contacts.Model;
 using Contacts.Model.Services;
-using Contacts.View.Controls;
 
 namespace Contacts.ViewModel
 {
@@ -54,7 +53,7 @@ namespace Contacts.ViewModel
         /// Поле, хранящее значение видимости и читаемости 
         /// элементов управления, которые могут храниться.
         /// </summary>
-        private bool _viewingMode = false;
+        private bool _viewingMode = true;
 
         /// <summary>
         /// Коллекция экземпляров класса <see cref="Contact"/>.
@@ -151,7 +150,7 @@ namespace Contacts.ViewModel
                     Contacts.Remove(SelectedContact);
                     ChangeSelectAfterRemove(index);
                 }, 
-                    (obj) => Contacts.Count > 0 && SelectedContact != null);
+                    (obj) => Contacts.Count > 0 && SelectedContact != null && Contacts.Contains(SelectedContact));
             }
         }
 
@@ -167,6 +166,7 @@ namespace Contacts.ViewModel
                 SelectedContact = Contacts[index];
                 return;
             }
+
             if (Contacts.Count >= 1)
             {
                 SelectedContact = Contacts[index - 1];
@@ -187,7 +187,7 @@ namespace Contacts.ViewModel
                     ViewingMode = false;
                     CloneContact = (Contact)SelectedContact.Clone();
                 },
-                (obj) => Contacts.Count > 0 && SelectedContact != null);
+                (obj) => Contacts.Count > 0 && SelectedContact != null && Contacts.Contains(SelectedContact));
             }
         }
 
@@ -213,7 +213,7 @@ namespace Contacts.ViewModel
                 {
                     if (SelectedContact != null)
                     {
-                        return !SelectedContact.IsError;
+                        return !SelectedContact.IsValid;
                     }
                     return false;
                 });

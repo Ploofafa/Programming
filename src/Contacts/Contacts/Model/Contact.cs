@@ -35,7 +35,7 @@ namespace Contacts.Model
         {
         }
 
-        public bool IsError => Errors.Any();
+        public bool IsValid => Errors.Any();
 
         /// <summary>
         /// Конструктор для создания экземпляра класса <see cref="Contact"/>.
@@ -128,7 +128,7 @@ namespace Contacts.Model
         private void CollectErrors()
         {
             Errors.Clear();
-            if (string.IsNullOrEmpty(Name))
+            if (Name == "")
             {
                 Errors.Add(nameof(Name), "Name must be defined!");
             }
