@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contacts.Model
 {
@@ -11,6 +9,10 @@ namespace Contacts.Model
     /// </summary>
     public partial class Contact : ObservableObject, ICloneable, IDataErrorInfo
     {
+        /// <summary>
+        /// Словарь, который хранит все ошибки свойств которые есть у <see cref="Contact"/>.
+        /// Ошибки хранятся в виде <key: propertyName, value: errorMessage>
+        /// </summary>
         private Dictionary<string, string> Errors = new Dictionary<string, string>();
 
         /// <summary>
@@ -60,12 +62,23 @@ namespace Contacts.Model
             return new Contact(Name, PhoneNumber, Email);
         }
 
-        private bool HasError => Errors.Any();
+        /// <summary>
+        /// Свойство, показывающее наличие ошибок у <see cref="Contact"/>.
+        /// Возвращает <see cref="true"/>, если в <see cref="Errors"/> есть
+        /// хотя бы одна запись. Если записей нет возвращает false.
+        /// </summary>
+        public bool HasError => Errors.Any();
 
-        public bool IsValid => !HasError;
-
+        /// <summary>
+        /// Возвращает пустую строку, не требует реализации.
+        /// </summary>
         public string Error => String.Empty;
 
+        /// <summary>
+        /// Индексатор, которое проверяет наличие ошибок в данных <see cref="Contact"/>
+        /// </summary>
+        /// <param name="propertyName">Имя свойства проверяемого на наличие ошибок</param>
+        /// <returns>Возвращает либо пустую строку, если ошибок нет, либо сообщение об ошибке.</returns>
         public string this[string propertyName]
         {
             get
@@ -76,6 +89,10 @@ namespace Contacts.Model
             }
         }
 
+        /// <summary>
+        /// Метод, который обновляет словарь <see cref="Errors"/>.
+        /// Проверяет каждое свойство на ограничения.
+        /// </summary>
         private void CollectErrors()
         {
             if (Name?.Length == 0)

@@ -17,6 +17,11 @@ namespace Contacts.ViewModel
         /// </summary>
         private Contact? _selectedContact = new Contact();
 
+        /// <summary>
+        /// Комманда для добавления нового экземпляра <see cref="Contact"/> 
+        /// в <see cref="Contacts"/>. 
+        /// Доступна всегда
+        /// </summary>
         [RelayCommand]
         private void Add()
         {
@@ -24,7 +29,12 @@ namespace Contacts.ViewModel
             SelectedContact = new Contact();
         }
 
-        [RelayCommand(CanExecute = nameof(CanEditOrRemove))]
+        /// <summary>
+        /// Команда удаления <see cref="SelectedContact"/> из <see cref="Contacts"/>.
+        /// Заблокирована, если сейчас включён режим создания или список <see cref="Contacts"/>
+        /// пуст.
+        /// </summary>
+        [RelayCommand]
         private void Remove()
         {
             int index = Contacts.IndexOf(SelectedContact);
@@ -32,19 +42,25 @@ namespace Contacts.ViewModel
             ChangeSelectAfterRemove(index);
         }
 
-        [RelayCommand(CanExecute = nameof(CanEditOrRemove))]
+        /// <summary>
+        /// Команда редактирования <see cref="SelectedContact"/> в <see cref="Contacts"/>.
+        /// Заблокирована, если сейчас включён режим создания или список <see cref="Contacts"/>
+        /// пуст.
+        /// </summary>
+        [RelayCommand]
         private void Edit()
         {
             ViewingMode = false;
             CloneContact = (Contact)SelectedContact.Clone();
         }
 
-        private bool CanEditOrRemove()
-        {
-            return Contacts.Count > 0 && SelectedContact != null;
-        }
-
-        [RelayCommand(CanExecute = nameof(CanApply))]
+        /// <summary>
+        /// Команда сохранения изменений в <see cref="SelectedContact"/> при
+        /// добавлении или изменении контакта. 
+        /// Заблокирована, если одно из свойств <see cref="SelectedContact"/>
+        /// не удовлетворяет требованиям валидации.
+        /// </summary>
+        [RelayCommand]
         private void Apply()
         {
             ViewingMode = true;
@@ -56,11 +72,6 @@ namespace Contacts.ViewModel
             {
                 CloneContact = null;
             }
-        }
-
-        private bool CanApply()
-        {
-            return SelectedContact.IsValid;
         }
 
         /// <summary>

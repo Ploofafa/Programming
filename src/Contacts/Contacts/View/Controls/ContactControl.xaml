@@ -5,12 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Contacts.View.Controls"
              xmlns:converters="clr-namespace:Contacts.View.Converters"
-             xmlns:VM="clr-namespace:Contacts.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <converters:BoolToVisibilityConverter x:Key="Converter" IsInverse="False"/>
-        <converters:NumberToPhoneConverter x:Key="PhoneNumberConverer"/>
+        <converters:StringToPhoneNumberConverter x:Key="PhoneNumberConverer"/>
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -51,7 +50,8 @@
                             ValidatesOnDataErrors=True, 
                             Mode=TwoWay, 
                             NotifyOnValidationError=True}"
-                     IsReadOnly="{Binding ViewingMode}"/>
+                     IsReadOnly="{Binding ViewingMode}"
+                     Validation.ErrorTemplate="{x:Null}"/>
             <TextBlock HorizontalAlignment="Left" 
                        Text="Phone Number:" 
                        Margin="3"/>
@@ -64,7 +64,7 @@
                             Converter={StaticResource PhoneNumberConverer},
                             NotifyOnValidationError=True}"
                      IsReadOnly="{Binding ViewingMode}"
-                     />
+                     Validation.ErrorTemplate="{x:Null}"/>
             <TextBlock Text="Email:" 
                        HorizontalAlignment="Left" 
                        Margin="3"/>
@@ -75,14 +75,18 @@
                             Mode=TwoWay, 
                             ValidatesOnDataErrors=True,
                             NotifyOnValidationError=True}"
-                     IsReadOnly="{Binding ViewingMode}"/>
+                     IsReadOnly="{Binding ViewingMode}"
+                     Validation.ErrorTemplate="{x:Null}"/>
             <Button Content="Apply"
                     Margin="3,50,0,0"
                     Height="25"
                     Width="75"
                     HorizontalAlignment="Left"
                     Command="{Binding ApplyCommand}"
-                    Visibility="{Binding ViewingMode, Converter={StaticResource Converter}}"/>
+                    Visibility="{Binding ViewingMode, Converter={StaticResource Converter}}"
+                    IsEnabled="{Binding SelectedContact.HasError,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Mode=OneWay}"/>
         </StackPanel>
     </Grid>
 </UserControl>
