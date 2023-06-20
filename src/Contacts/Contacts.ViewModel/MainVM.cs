@@ -27,6 +27,7 @@ namespace Contacts.ViewModel
         {
             ViewingMode = false;
             SelectedContact = new Contact();
+            RemoveAndEditEnableMode = false;
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Contacts.ViewModel
         private void Edit()
         {
             ViewingMode = false;
-            CloneContact = (Contact)SelectedContact.Clone();
+            CloneContact = (Contact) SelectedContact.Clone();
         }
 
         /// <summary>
@@ -64,6 +65,7 @@ namespace Contacts.ViewModel
         private void Apply()
         {
             ViewingMode = true;
+            RemoveAndEditEnableMode = true;
             if (Contacts.IndexOf(SelectedContact) == -1)
             {
                 Contacts.Add(SelectedContact);
@@ -88,6 +90,9 @@ namespace Contacts.ViewModel
         [ObservableProperty]
         private bool _viewingMode = true;
 
+        [ObservableProperty]
+        private bool _removeAndEditEnableMode = false;
+
         /// <summary>
         /// Коллекция экземпляров класса <see cref="Contact"/>.
         /// </summary>
@@ -96,19 +101,12 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Задаёт и возвращает выбранного контакта в листбоксе.
         /// </summary>
-        public Contact SelectedContact
+        public Contact? SelectedContact
         {
             get => _selectedContact;
             set
             {
-                if (ViewingMode == false && CloneContact != null)
-                {
-                    UndoChanges();
-                }
-                else if (Contacts.Count > 0 && Contacts.IndexOf(_selectedContact) == -1)
-                {
-                    UndoCreate();
-                }
+                CheckSelectedContact();
                 _selectedContact = value;
                 OnPropertyChanged(nameof(SelectedContact));
             }
@@ -119,9 +117,9 @@ namespace Contacts.ViewModel
         /// </summary>
         private void UndoChanges()
         {
-            _selectedContact.Name = CloneContact.Name;
-            _selectedContact.Email = CloneContact.Email;
-            _selectedContact.PhoneNumber = CloneContact.PhoneNumber;
+            SelectedContact.Name = CloneContact.Name;
+            SelectedContact.Email = CloneContact.Email;
+            SelectedContact.PhoneNumber = CloneContact.PhoneNumber;
             CloneContact = null;
             ViewingMode = true;
         }
@@ -145,11 +143,13 @@ namespace Contacts.ViewModel
             if (Contacts.Count > 0 && Contacts.Count - 1 >= index)
             {
                 SelectedContact = Contacts[index];
+                RemoveAndEditEnableMode = true;
                 return;
             }
             if (Contacts.Count >= 1)
             {
                 SelectedContact = Contacts[index - 1];
+                RemoveAndEditEnableMode = true;
                 return;
             }
             SelectedContact = null;
@@ -172,6 +172,32 @@ namespace Contacts.ViewModel
             if (Contacts.Count > 0)
             {
                 SelectedContact = Contacts[0];
+            }
+        }
+
+        private void CheckSelectedContact()
+        {
+            if (ViewingMode == false && CloneContact != null)
+            {
+                UndoChanges();
+            }
+            else if (Contacts.Count > 0 && Contacts.IndexOf(_selectedContact) == -1)
+            {
+                UndoCreate();
+            }
+
+            CanEditAndRemoveContact();
+        }
+
+        private void CanEditAndRemoveContact()
+        {
+            if (SelectedContact == null || Contacts.Count == 0 || Contacts.Contains(SelectedContact) == false)
+            {
+                RemoveAndEditEnableMode = false;
+            }
+            else
+            {
+                RemoveAndEditEnableMode = true;
             }
         }
 

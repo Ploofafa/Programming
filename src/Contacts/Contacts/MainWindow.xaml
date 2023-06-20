@@ -3,13 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts" xmlns:model="clr-namespace:Contacts.Model" 
-        xmlns:viewmodel="clr-namespace:Contacts.ViewModel" 
-        xmlns:services="clr-namespace:Contacts.Model.Services"
         xmlns:converters="clr-namespace:Contacts.View.Converters"
         xmlns:Controls="clr-namespace:Contacts.View.Controls"
         x:Class="Contacts.MainWindow"
-        d:DataContext="{d:DesignInstance Type={x:Type viewmodel:MainVM}}"
         mc:Ignorable="d"
         Title="Contacts" 
         MinHeight="365" 
@@ -74,7 +70,7 @@
         <ListBox Grid.Row="1"
                  Grid.Column="0"
                  ItemsSource="{Binding Contacts}"
-                 SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 SelectedItem="{Binding SelectedContact}"
                  ItemTemplate="{StaticResource contactTemplate}"
                  Margin="11,0,3,0"/>
         <UniformGrid Columns="3"
@@ -85,19 +81,19 @@
                     Margin="3"
                     Height="25"
                     HorizontalAlignment="Stretch"
-                    Command="{Binding AddCommand}"
-                    IsEnabled="{Binding EditCommand}"/>
+                    Command="{Binding AddCommand}"/>
             <Button Content="Edit"
                     Margin="3"
                     Height="25"
                     HorizontalAlignment="Stretch"
                     Command="{Binding EditCommand}"
-                    IsEnabled="{Binding AddCommand}"/>
+                    IsEnabled="{Binding RemoveAndEditEnableMode}"/>
             <Button Content="Remove"
                     Margin="3"
                     Height="25"
                     HorizontalAlignment="Stretch"
-                    Command="{Binding RemoveCommand}"/>
+                    Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding RemoveAndEditEnableMode}"/>
         </UniformGrid>
 
         <Controls:ContactControl 
